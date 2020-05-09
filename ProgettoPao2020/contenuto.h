@@ -6,6 +6,7 @@ class Contenuto
 {
 public:
     Contenuto();
+    void foo(){return;}
 };
 
 #endif // CONTENUTO_H
