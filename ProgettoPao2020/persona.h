@@ -6,6 +6,8 @@ class Persona
 {
 public:
     Persona();
+private:
+    void foo(){ return;}
 };
 
 #endif // PERSONA_H
