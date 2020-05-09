@@ -9,6 +9,7 @@ public:
 private:
     void foo(){ return;}
     void foo2(){return;}
+    void foo3(){return;}
 };
 
 #endif // PERSONA_H
