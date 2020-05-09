@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    persona.cpp
+    persona.cpp \
+    social.cpp
 
 HEADERS += \
     mainwindow.h \
-    persona.h
+    persona.h \
+    social.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
