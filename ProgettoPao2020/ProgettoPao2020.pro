@@ -16,17 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    account.cpp \
     contenuto.cpp \
+    creator.cpp \
+    creators.cpp \
+    facebook.cpp \
+    instagram.cpp \
     main.cpp \
     mainwindow.cpp \
     persona.cpp \
-    social.cpp
+    social.cpp \
+    youtube.cpp
 
 HEADERS += \
+    account.h \
     contenuto.h \
+    creator.h \
+    creators.h \
+    facebook.h \
+    instagram.h \
     mainwindow.h \
     persona.h \
-    social.h
+    social.h \
+    youtube.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
