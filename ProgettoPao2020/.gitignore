@@ -36,7 +36,8 @@ Thumbs.db
 /.qmake.stash
 
 # qtcreator generated files
-#*.pro.user*
+*.pro.user
+*.pro
 
 # xemacs temporary files
 *.flc
