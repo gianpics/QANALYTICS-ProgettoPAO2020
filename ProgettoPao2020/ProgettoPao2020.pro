@@ -17,28 +17,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     account.cpp \
-    contenuto.cpp \
+    content.cpp \
     creator.cpp \
     creators.cpp \
-    facebook.cpp \
-    instagram.cpp \
     main.cpp \
     mainwindow.cpp \
     persona.cpp \
     social.cpp \
-    youtube.cpp
+    stats.cpp \
+    stats_account.cpp \
+    stats_content.cpp \
+    stats_facebook.cpp \
+    stats_instagram.cpp \
+    stats_youtube.cpp
 
 HEADERS += \
     account.h \
-    contenuto.h \
+    content.h \
     creator.h \
     creators.h \
-    facebook.h \
-    instagram.h \
     mainwindow.h \
     persona.h \
     social.h \
-    youtube.h
+    stats.h \
+    stats_account.h \
+    stats_content.h \
+    stats_facebook.h \
+    stats_instagram.h \
+    stats_youtube.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
