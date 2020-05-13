@@ -20,18 +20,11 @@ class Content
 
     public:
         Content(string, string, QDateTime, content_type, vector<Stats_content>);
-        ~Content()=default;
-        string getTitle();
-        string getDescription();
-        QDateTime getTimestamp();
-        content_type getType();
-        u_int getLikes();
-        u_int getDislikes();
-        u_int getViews();
-        u_int getWatchtime();
-        u_int getImpressions();
-        u_int getComments();
-        u_int getCoverage();
+        string getTitle() const;
+        string getDescription() const;
+        QDateTime getTimestamp() const;
+        content_type getType() const;
+        vector<Stats_content> *getStats();
 
 
 };
