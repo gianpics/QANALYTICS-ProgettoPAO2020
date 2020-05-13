@@ -4,8 +4,11 @@
 
 class Stats_instagram : Stats_account
 {
+private:
+    u_int following;
 public:
-    Stats_instagram();
+    Stats_instagram(u_int, u_int, u_int, u_int, u_int, u_int, u_int=0);
+    u_int getFollowing() const;
 };
 
 #endif // STATS_INSTAGRAM_H
