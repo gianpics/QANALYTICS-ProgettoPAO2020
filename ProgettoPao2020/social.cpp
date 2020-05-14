@@ -1,7 +1,7 @@
 #include "social.h"
 
 
-Social::Social(std::vector<const Account &>& _sl):socialList(_sl){}
+Social::Social(const std::vector<Account &>& _sl):socialList(_sl){}
 
 Social::Social(const Social& _s):socialList(_s ? _s.socialList : 0){}
 
