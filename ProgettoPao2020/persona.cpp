@@ -36,3 +36,8 @@ std::string Persona::getVAT() const
     return vat;
 }
 
+Persona* Persona::operator=(const Persona &p)
+{
+    return new Persona(p.fname, p.lname, p.ssn, p.address, p.vat);
+}
+

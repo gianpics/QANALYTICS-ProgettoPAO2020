@@ -90,7 +90,7 @@ Creator Creators::RemoveBySSN(std::string ssn){
     bool found=false;
     for(Creators::constinterator i = begin(); i!=end() && !found; ++i)
     {
-        if(i.ptr->info.getPiva()==ssn)
+        if(i.ptr->info.getSSN()==ssn)
         {
             found=true;
             foo=i.ptr->info;
