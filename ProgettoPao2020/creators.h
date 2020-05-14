@@ -23,7 +23,7 @@ class Creators
         void InsertFront(Creator&);
         void InsertBack(Creator&);
         Creator RemoveCreator(Creator&);
-        Creator RemoveByPIva(std::string);
+        Creator RemoveByVAT(std::string);
         Creator RemoveBySSN(std::string);
 
         class constinterator{

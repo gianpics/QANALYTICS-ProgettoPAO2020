@@ -65,12 +65,12 @@ Creator Creators::RemoveCreator(Creator& c){
     throw "Element not present.";
 }
 
-Creator Creators::RemoveByPIva(std::string piva){
+Creator Creators::RemoveByVAT(std::string piva){
     Creator foo;
     bool found=false;
     for(Creators::constinterator i = begin(); i!=end() && !found; ++i)
     {
-        if(i.ptr->info.getPiva()==piva)
+        if(i.ptr->info.getVAT()==piva)
         {
             found=true;
             foo=i.ptr->info;

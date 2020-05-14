@@ -13,7 +13,7 @@ class Persona
     public:
         Persona(std::string ="", std::string ="" , std::string ="", std::string ="", std::string ="");
         Persona(const Persona& p);
-        ~Persona();
+        virtual ~Persona();
         std::string getName() const;
         std::string getLastName() const;
         std::string getFullName() const;

@@ -7,9 +7,10 @@
 class Social
 {
 private:
-    std::vector<const Account&> socialList;
+    std::vector<Account&> socialList;
 public:
-    Social(std::vector<const Account&>&);
+    Social(){}
+    Social(const std::vector<Account&>&);
     Social(const Social&);
     Social(const Account&);
     virtual ~Social();
