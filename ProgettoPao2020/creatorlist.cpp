@@ -46,6 +46,9 @@ int CreatorList::getCreatorIndex(const Creator &c) const
 
 void CreatorList::InsertFront(Creator &c)
 {
+    if(getCreatorIndex(c)>-1)
+        throw "Could not insert already present element.";
+
     node* n = new node(c, nullptr, first);
 
     if(first==nullptr)
@@ -61,6 +64,9 @@ void CreatorList::InsertFront(Creator &c)
 
 void CreatorList::InsertBack(Creator &c)
 {
+    if(getCreatorIndex(c)>-1)
+        throw "Could not insert already present element.";
+
     node* n = new node(c, last, nullptr);
 
     if(last==nullptr)
@@ -92,7 +98,7 @@ Creator CreatorList::RemoveCreator(const Creator& c)
         if(i.ptr->info==c)
             return RemoveNode(i.ptr);
 
-    throw "Element not present.";
+    throw "Could not remove non existent element.";
 }
 
 Creator CreatorList::RemoveBySSN(std::string ssn)
@@ -101,7 +107,7 @@ Creator CreatorList::RemoveBySSN(std::string ssn)
         if(i.ptr->info.getSSN()==ssn)
             return RemoveNode(i.ptr);
 
-    throw "Element not present.";
+    throw "Could not remove non existent element.";
 }
 
 Creator CreatorList::operator[](int i) const
