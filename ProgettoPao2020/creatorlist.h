@@ -8,44 +8,50 @@ class CreatorList
         class node{
             public:
                 Creator info;
-                node* prev;
-                node* next;
+                node *prev, *next;
 
                 node(Creator& _info, node* _prev=nullptr, node* _next=nullptr): info(_info), prev(_prev), next(_next){}
                 ~node();
         };
+
         node *first, *last;
 
     public:
-        CreatorList(Creator&);
+        CreatorList(Creator& c);
         ~CreatorList();
 
-        void InsertFront(Creator&);
-        void InsertBack(Creator&);
-        Creator RemoveNode(node*);
-        Creator RemoveCreator(Creator&);
-        Creator RemoveByVAT(std::string);
-        Creator RemoveBySSN(std::string);
+        int getCreatorIndex(const Creator &c) const;
+        void InsertFront(Creator &c);
+        void InsertBack(Creator &c);
+        int size() const;
+        bool empty() const;
+        Creator RemoveAt(int i);
+        Creator RemoveNode(node* n);
+        Creator RemoveCreator(const Creator &c);
+        Creator RemoveBySSN(std::string ssn);
+        Creator operator[](int i) const;
 
-        class constinterator{
+        class constiterator{
             friend class CreatorList;
 
             private:
                 node* ptr;
                 bool pastTheEnd;
-                constinterator(node* n, bool pte): ptr(n), pastTheEnd(pte){}
+                constiterator(node* n, bool pte): ptr(n), pastTheEnd(pte){}
             public:
-                constinterator(): ptr(nullptr), pastTheEnd(false){}
+                constiterator(): ptr(nullptr), pastTheEnd(false){}
                 const Creator& operator*() const;
                 const Creator* operator->() const;
-                constinterator& operator++();
-                constinterator& operator--();
-                bool operator==(const constinterator&) const;
-                bool operator!=(const constinterator&) const;
+                constiterator& operator++();
+                constiterator& operator--();
+                constiterator operator++(int);
+                constiterator operator--(int);
+                bool operator==(const constiterator &x) const;
+                bool operator!=(const constiterator &x) const;
         };
 
-        constinterator begin() const;
-        constinterator end() const;
+        constiterator begin() const;
+        constiterator end() const;
 
 };
 
