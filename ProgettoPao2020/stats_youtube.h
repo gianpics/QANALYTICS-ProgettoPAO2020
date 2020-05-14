@@ -16,6 +16,7 @@ public:
     u_int getDonators() const;
     u_int getTotalWatchtime() const;
     u_int getAvgWatchtime() const;
+    virtual ~Stats_youtube() = default;
 };
 
 #endif // STATS_YOUTUBE_H

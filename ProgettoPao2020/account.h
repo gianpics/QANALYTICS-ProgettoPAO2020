@@ -14,16 +14,16 @@ private:
     string username;
     string email;
     vector<Content> contents;
-    vector<Stats_account> stats;
+    vector<Stats_account*> stats;
     account_type type;
 public:
-    Account(u_int _id, string _username, string _email, account_type _type, vector<Content> contents = vector<Content>(), vector<Stats_account> stats = vector<Stats_account>());
+    Account(u_int _id, string _username, string _email, account_type _type, vector<Content> contents = vector<Content>(), vector<Stats_account*> stats = vector<Stats_account*>());
     u_int getId() const;
     string getUsername() const;
     string getEmail() const;
     string getLink() const;
     vector<Content> *getContents();
-    vector<Stats_account> *getStats();
+    vector<Stats_account*> *getStats();
 };
 
 #endif // ACCOUNT_H

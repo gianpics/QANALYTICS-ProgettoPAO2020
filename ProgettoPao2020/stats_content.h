@@ -15,6 +15,7 @@ public:
     u_int getNum_comments() const{return num_comments;}
     u_int getViews() const{return views;}
     u_int getWatchtime() const{return watchtime;}
+    virtual ~Stats_content() = default;
 };
 
 #endif // STATS_CONTENT_H

@@ -8,6 +8,5 @@ Social::Social(const Account& _a){
     socialList.push_back(const_cast<Account &>(_a));
 }
 
-Social::~Social() = default;
-
+Social::~Social(){}
 

@@ -28,12 +28,12 @@ int main(int argc, char *argv[])
     lc.push_back(*c2);
     Stats_account *sy1 = new Stats_youtube(01,2010,25282,68168,885,25181,121);
     Stats_account *sy2 = new Stats_youtube(02,2010,25282,68168,885,25181,122);
-    std::vector<Stats_account> listsy;
-    listsy.push_back(*sy1);
-    listsy.push_back(*sy2);
+    std::vector<Stats_account*> listsy;
+    listsy.push_back(sy1);
+    listsy.push_back(sy2);
     Account* acc = new Account(0, "panz", "panz@gmail.com", youtube, lc, listsy);
-    std::cout << dynamic_cast<Stats_youtube&>(acc->getStats()->at(0)).getFollowing() <<std::endl;
-    std::cout << acc->getUsername()<<std::endl;
+    std::cout << dynamic_cast<Stats_youtube*>(acc->getStats()->at(0))->getFollowing() <<std::endl;
+    //std::cout << acc->getUsername()<<std::endl;
 
     //acc->getId();
 }
