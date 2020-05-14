@@ -65,7 +65,7 @@ Creator Creators::RemoveCreator(Creator& c){
     throw "Element not present.";
 }
 
-Creator Creators::RemoveByPIva(std::string piva){
+Creator Creators::RemoveByVAT(std::string piva){
     Creator foo;
     bool found=false;
     for(Creators::constinterator i = begin(); i!=end() && !found; ++i)
@@ -90,7 +90,7 @@ Creator Creators::RemoveBySSN(std::string ssn){
     bool found=false;
     for(Creators::constinterator i = begin(); i!=end() && !found; ++i)
     {
-        if(i.ptr->info.getPiva()==ssn)
+        if(i.ptr->info.getSSN()==ssn)
         {
             found=true;
             foo=i.ptr->info;
