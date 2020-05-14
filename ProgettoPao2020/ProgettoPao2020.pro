@@ -19,7 +19,7 @@ SOURCES += \
     account.cpp \
     content.cpp \
     creator.cpp \
-    creators.cpp \
+    creatorlist.cpp \
     main.cpp \
     mainwindow.cpp \
     persona.cpp \
@@ -35,7 +35,7 @@ HEADERS += \
     account.h \
     content.h \
     creator.h \
-    creators.h \
+    creatorlist.h \
     mainwindow.h \
     persona.h \
     social.h \
