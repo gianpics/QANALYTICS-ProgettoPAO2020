@@ -19,7 +19,7 @@ class Content
         vector<Stats_content> stats;
 
     public:
-        Content(string, string, QDateTime, content_type, vector<Stats_content>);
+        Content(string _title, string _description, QDateTime _timestamp, content_type _type, vector<Stats_content> _stats);
         string getTitle() const;
         string getDescription() const;
         QDateTime getTimestamp() const;
