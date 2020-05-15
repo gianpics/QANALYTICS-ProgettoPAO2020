@@ -15,9 +15,6 @@ Creator CreatorList::RemoveNode(node* n){
         // nodo da rimuovere è testa
         first=n->next;
         first->prev=nullptr;
-
-        n->next=nullptr;
-        delete n;
     }
     else
     {
@@ -26,11 +23,12 @@ Creator CreatorList::RemoveNode(node* n){
 
         // se nodo era finale, aggiorna last al nuovo ultimo
         if(n==last) last=n->prev;
-
-        n->prev=nullptr;
-        n->next=nullptr;
-        delete n;
     }
+
+    // delink
+    n->prev=nullptr;
+    n->next=nullptr;
+    delete n;
 
     return foo;
 }
