@@ -6,14 +6,14 @@
 class Social
 {
 private:
-    std::vector<Account*> socialList;
+    std::vector<Account> socialList;
 
 public:
     Social(){}
     virtual ~Social()  = 0;
     Social(const Social& _s);
-    Social(const std::vector<Account*>&);
-    Social(const Account* _acc);
+    Social(const std::vector<Account>& _sl);
+    Social(const Account& _acc);
 };
 
 #endif // SOCIAL_H
