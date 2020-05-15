@@ -1,6 +1,6 @@
 #include "account.h"
 
-Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content*>& _contents, const vector<Stats_account*>& _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
+Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, const vector<Stats_account>& _stats) : id(_id), username(_username), email(_email), type(_type), stats(_stats), contents(_contents){}
 
 Account::Account(const Account& _account)
 {
@@ -8,7 +8,9 @@ Account::Account(const Account& _account)
     username=_account.username;
     email=_account.email;
     type=_account.type;
-    for(auto a : _account.contents){
+    contents=_account.contents;
+    stats=_account.stats;
+    /*for(auto a : _account.contents){
         contents.push_back(new Content(*a));
     }
     for(auto a : _account.stats){
@@ -19,7 +21,7 @@ Account::Account(const Account& _account)
         }else if(auto *b = dynamic_cast<Stats_instagram*>(a)){
             stats.push_back(new Stats_instagram(*b));
         }
-    }
+    }*/
 }
 
 Account& Account::operator=(const Account& _account)
@@ -29,7 +31,9 @@ Account& Account::operator=(const Account& _account)
         username=_account.username;
         email=_account.email;
         type=_account.type;
-        for(auto a : _account.contents){
+        contents=_account.contents;
+        stats=_account.stats;
+        /*for(auto a : _account.contents){
             contents.push_back(new Content(*a));
         }
         for(auto a : _account.stats){
@@ -40,7 +44,7 @@ Account& Account::operator=(const Account& _account)
             }else if(auto *b = dynamic_cast<Stats_instagram*>(a)){
                 stats.push_back(new Stats_instagram(*b));
             }
-        }
+        }*/
     }
     return *this;
 }
@@ -53,6 +57,6 @@ string Account::getUsername() const {return username;}
 
 string Account::getEmail() const {return email;}
 
-vector<Content*> *Account::getContents() {return &contents;}
+vector<Content> *Account::getContents() {return &contents;}
 
-vector<Stats_account*> *Account::getStats() {return &stats;}
+vector<Stats_account> *Account::getStats() {return &stats;}
