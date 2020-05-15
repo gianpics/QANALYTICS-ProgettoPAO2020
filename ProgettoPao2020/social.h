@@ -13,7 +13,7 @@ public:
     Social(const std::vector<Account>&);
     Social(const Social&);
     Social(const Account&);
-    virtual ~Social();
+    virtual ~Social()  = 0;
 
 };
 

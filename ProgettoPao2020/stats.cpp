@@ -6,6 +6,8 @@ Stats::Stats(u_int _month, u_int _year, u_int _impression, u_int _coverage, u_in
     year = (_year>2000) ? _month : 0;
 }
 
+Stats::~Stats(){}
+
 u_int Stats::getMonth() const {return month;}
 
 u_int Stats::getYear() const {return year;}

@@ -4,7 +4,7 @@ Persona::Persona(std::string _fname, std::string _lname, std::string _ssn, std::
 
 Persona::Persona(const Persona &p):fname(p.fname),lname(p.lname), address(p.address), vat(p.vat){}
 
-Persona::~Persona()=default;
+Persona::~Persona(){}
 
 std::string Persona::getName()const
 {
@@ -35,9 +35,8 @@ std::string Persona::getVAT() const
 {
     return vat;
 }
-
 Persona* Persona::operator=(const Persona &p)
 {
-    return new Persona(p.fname, p.lname, p.ssn, p.address, p.vat);
+    //return new Persona(p.fname, p.lname, p.ssn, p.address, p.vat);
 }
 

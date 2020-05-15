@@ -9,10 +9,10 @@ private:
     std::string nickname;
 
 public:
-    Creator():Social(),Persona(){}
+    Creator(){}
     Creator(const std::vector<Account>, std::string, std::string, std::string, std::string, std::string, std::string ="" );
     Creator(const Account, std::string, std::string, std::string, std::string, std::string, std::string ="" );
-    ~Creator();
+    virtual ~Creator() = default;
     bool operator==(const Creator&);
     bool operator!=(const Creator&);
 };
