@@ -5,37 +5,50 @@ CreatorList::CreatorList(Creator& c): first(new node(c)), last(first){}
 
 CreatorList::~CreatorList(){ delete first; delete last; }
 
-CreatorList::node::~node(){
-
-}
+CreatorList::node::~node(){ delete next; }
 
 Creator CreatorList::RemoveNode(node* n){
     Creator foo=n->info;
 
     if(n==first)
     {
+        // nodo da rimuovere è testa
         first=n->next;
-        first->prev=0;
+        first->prev=nullptr;
+
+        n->next=nullptr;
+        delete n;
     }
     else
     {
         (n->prev)->next=n->next;
-        if(n->next!=0) (n->next)->prev=n->prev;
+        (n->next)->prev=n->prev;
+
+        // se nodo era finale, aggiorna last al nuovo ultimo
+        if(n==last) last=n->prev;
+
+        n->prev=nullptr;
+        n->next=nullptr;
+        delete n;
     }
 
     return foo;
 }
 
-const Creator& CreatorList::constinterator::operator*() const {
-    return ptr->info;
-}
-
-const Creator* CreatorList::constinterator::operator->() const {
-    return &(ptr->info);
-}
-
-void CreatorList::InsertFront(Creator& c)
+int CreatorList::getCreatorIndex(const Creator &c) const
 {
+    constiterator x;
+    int i;
+    for(i=0, x=begin(); x!=end(); i++, x++)
+        if(x.ptr->info==c) return i;
+    return -1;
+}
+
+void CreatorList::InsertFront(Creator &c)
+{
+    if(getCreatorIndex(c)>-1)
+        throw "Could not insert already present element.";
+
     node* n = new node(c, nullptr, first);
 
     if(first==nullptr)
@@ -49,8 +62,11 @@ void CreatorList::InsertFront(Creator& c)
     }
 }
 
-void CreatorList::InsertBack(Creator& c)
+void CreatorList::InsertBack(Creator &c)
 {
+    if(getCreatorIndex(c)>-1)
+        throw "Could not insert already present element.";
+
     node* n = new node(c, last, nullptr);
 
     if(last==nullptr)
@@ -61,100 +77,130 @@ void CreatorList::InsertBack(Creator& c)
         last=last->next=n;
 }
 
-Creator CreatorList::RemoveCreator(Creator& c){
-    // Localizza nella lista l'elemento da rimuovere
-    Creator foo;
-    bool found=false;
-    for(constinterator i = begin(); i!=end() && !found; ++i)
-    {
+int CreatorList::size() const
+{
+    int i=0;
+    for(constiterator x=begin(); x!=end(); i++) i++;
+
+    return i;
+}
+
+bool CreatorList::empty() const { return first==nullptr; }
+
+Creator CreatorList::RemoveAt(int i)
+{
+    return RemoveCreator(this->operator[](i));
+}
+
+Creator CreatorList::RemoveCreator(const Creator& c)
+{
+    for(constiterator i = begin(); i!=end(); ++i)
         if(i.ptr->info==c)
-        {
-            found=true;
+            return RemoveNode(i.ptr);
 
-            // rimozione
-            foo=RemoveNode(i.ptr);
-        }
-    }
-
-    if(found)
-        return foo;
-    else
-        throw "Element not present.";
+    throw "Could not remove non existent element.";
 }
 
-Creator CreatorList::RemoveByVAT(std::string piva){
-    Creator foo;
-    bool found=false;
-    for(constinterator i = begin(); i!=end() && !found; ++i)
-    {
-        if(i.ptr->info.getVAT()==piva)
-        {
-            found=true;
-
-            // rimozione
-            foo=RemoveNode(i.ptr);
-        }
-    }
-
-    if(found)
-        return foo;
-    throw "Element not present.";
-}
-
-Creator CreatorList::RemoveBySSN(std::string ssn){
-    Creator foo;
-    bool found=false;
-    for(constinterator i = begin(); i!=end() && !found; ++i)
-    {
+Creator CreatorList::RemoveBySSN(std::string ssn)
+{
+    for(constiterator i = begin(); i!=end(); ++i)
         if(i.ptr->info.getSSN()==ssn)
-        {
-            found=true;
+            return RemoveNode(i.ptr);
 
-            // rimozione
-            foo=RemoveNode(i.ptr);
-        }
-    }
+    throw "Could not remove non existent element.";
+}
 
-    if(found)
-        return foo;
-    throw "Element not present.";
+Creator CreatorList::operator[](int i) const
+{
+    constiterator x;
+    int k;
+
+    for(k=0, x=begin(); k<=i && x!=end(); k++, x++)
+        if (k==i) return x.ptr->info;
+
+    throw "Out of range.";
 }
 
 // operatore pre-incremento ++i
-CreatorList::constinterator& CreatorList::constinterator::operator++() {
+CreatorList::constiterator& CreatorList::constiterator::operator++()
+{
     if(ptr!=nullptr && !pastTheEnd)
     {
         if(ptr->next==nullptr)
         {
-            ptr++;  // ptr=ptr->next; (?)
+            ptr=ptr->next;
             pastTheEnd=true;
         }
         else
             ptr=ptr->next;
     }
+
     return *this;
 }
 
 // operatore pre-decremento --i
-CreatorList::constinterator& CreatorList::constinterator::operator--() {
+CreatorList::constiterator& CreatorList::constiterator::operator--()
+{
     if(ptr!=nullptr)
     {
         if(pastTheEnd)
         {
-            ptr--;  // ptr=ptr->prev; (?)
+            ptr=ptr->prev;
             pastTheEnd=false;
         }
         else
             ptr=ptr->prev;
     }
+
     return *this;
 }
 
+// operatore post-incremento i++
+CreatorList::constiterator CreatorList::constiterator::operator++(int)
+{
+    constiterator foo(*this);
 
-bool CreatorList::constinterator::operator==(const constinterator& x) const { return ptr==x.ptr; }
+    if(ptr!=nullptr && !pastTheEnd)
+    {
+        if(ptr->next==nullptr)
+        {
+            ptr=ptr->next;
+            pastTheEnd=true;
+        }
+        else
+            ptr=ptr->next;
+    }
 
-bool CreatorList::constinterator::operator!=(const constinterator& x) const { return ptr!=x.ptr; }
+    return foo;
+}
 
-CreatorList::constinterator CreatorList::begin() const { return constinterator(first, false); }
+// operatore post-decremento i--
+CreatorList::constiterator CreatorList::constiterator::operator--(int)
+{
+    constiterator foo(*this);
 
-CreatorList::constinterator CreatorList::end() const { return constinterator(last+1, true); }
+    if(ptr!=nullptr)
+    {
+        if(pastTheEnd)
+        {
+            ptr=ptr->prev;
+            pastTheEnd=false;
+        }
+        else
+            ptr=ptr->prev;
+    }
+
+    return foo;
+}
+
+const Creator& CreatorList::constiterator::operator*() const { return ptr->info; }
+
+const Creator* CreatorList::constiterator::operator->() const { return &(ptr->info); }
+
+bool CreatorList::constiterator::operator==(const constiterator& x) const { return ptr==x.ptr; }
+
+bool CreatorList::constiterator::operator!=(const constiterator& x) const { return ptr!=x.ptr; }
+
+CreatorList::constiterator CreatorList::begin() const { return constiterator(first, false); }
+
+CreatorList::constiterator CreatorList::end() const { return constiterator(last+1, true); }
