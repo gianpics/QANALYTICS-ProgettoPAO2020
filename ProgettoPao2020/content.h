@@ -16,15 +16,17 @@ class Content
         string description;
         QDateTime timestamp;
         content_type type;
-        vector<Stats_content> stats;
+        vector<Stats_content*> stats;
 
     public:
-        Content(string _title, string _description, QDateTime _timestamp, content_type _type, vector<Stats_content> _stats);
+        Content(string _title, string _description, QDateTime _timestamp, content_type _type, const vector<Stats_content*>& _stats);
+        Content(const Content& _content);
+        Content &operator=(const Content& _content);
         string getTitle() const;
         string getDescription() const;
         QDateTime getTimestamp() const;
         content_type getType() const;
-        vector<Stats_content> *getStats();
+        vector<Stats_content*> *getStats();
 
 
 };
