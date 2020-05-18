@@ -23,7 +23,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     persona.cpp \
-    social.cpp \
+    sociallist.cpp \
     stats.cpp \
     stats_account.cpp \
     stats_content.cpp \
@@ -38,7 +38,7 @@ HEADERS += \
     creatorlist.h \
     mainwindow.h \
     persona.h \
-    social.h \
+    sociallist.h \
     stats.h \
     stats_account.h \
     stats_content.h \

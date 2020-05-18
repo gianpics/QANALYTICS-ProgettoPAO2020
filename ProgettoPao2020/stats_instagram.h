@@ -7,9 +7,11 @@ class Stats_instagram : public Stats_account
 private:
     u_int following;
 public:
-    Stats_instagram(u_int _month, u_int _year, u_int _coverage, u_int _impression, u_int _like, u_int _followers, u_int _following = 0);
-    u_int getFollowing() const;
+    Stats_instagram(u_int _month = 0, u_int _year = 0, u_int _coverage = 0, u_int _impression = 0, u_int _like = 0, u_int _followers = 0, u_int _following = 0);
     virtual ~Stats_instagram() = default;
+    u_int getFollowing() const;
+    void setFollowing(u_int _following);
+
 };
 
 #endif // STATS_INSTAGRAM_H
