@@ -14,12 +14,17 @@ class Persona
         Persona(std::string ="", std::string ="" , std::string ="", std::string ="", std::string ="");
         Persona(const Persona& p);
         virtual ~Persona() = 0;
-        std::string getName() const;
-        std::string getLastName() const;
-        std::string getFullName() const;
-        std::string getSSN() const;
-        std::string getAddress() const;
-        std::string getVAT() const;
+        virtual std::string getName() const;
+        virtual std::string getLastName() const;
+        virtual std::string getFullName() const;
+        virtual std::string getSSN() const;
+        virtual std::string getAddress() const;
+        virtual std::string getVAT() const;
+        virtual void setName(std::string _fname);
+        virtual void setLastName(std::string _lname);
+        virtual void setSSN(std::string _ssn);
+        virtual void setAddress(std::string _vat);
+        virtual void setVat(std::string _address);
         Persona* operator=(const Persona&);
 
 };

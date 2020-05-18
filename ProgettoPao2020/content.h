@@ -23,10 +23,15 @@ class Content
         Content(const Content& _content);
         Content &operator=(const Content& _content);
         string getTitle() const;
+        void setTitle(string _title);
         string getDescription() const;
+        void setDescription(string _description);
         QDateTime getTimestamp() const;
+        void setTimeStamp(QDateTime _timestamp);
         content_type getType() const;
+        void setType(content_type _type);
         vector<Stats_content> *getStats();
+        void setStats(vector<Stats_content>&_stats);
 
 
 };

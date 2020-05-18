@@ -30,10 +30,35 @@ Content &Content::operator=(const Content &_content)
 
 string Content::getTitle() const {return title;}
 
+void Content::setTitle(string _title)
+{
+    title=_title;
+}
+
 string Content::getDescription() const {return description;}
+
+void Content::setDescription(string _description)
+{
+    description=_description;
+}
 
 QDateTime Content::getTimestamp() const {return timestamp;}
 
+void Content::setTimeStamp(QDateTime _timestamp)
+{
+    timestamp=_timestamp;
+}
+
 content_type Content::getType() const{return type;}
 
+void Content::setType(content_type _type)
+{
+    type=_type;
+}
+
 vector<Stats_content> *Content::getStats(){ return &stats;}
+
+void Content::setStats(vector<Stats_content> &_stats)
+{
+    stats=_stats;
+}
