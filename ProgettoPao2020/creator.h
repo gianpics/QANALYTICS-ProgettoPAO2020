@@ -1,9 +1,9 @@
 #ifndef CREATOR_H
 #define CREATOR_H
-#include "social.h"
+#include "sociallist.h"
 #include "persona.h"
 #include "vector"
-class Creator : public Social, public Persona
+class Creator : public SocialList, public Persona
 {
 private:
     std::string nickname;
