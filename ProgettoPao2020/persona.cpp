@@ -35,6 +35,31 @@ std::string Persona::getVAT() const
 {
     return vat;
 }
+
+void Persona::setName(std::string _fname)
+{
+    fname=_fname;
+}
+
+void Persona::setLastName(std::string _lname)
+{
+    lname=_lname;
+}
+
+void Persona::setSSN(std::string _ssn)
+{
+    ssn=_ssn;
+}
+
+void Persona::setAddress(std::string _address)
+{
+    address=_address;
+}
+
+void Persona::setVat(std::string _vat)
+{
+    vat=_vat;
+}
 Persona* Persona::operator=(const Persona &p)
 {
     //return new Persona(p.fname, p.lname, p.ssn, p.address, p.vat);

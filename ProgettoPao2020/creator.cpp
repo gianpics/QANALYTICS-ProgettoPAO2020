@@ -15,3 +15,13 @@ bool Creator::operator!=(const Creator & c)
 {
     return getSSN()!= c.getSSN();
 }
+
+string Creator::getNickname() const
+{
+    return nickname;
+}
+
+void Creator::setNickname(string _nickname)
+{
+    nickname=_nickname;
+}

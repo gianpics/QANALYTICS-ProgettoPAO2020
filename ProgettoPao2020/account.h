@@ -24,11 +24,17 @@ public:
     Account(const Account& _account);
     Account& operator=(const Account& _account);
     u_int getId() const;
+    void setId(u_int _id);
     string getUsername() const;
+    void setUsername(string _username);
     string getEmail() const;
-    string getLink() const;
+    void setEmail(string _email);
+    account_type getType() const;
+    void setType(account_type _type);
     vector<Content> *getContents();
+    void setContents(vector<Content>& _contents);
     vector<Stats_account> *getStats();
+    void setStats(vector<Stats_account> &_stats);
 };
 
 #endif // ACCOUNT_H

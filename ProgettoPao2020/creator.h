@@ -15,6 +15,8 @@ public:
     virtual ~Creator() = default;
     bool operator==(const Creator&);
     bool operator!=(const Creator&);
+    string getNickname() const;
+    void setNickname(string _nickname);
 };
 
 #endif // CREATOR_H

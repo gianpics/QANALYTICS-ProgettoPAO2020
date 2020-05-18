@@ -51,12 +51,47 @@ Account& Account::operator=(const Account& _account)
 
 u_int Account::getId() const { return id;}
 
+void Account::setId(u_int _id)
+{
+    id=_id;
+}
+
 //void Account::setId(u_int _id){id=_id;}
 
 string Account::getUsername() const {return username;}
 
+void Account::setUsername(string _username)
+{
+    username=_username;
+}
+
 string Account::getEmail() const {return email;}
+
+void Account::setEmail(string _email)
+{
+    email=_email;
+}
+
+account_type Account::getType() const
+{
+    return type;
+}
+
+void Account::setType(account_type _type)
+{
+    type=_type;
+}
 
 vector<Content> *Account::getContents() {return &contents;}
 
+void Account::setContents(vector<Content> &_contents)
+{
+    contents=_contents;
+}
+
 vector<Stats_account> *Account::getStats() {return &stats;}
+
+void Account::setStats(vector<Stats_account> &_stats)
+{
+   stats=_stats;
+}
