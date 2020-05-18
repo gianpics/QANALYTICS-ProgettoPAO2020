@@ -14,6 +14,7 @@ class Stats
         Stats(u_int _month, u_int _year, u_int _impression, u_int _coverage, u_int _like);
         virtual ~Stats()  = 0;
         virtual u_int getMonth() const;
+        virtual void setYear(u_int y);
         virtual u_int getYear() const;
         virtual u_int getImpression() const;
         virtual u_int getCoverage() const;
