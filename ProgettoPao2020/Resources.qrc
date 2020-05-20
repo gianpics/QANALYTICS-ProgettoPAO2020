@@ -1,2 +1,7 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>resources/gear.png</file>
+        <file>resources/config.ini</file>
+        <file>resources/info.png</file>
+    </qresource>
+</RCC>

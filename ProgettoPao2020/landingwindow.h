@@ -3,12 +3,29 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QPushButton>
+#include <QTextEdit>
+#include <QListView>
+#include <QSettings>
 
-class landingwindow
+class LandingWindow: public QWidget
 {
     Q_OBJECT
+private:
+    QPushButton *infoBtn, *settingBtn;
+    QTextEdit *searchTxt;
+    QListView *creatorsLvw;
+
+    void setWidgets();
+    void setStyle();
+
+
 public:
-    landingwindow();
+    LandingWindow();
+
+public slots:
+    void settingBtnClick();
+    void infoBtnClick();
 };
 
 #endif // LANDINGWINDOW_H

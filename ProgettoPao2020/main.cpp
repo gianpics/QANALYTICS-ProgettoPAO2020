@@ -1,3 +1,6 @@
+#include <QSettings>
+#include <QDebug>
+#include <QCoreApplication>
 #include "mainwindow.h"
 #include "stats_instagram.h"
 #include "stats_facebook.h"
@@ -6,17 +9,19 @@
 #include "content.h"
 #include "creatorlist.h"
 #include "account.h"
+#include "landingwindow.h"
 
 #include <QApplication>
 #include <iostream>
 
 int main(int argc, char *argv[])
 {
-    /*QApplication a(argc, argv);
-    MainWindow w;
+    QApplication a(argc, argv);
+    LandingWindow w;
     w.show();
-    return a.exec();*/
-    Stats_content sc1(01, 2010, 212, 525, 989);
+    return a.exec();
+
+    /*Stats_content sc1(01, 2010, 212, 525, 989);
     Stats_content sc2(02, 2010, 212, 525, 989);
     std::vector<Stats_content> listsc;
     listsc.push_back(sc1);
@@ -35,6 +40,6 @@ int main(int argc, char *argv[])
     Account acc1=acc;
     acc.getContents()->pop_back();
     std::cout << acc.getContents()->at(0).getType() <<std::endl;
-    std::cout << acc1.getContents()->size() <<std::endl;
+    std::cout << acc1.getContents()->size() <<std::endl;*/
 
 }
