@@ -11,7 +11,7 @@ private:
     u_int avg_watchtime;
 
 public:
-    Stats_youtube(u_int _month = 0, u_int _year = 0, u_int _coverage = 0, u_int _impression = 0, u_int _like = 0, u_int _followers = 0, u_int _following = 0, u_int _donators = 0, u_int _totalwatchtime = 0, u_int _avgwatchtime = 0);
+    Stats_youtube(QDate _date, u_int _coverage = 0, u_int _impression = 0, u_int _like = 0, u_int _followers = 0, u_int _following = 0, u_int _donators = 0, u_int _totalwatchtime = 0, u_int _avgwatchtime = 0);
     virtual ~Stats_youtube() = default;
     u_int getFollowing() const;
     u_int getDonators() const;

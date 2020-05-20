@@ -10,8 +10,8 @@ private:
 
 public:
     Creator(){}
-    Creator(const std::vector<Account>, std::string, std::string, std::string, std::string, std::string, std::string ="" );
-    Creator(const Account, std::string, std::string, std::string, std::string, std::string, std::string ="" );
+    Creator(const std::vector<Account>, std::string _fname, std::string _lname, std::string _ssn, std::string _address, std::string _vat, std::string _nickname = "" );
+    Creator(const Account, std::string _fname, std::string _lname, std::string _ssn, std::string _address, std::string _vat, std::string _nickname = "" );
     virtual ~Creator() = default;
     bool operator==(const Creator&);
     bool operator!=(const Creator&);

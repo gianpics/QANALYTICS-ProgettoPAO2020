@@ -19,7 +19,6 @@ SOURCES += \
     content.cpp \
     creator.cpp \
     creatorlist.cpp \
-    landingwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -37,7 +36,6 @@ HEADERS += \
     content.h \
     creator.h \
     creatorlist.h \
-    landingwindow.h \
     mainwindow.h \
     model.h \
     persona.h \

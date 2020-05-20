@@ -100,23 +100,22 @@ Creator CreatorList::RemoveCreator(const Creator& c)
     throw "Could not remove non existent element.";
 }
 
-Creator CreatorList::RemoveBySSN(std::string ssn)
+Creator CreatorList::RemoveBySSN(std::string _ssn)
 {
     for(constiterator i = begin(); i!=end(); ++i)
-        if(i.ptr->info.getSSN()==ssn)
+        if(i->getSSN()==_ssn)
             return RemoveNode(i.ptr);
 
     throw "Could not remove non existent element.";
 }
 
-Creator &CreatorList::getCreatorBySSN(string _ssn)
+Creator& CreatorList::getCreatorBySSN(string _ssn)
 {
-
-
-    for(constiterator x=begin(); x!=end(); x++)
-        if (x.ptr->info.getSSN()==_ssn)
-            return x.ptr->info;
-
+    for(constiterator i=begin(); i!=end(); i++){
+        if (i->getSSN()==_ssn){
+            return i.ptr->info;
+        }
+    }
     throw "Out of range.";
 }
 
