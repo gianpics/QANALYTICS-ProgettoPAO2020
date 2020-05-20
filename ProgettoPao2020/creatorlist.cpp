@@ -1,5 +1,6 @@
 #include "creatorlist.h"
-#include "creator.h"
+
+CreatorList::CreatorList(): first(), last(){}
 
 CreatorList::CreatorList(Creator& c): first(new node(c)), last(first){}
 
@@ -108,7 +109,7 @@ Creator CreatorList::RemoveBySSN(std::string ssn)
     throw "Could not remove non existent element.";
 }
 
-Creator CreatorList::operator[](int i) const
+Creator& CreatorList::operator[](int i) const
 {
     constiterator x;
     int k;

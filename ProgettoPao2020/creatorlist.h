@@ -17,6 +17,7 @@ class CreatorList
         node *first, *last;
 
     public:
+        CreatorList();
         CreatorList(Creator& c);
         ~CreatorList();
 
@@ -29,7 +30,7 @@ class CreatorList
         Creator RemoveNode(node* n);
         Creator RemoveCreator(const Creator &c);
         Creator RemoveBySSN(std::string ssn);
-        Creator operator[](int i) const;
+        Creator& operator[](int i) const;
 
         class constiterator{
             friend class CreatorList;
@@ -54,12 +55,6 @@ class CreatorList
         constiterator end() const;
 
 };
-
 ostream& operator<<(ostream& _os, const CreatorList& _cl);
-
-// https://elearning.unipd.it/math/pluginfile.php/55974/mod_resource/content/1/dList-11-12-nov-2019.cpp
-
-// eliminazione per Piva, CF, elimina tutto
-
 
 #endif // CREATORLIST_H
