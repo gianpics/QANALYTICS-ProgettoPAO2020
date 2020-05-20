@@ -1,23 +1,16 @@
 #include "mainwindow.h"
-#include "stats_instagram.h"
-#include "stats_facebook.h"
-#include "stats_youtube.h"
-#include "creator.h"
-#include "content.h"
-#include "creatorlist.h"
-#include "account.h"
+#include "model.h"
 
 #include <QApplication>
 #include <iostream>
 
 int main(int argc, char *argv[])
 {
-    /*QApplication a(argc, argv);
+    QApplication a(argc, argv);
     MainWindow w;
-    w.show();
-    return a.exec();*/
-    Stats_content sc1(01, 2010, 212, 525, 989);
-    Stats_content sc2(02, 2010, 212, 525, 989);
+    //INSERIMENTO DATI
+    Stats_content sc1(*new QDate(2010, 01, 1), 212, 525, 989);
+    Stats_content sc2(*new QDate(2010, 02, 1), 212, 525, 989);
     std::vector<Stats_content> listsc;
     listsc.push_back(sc1);
     listsc.push_back(sc2);
@@ -26,15 +19,31 @@ int main(int argc, char *argv[])
     std::vector<Content> lc;
     lc.push_back(c1);
     lc.push_back(c2);
-    Stats_youtube sy1(01,2010,25282,68168,885,25181,121);
-    Stats_youtube sy2(02,2010,25282,68168,885,25181,122);
+    Stats_youtube sy1(*new QDate(2010, 01, 1),500,68168,885,500,121);
+    Stats_youtube sy2(*new QDate(2010, 02, 1),800,68168,885,800,122);
+    Stats_youtube sy3(*new QDate(2010, 03, 1),5659,6262,324,600);
     std::vector<Stats_account> listsy;
     listsy.push_back(sy1);
     listsy.push_back(sy2);
+    listsy.push_back(sy3);
     Account acc(0, "panz", "panz@gmail.com", youtube, lc, listsy);
-    Account acc1=acc;
-    acc.getContents()->pop_back();
+    Creator c(acc, "Giacomo", "Sassaro", "SSSGCM", "Via roma", "000012562", "Panz");
+    CreatorList cl(c);
+
+    //MODELLO
+    Model m(cl);
+    m.setSelected("SSSGCM");
+    QChart *chart = m.graphFollowers(0);
+    //VISTA
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    w.setCentralWidget(chartView);
+    w.resize(400, 300);
+    w.show();
+    return a.exec();
+
+    /*acc.getContents()->pop_back();
     std::cout << acc.getContents()->at(0).getType() <<std::endl;
-    std::cout << acc1.getContents()->size() <<std::endl;
+    std::cout << acc1.getContents()->size() <<std::endl;*/
 
 }
