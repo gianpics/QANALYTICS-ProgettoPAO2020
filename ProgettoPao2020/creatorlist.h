@@ -55,5 +55,6 @@ class CreatorList
         constiterator end() const;
 
 };
+ostream& operator<<(ostream& _os, const CreatorList& _cl);
 
 #endif // CREATORLIST_H

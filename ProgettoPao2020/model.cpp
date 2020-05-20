@@ -2,7 +2,6 @@
 
 model::model()
 {
-
 }
 
 void model::setSelected(u_int _SSN)

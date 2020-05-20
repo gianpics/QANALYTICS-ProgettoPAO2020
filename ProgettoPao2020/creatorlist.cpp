@@ -203,3 +203,10 @@ bool CreatorList::constiterator::operator!=(const constiterator& x) const { retu
 CreatorList::constiterator CreatorList::begin() const { return constiterator(first, false); }
 
 CreatorList::constiterator CreatorList::end() const { return constiterator(last+1, true); }
+
+ostream &operator<<(ostream &_os, const CreatorList &_cl)
+{
+    for(CreatorList::constiterator i = _cl.begin(); i!= _cl.end(); ++i)
+        _os << &i <<";";
+    return _os;
+}

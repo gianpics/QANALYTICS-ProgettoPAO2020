@@ -17,6 +17,11 @@ public:
     virtual void addAccount(const Account& _account);
     virtual void removeAt(u_int _i);
     virtual void removeById(u_int _id);
+    bool isEmpty();
+    u_int size();
+    Account &operator[](u_int i);
+    const Account& getAccountById(u_int id);
+
 };
 
 #endif // SOCIALLIST_H
