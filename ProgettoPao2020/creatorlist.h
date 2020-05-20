@@ -55,6 +55,8 @@ class CreatorList
 
 };
 
+ostream& operator<<(ostream& _os, const CreatorList& _cl);
+
 // https://elearning.unipd.it/math/pluginfile.php/55974/mod_resource/content/1/dList-11-12-nov-2019.cpp
 
 // eliminazione per Piva, CF, elimina tutto

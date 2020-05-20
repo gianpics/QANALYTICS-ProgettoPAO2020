@@ -1,4 +1,5 @@
 QT       += core gui
+QT       += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -22,6 +23,7 @@ SOURCES += \
     creatorlist.cpp \
     main.cpp \
     mainwindow.cpp \
+    model.cpp \
     persona.cpp \
     sociallist.cpp \
     stats.cpp \
@@ -37,6 +39,7 @@ HEADERS += \
     creator.h \
     creatorlist.h \
     mainwindow.h \
+    model.h \
     persona.h \
     sociallist.h \
     stats.h \
@@ -50,3 +53,6 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Resources.qrc

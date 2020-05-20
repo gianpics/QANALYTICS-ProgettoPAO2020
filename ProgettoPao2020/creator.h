@@ -3,7 +3,7 @@
 #include "sociallist.h"
 #include "persona.h"
 #include "vector"
-class Creator : public SocialList, public Persona
+class Creator : public Persona, public SocialList
 {
 private:
     std::string nickname;
@@ -18,5 +18,5 @@ public:
     string getNickname() const;
     void setNickname(string _nickname);
 };
-
+ostream &operator<<(ostream& _os, const Creator& _c);
 #endif // CREATOR_H

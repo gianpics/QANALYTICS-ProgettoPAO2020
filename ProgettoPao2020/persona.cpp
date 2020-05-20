@@ -60,8 +60,9 @@ void Persona::setVat(std::string _vat)
 {
     vat=_vat;
 }
-Persona* Persona::operator=(const Persona &p)
-{
-    //return new Persona(p.fname, p.lname, p.ssn, p.address, p.vat);
-}
 
+ostream &operator<<(ostream &_os, const Persona &_p)
+{
+    _os<<_p.getName()<<","<<_p.getLastName()<<","<<_p.getSSN()<<","<<_p.getAddress()<<","<<_p.getVAT();
+    return _os;
+}
