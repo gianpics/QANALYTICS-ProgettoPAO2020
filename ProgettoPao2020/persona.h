@@ -1,6 +1,8 @@
 #ifndef PERSONA_H
 #define PERSONA_H
 #include<string>
+#include <iostream>
+using namespace std;
 class Persona
 {
     private:
@@ -25,9 +27,9 @@ class Persona
         virtual void setSSN(std::string _ssn);
         virtual void setAddress(std::string _vat);
         virtual void setVat(std::string _address);
-        Persona* operator=(const Persona&);
 
 };
+ostream& operator<<(ostream &_os, const Persona& _p);
 
 
 #endif // PERSONA_H

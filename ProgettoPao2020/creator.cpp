@@ -25,3 +25,9 @@ void Creator::setNickname(string _nickname)
 {
     nickname=_nickname;
 }
+
+ostream &operator<<(ostream &_os, const Creator &_c)
+{
+    //_os << SocialList::operator<<
+    return _os;
+}

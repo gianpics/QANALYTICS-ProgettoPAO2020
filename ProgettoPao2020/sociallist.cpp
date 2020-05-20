@@ -20,7 +20,7 @@ void SocialList::addAccount(const Account &_acc)
 
 void SocialList::removeAt(u_int _i)
 {
-    if(_i<0 || _i>list.size())
+    if(_i>list.size())
         throw "Index out of range";
     list.erase(list.cbegin()+_i);
 }
@@ -30,6 +30,30 @@ void SocialList::removeById(u_int _id)
     for(u_int i=0; i< list.size(); i ++)
         if(list[i].getId()==_id)
             list.erase(list.begin()+i);
+}
+
+bool SocialList::isEmpty()
+{
+    return list.empty();
+}
+
+
+u_int SocialList::size()
+{
+    return list.size();
+}
+
+Account &SocialList::operator[](u_int i)
+{
+    return list.at(i);
+}
+
+const Account &SocialList::getAccountById(u_int _id)
+{
+    for(u_int i=0;i<size();i++)
+        if(list.at(i).getId()==_id)
+            return list.at(i);
+    throw "No matching accountS";
 }
 
 
