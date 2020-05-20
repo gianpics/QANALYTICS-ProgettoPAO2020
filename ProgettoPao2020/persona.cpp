@@ -2,7 +2,7 @@
 #include"string"
 Persona::Persona(std::string _fname, std::string _lname, std::string _ssn, std::string _address, std::string _vat):fname(_fname),lname(_lname),ssn(_ssn),address(_address), vat(_vat){}
 
-Persona::Persona(const Persona &p):fname(p.fname),lname(p.lname), address(p.address), vat(p.vat){}
+Persona::Persona(const Persona &p):fname(p.fname), lname(p.lname), ssn(p.ssn), address(p.address), vat(p.vat){}
 
 Persona::~Persona(){}
 

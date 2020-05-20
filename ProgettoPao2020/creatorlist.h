@@ -30,7 +30,7 @@ class CreatorList
         Creator RemoveNode(node* n);
         Creator RemoveCreator(const Creator &c);
         Creator RemoveBySSN(std::string ssn);
-        Creator& getCreatorBySSN(string _ssn);
+        Creator& getCreatorBySSN(std::string _ssn);
         Creator& operator[](int i) const;
 
         class constiterator{
