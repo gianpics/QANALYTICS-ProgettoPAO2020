@@ -82,14 +82,14 @@ void Account::setType(account_type _type)
     type=_type;
 }
 
-vector<Content> *Account::getContents() {return &contents;}
+const vector<Content>& Account::getContents() const {return contents;}
 
 void Account::setContents(vector<Content> &_contents)
 {
     contents=_contents;
 }
 
-vector<Stats_account> *Account::getStats() {return &stats;}
+const vector<Stats_account>& Account::getStats() const {return stats;}
 
 void Account::setStats(vector<Stats_account> &_stats)
 {

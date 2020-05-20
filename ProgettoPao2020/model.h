@@ -3,24 +3,26 @@
 #include "creatorlist.h"
 #include <QtCharts>
 #include <QLineSeries>
+#include <QDateTime>
 
-class model
+class Model
 {
 private:
     CreatorList list;
     Creator* selected;
+    QChart *setChart(QLineSeries * qls) const;
 public:
-    model();
-    void setSelected(u_int _SSD);
-    QLineSeries *graphFollowers(u_int _SSN) const;
-    QLineSeries *graphImpression(u_int _SSN) const;
-    QLineSeries *graphCoverage(u_int _SSN) const;
-    QLineSeries *graphLike(u_int _SSN) const;
-    QLineSeries *graphPageLikes(u_int _SSN) const;  //ONLY FACEBOOK
-    QLineSeries *graphFollowing(u_int _SSN) const;  //ONLY YOUTUBE & INSTAGRAM
-    QLineSeries *graphDonators(u_int _SSN) const;   //ONLY YOUTUBE
-    QLineSeries *graphTotalWatchtime(u_int _SSN) const; //ONLY YOUTUBE
-    QLineSeries *graphAvgWatchtime(u_int _SSN) const;   //ONLY YOUTUBE
+    Model(const CreatorList& _cl);
+    void setSelected(std::string _SSD);
+    QChart *graphFollowers(u_int _id) const;
+    QChart *graphImpression(u_int _id) const;
+    QChart *graphCoverage(u_int _id) const;
+    QChart *graphLike(u_int _id) const;
+    QChart *graphPageLikes(u_int _id) const;  //ONLY FACEBOOK
+    QChart *graphFollowing(u_int _id) const;  //ONLY YOUTUBE & INSTAGRAM
+    QChart *graphDonators(u_int _id) const;   //ONLY YOUTUBE
+    QChart *graphTotalWatchtime(u_int _id) const; //ONLY YOUTUBE
+    QChart *graphAvgWatchtime(u_int _id) const;   //ONLY YOUTUBE
 };
 
 #endif // MODEL_H

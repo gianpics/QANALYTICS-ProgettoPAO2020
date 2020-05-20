@@ -31,9 +31,9 @@ public:
     void setEmail(string _email);
     account_type getType() const;
     void setType(account_type _type);
-    vector<Content> *getContents();
+    const vector<Content>& getContents() const;
     void setContents(vector<Content>& _contents);
-    vector<Stats_account> *getStats();
+    const vector<Stats_account>& getStats() const;
     void setStats(vector<Stats_account> &_stats);
 };
 
