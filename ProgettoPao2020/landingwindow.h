@@ -4,28 +4,36 @@
 #include <QObject>
 #include <QWidget>
 #include <QPushButton>
-#include <QTextEdit>
+#include <QLineEdit>
 #include <QListView>
 #include <QSettings>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 class LandingWindow: public QWidget
 {
     Q_OBJECT
+
 private:
+    QVBoxLayout *mainLyt;
+    QHBoxLayout *buttonsLyt;
+    QVBoxLayout *creatorsLyt;
     QPushButton *infoBtn, *settingBtn;
-    QTextEdit *searchTxt;
+    QLineEdit *searchTxt;
     QListView *creatorsLvw;
 
     void setWidgets();
-    void setStyle();
+    void setWinStyle();
 
+private slots:
+    void settingBtnClick();
+    void infoBtnClick();
+    void searchTxtChanged(const QString&);
 
 public:
     LandingWindow();
 
-public slots:
-    void settingBtnClick();
-    void infoBtnClick();
+
 };
 
 #endif // LANDINGWINDOW_H
