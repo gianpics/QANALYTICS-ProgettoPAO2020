@@ -15,12 +15,13 @@ class LandingWindow: public QWidget
     Q_OBJECT
 
 private:
-    QVBoxLayout *mainLyt;
+    QVBoxLayout *mainLyt, *creatorsLyt;
     QHBoxLayout *buttonsLyt;
-    QVBoxLayout *creatorsLyt;
     QPushButton *infoBtn, *settingBtn;
     QLineEdit *searchTxt;
     QListView *creatorsLvw;
+    QFrame *line;
+
 
     void setWidgets();
     void setWinStyle();

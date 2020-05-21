@@ -19,6 +19,7 @@ SOURCES += \
     content.cpp \
     creator.cpp \
     creatorlist.cpp \
+    graphswindow.cpp \
     main.cpp \
     mainwindow.cpp \
    landingwindow.cpp\
@@ -37,6 +38,7 @@ HEADERS += \
     content.h \
     creator.h \
     creatorlist.h \
+    graphswindow.h \
     landingwindow.h \
     mainwindow.h \
     model.h \

@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
+#include <QFrame>
 #include "landingwindow.h"
 
 LandingWindow::LandingWindow()
@@ -33,11 +34,15 @@ void LandingWindow::setWidgets(){
     buttonsLyt=new QHBoxLayout;
     buttonsLyt->addWidget(infoBtn);
     buttonsLyt->addWidget(settingBtn);
-    buttonsLyt->setAlignment(Qt::AlignRight);
 
     // search box
     searchTxt=new QLineEdit;
     connect(searchTxt,SIGNAL(textChanged(const QString&)),SLOT(searchTxtChanged(const QString&)));
+
+    // line
+    line=new QFrame;
+    line->setFixedHeight(1);
+    line->setObjectName("line");
 
     // creator list
     creatorsLvw=new QListView;
@@ -45,6 +50,7 @@ void LandingWindow::setWidgets(){
     // inserimento in layout inferiore
     creatorsLyt=new QVBoxLayout;
     creatorsLyt->addWidget(searchTxt);
+    creatorsLyt->addWidget(line);
     creatorsLyt->addWidget(creatorsLvw);
 
     mainLyt=new QVBoxLayout(this);
@@ -70,7 +76,7 @@ void LandingWindow::setWinStyle(){
         )
     );
 
-    // pulsanti
+    // layout pulsanti
     settingBtn->setIcon(QIcon(":/resources/gear.png"));
     settingBtn->setFlat(true);
     settingBtn->setToolTip("Settings");
@@ -81,7 +87,18 @@ void LandingWindow::setWinStyle(){
     infoBtn->setToolTip("Information");
     infoBtn->setFixedSize(QSize(26,26));
 
+    buttonsLyt->setAlignment(Qt::AlignRight);
+
+    // layout creators
     searchTxt->setPlaceholderText("Search");
+    searchTxt->setFixedWidth(300);
+
+    line->setFrameShape(QFrame::HLine);
+    line->setFrameShadow(QFrame::Sunken);
+
+    creatorsLvw->setFixedSize(QSize(300,300));
+
+    creatorsLyt->setAlignment(Qt::AlignCenter);
 
 }
 
