@@ -2,7 +2,6 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include "mainwindow.h"
-#include "landingwindow.h"
 #include "model.h"
 
 #include <QApplication>
@@ -11,10 +10,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    LandingWindow w;
-
-    /*Stats_content sc1(01, 2010, 212, 525, 989);
-    Stats_content sc2(02, 2010, 212, 525, 989);
+    MainWindow w;
 
     //INSERIMENTO DATI
     Stats_content sc1(*new QDate(2010, 01, 1), 212, 525, 989);
