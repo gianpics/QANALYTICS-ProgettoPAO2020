@@ -7,19 +7,19 @@ class Stats_youtube : public Stats_account
 private:
     u_int following;
     u_int donators;
-    u_int total_watchtime;
+    u_int total_views;
     u_int avg_watchtime;
 
 public:
-    Stats_youtube(QDate _date, u_int _coverage = 0, u_int _impression = 0, u_int _like = 0, u_int _followers = 0, u_int _following = 0, u_int _donators = 0, u_int _totalwatchtime = 0, u_int _avgwatchtime = 0);
+    Stats_youtube(QDate _date, u_int _impression = 0,  u_int _coverage = 0, u_int _like = 0, u_int _followers = 0, u_int _following = 0, u_int _donators = 0, u_int _totalviews = 0, u_int _avgwatchtime = 0);
     virtual ~Stats_youtube() = default;
     u_int getFollowing() const;
     u_int getDonators() const;
-    u_int getTotalWatchtime() const;
+    u_int getTotalViews() const;
     u_int getAvgWatchtime() const;
     void setFollowing(u_int _following);
     void setDonators(u_int _donators);
-    void setTotalWatchtime(u_int _total_watchtime);
+    void setTotalViews(u_int _total_views);
     void setAvgWatchtime(u_int _avg_watchtime);
 
 };
