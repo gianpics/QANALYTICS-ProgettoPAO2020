@@ -3,5 +3,6 @@
         <file>resources/gear.png</file>
         <file>resources/config.ini</file>
         <file>resources/info.png</file>
+        <file>resources/stylesheet.css</file>
     </qresource>
 </RCC>
