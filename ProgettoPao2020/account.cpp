@@ -1,5 +1,6 @@
 #include "account.h"
 
+
 Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, const vector<Stats_account*>& _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
 
 Account::Account(const Account& _account)
@@ -82,14 +83,14 @@ void Account::setType(account_type _type)
     type=_type;
 }
 
-const vector<Content>& Account::getContents() const {return contents;}
+const vector<Content>* Account::getContents() const {return &contents;}
 
 void Account::setContents(vector<Content> &_contents)
 {
     contents=_contents;
 }
 
-const vector<Stats_account*>& Account::getStats() const {return stats;}
+const vector<Stats_account>* Account::getStats() const {return &stats;}
 
 void Account::setStats(vector<Stats_account*> &_stats)
 {
@@ -102,4 +103,12 @@ void Account::setStats(vector<Stats_account*> &_stats)
             stats.push_back(new Stats_instagram(*b));
         }
     }
+}
+
+ostream &operator<<(ostream &_os, const Account &_a)
+{
+    _os<<_a.getId()<<","<<_a.getUsername()<<","<<_a.getEmail()<<","<<_a.getType()<<",";
+    _os<<_a.getContents();
+    _os<<_a.getStats();
+    return _os;
 }

@@ -1,6 +1,8 @@
 #ifndef STATS_H
 #define STATS_H
 #include <QDate>
+#include <iostream>
+using namespace std;
 typedef unsigned int u_int;
 class Stats
 {
@@ -20,6 +22,7 @@ class Stats
         virtual void setImpression(u_int _impression);
         virtual void setCoverage(u_int _coverage);
         virtual void setLike(u_int _like);
+        virtual void print(ostream& _os)const;
 };
 
 #endif // STATS_H

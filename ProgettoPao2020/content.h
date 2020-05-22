@@ -21,6 +21,7 @@ class Content
     public:
         Content(QDateTime _timestamp, content_type _type, const vector<Stats_content>& _stats, string _title = "", string _description = "");
         Content(const Content& _content);
+        ~Content();
         Content &operator=(const Content& _content);
         string getTitle() const;
         void setTitle(string _title);
@@ -33,6 +34,6 @@ class Content
         vector<Stats_content> *getStats();
         void setStats(vector<Stats_content>&_stats);
 
-
 };
+ostream &operator<<(ostream& _os, const Content& _c);
 #endif

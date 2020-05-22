@@ -29,3 +29,9 @@ void Stats_youtube::setAvgWatchtime(u_int _avg_watchtime)
 {
     avg_watchtime = _avg_watchtime;
 }
+ostream &operator<<(ostream &_os, const Stats_youtube &_sy)
+{
+    _sy.print(_os);
+    _os<<_sy.getFollowing()<<","<<_sy.getDonators()<<","<<_sy.getTotalWatchtime()<<","<<_sy.getAvgWatchtime()<<";";
+    return _os;
+}

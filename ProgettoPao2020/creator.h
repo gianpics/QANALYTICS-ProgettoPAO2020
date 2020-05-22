@@ -17,6 +17,7 @@ public:
     bool operator!=(const Creator&);
     string getNickname() const;
     void setNickname(string _nickname);
+    void print(ostream &_os) const override;
 };
 ostream &operator<<(ostream& _os, const Creator& _c);
 #endif // CREATOR_H

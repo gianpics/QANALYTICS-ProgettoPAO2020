@@ -8,3 +8,9 @@ void Stats_instagram::setFollowing(u_int _following)
 {
     following=_following;
 }
+
+ostream &operator<<(ostream &_os, const Stats_instagram &_si)
+{
+    _si.print(_os);
+    _os<<_si.getFollowing()<<";";
+}

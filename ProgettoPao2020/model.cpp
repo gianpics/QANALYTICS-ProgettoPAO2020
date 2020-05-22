@@ -83,8 +83,8 @@ QChart *Model::graphLike(u_int _id_account) const
     QBarSet *set = new QBarSet("Like");
     QStringList categories;
     const Account &acc = selected->getAccountById(_id_account);
-    const vector<Stats_account*>& stats = acc.getStats();
-    for(auto a : stats){
+    const vector<Stats_account>* stats = acc.getStats();
+    for(auto a : *stats){
         QDateTime date;
         date.setDate(a->getDate());
         *set<<a->getLike();

@@ -5,7 +5,7 @@
 
 class SocialList
 {
-private:
+protected:
     std::vector<Account> list;
 
 public:
@@ -17,11 +17,11 @@ public:
     virtual void addAccount(const Account& _account);
     virtual void removeAt(u_int _i);
     virtual void removeById(u_int _id);
-    bool isEmpty();
-    u_int size();
+    bool isEmpty() const;
+    u_int size() const ;
     Account &operator[](u_int i);
     const Account& getAccountById(u_int id);
+    virtual void print(ostream &_os) const;
 
 };
-
 #endif // SOCIALLIST_H
