@@ -23,5 +23,6 @@ public:
     void setAvgWatchtime(u_int _avg_watchtime);
 
 };
+ostream& operator<<(ostream& _os, const Stats_youtube& _sy);
 
 #endif // STATS_YOUTUBE_H

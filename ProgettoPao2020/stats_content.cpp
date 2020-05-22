@@ -21,3 +21,10 @@ void Stats_content::setWatchtime(u_int _watchtime)
 {
     watchtime = _watchtime;
 }
+ostream &operator<<(ostream &_os, const Stats_content &_sc)
+{
+    _sc.print(_os);
+    _os<<_sc.getDislike()<<","<<_sc.getNum_comments()<<","<<_sc.getViews()<<","<<_sc.getWatchtime()<<";";
+    return _os;
+}
+

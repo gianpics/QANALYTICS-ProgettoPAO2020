@@ -27,9 +27,9 @@ class Persona
         virtual void setSSN(std::string _ssn);
         virtual void setAddress(std::string _vat);
         virtual void setVat(std::string _address);
+        virtual void print(ostream& _os) const;
 
 };
-ostream& operator<<(ostream &_os, const Persona& _p);
 
 
 #endif // PERSONA_H

@@ -32,8 +32,8 @@ QChart *Model::graphFollowers(u_int _id_account) const
     QBarSet *s = new QBarSet("Followers");
     QStringList categories;
     const Account &acc = selected->getAccountById(_id_account);
-    const vector<Stats_account>& stats = acc.getStats();
-    for(auto a : stats){
+    const vector<Stats_account>* stats = acc.getStats();
+    for(auto a : *stats){
         QDateTime date;
         date.setDate(a.getDate());
         *s<<a.getFollowers();

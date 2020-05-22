@@ -22,5 +22,6 @@ public:
     void setWatchtime(u_int _watchtime);
 
 };
+ostream &operator<<(ostream &_os, const Stats_content &_sa);
 
 #endif // STATS_CONTENT_H

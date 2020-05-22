@@ -14,6 +14,11 @@ Content::Content(const Content &_content)
     }*/
 }
 
+Content::~Content()
+{
+
+}
+
 Content &Content::operator=(const Content &_content)
 {
     if(this!=&_content){
@@ -56,9 +61,17 @@ void Content::setType(content_type _type)
     type=_type;
 }
 
-vector<Stats_content> *Content::getStats(){ return &stats;}
+vector<Stats_content> *Content::getStats() { return &stats;}
 
 void Content::setStats(vector<Stats_content> &_stats)
 {
     stats=_stats;
+}
+
+ostream &operator<<(ostream &_os, Content &_c)
+{
+
+    _os<<_c.getTitle()<<","<<_c.getDescription()<<","<<_c.getTimestamp().toString("dd.MM.yyyy").toStdString()<<_c.getType();
+    _os<<_c.getStats();
+    return _os;
 }

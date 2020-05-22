@@ -11,6 +11,8 @@ public:
     virtual u_int getFollowers() const;
     virtual ~Stats_account() ;
     virtual void setFollowers(u_int _followers);
+    virtual void print(ostream& _os) const;
 };
+ostream& operator<<(ostream& _os, const Stats_account &_sa);
 
 #endif // STATS_ACCOUNT_H

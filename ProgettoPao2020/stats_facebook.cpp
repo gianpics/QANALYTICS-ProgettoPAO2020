@@ -8,3 +8,10 @@ void Stats_facebook::setPageLikes(u_int _page_likes)
 {
     page_likes = _page_likes;
 }
+
+ostream &operator<<(ostream &_os, const Stats_facebook _sf)
+{
+    _sf.print(_os);
+    _os<<_sf.getFollowers()<<";";
+    return _os;
+}
