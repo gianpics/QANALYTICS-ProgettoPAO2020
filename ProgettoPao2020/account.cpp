@@ -9,10 +9,10 @@ Account::Account(const Account& _account)
     email=_account.email;
     type=_account.type;
     contents=_account.contents;
-    stats=_account.stats;
+    //stats=_account.stats;
     /*for(auto a : _account.contents){
         contents.push_back(new Content(*a));
-    }
+    }*/
     for(auto a : _account.stats){
         if (auto *b = dynamic_cast<Stats_youtube*>(a)) {
             stats.push_back(new Stats_youtube(*b));
@@ -21,7 +21,7 @@ Account::Account(const Account& _account)
         }else if(auto *b = dynamic_cast<Stats_instagram*>(a)){
             stats.push_back(new Stats_instagram(*b));
         }
-    }*/
+    }
 }
 
 Account& Account::operator=(const Account& _account)
@@ -32,10 +32,10 @@ Account& Account::operator=(const Account& _account)
         email=_account.email;
         type=_account.type;
         contents=_account.contents;
-        stats=_account.stats;
+        //stats=_account.stats;
         /*for(auto a : _account.contents){
             contents.push_back(new Content(*a));
-        }
+        }*/
         for(auto a : _account.stats){
             if (auto *b = dynamic_cast<Stats_youtube*>(a)) {
                 stats.push_back(new Stats_youtube(*b));
@@ -44,7 +44,7 @@ Account& Account::operator=(const Account& _account)
             }else if(auto *b = dynamic_cast<Stats_instagram*>(a)){
                 stats.push_back(new Stats_instagram(*b));
             }
-        }*/
+        }
     }
     return *this;
 }
@@ -91,9 +91,17 @@ void Account::setContents(vector<Content> &_contents)
 
 const vector<Stats_account>* Account::getStats() const {return &stats;}
 
-void Account::setStats(vector<Stats_account> &_stats)
+void Account::setStats(vector<Stats_account*> &_stats)
 {
-   stats=_stats;
+    for(auto a : _stats){
+        if (auto *b = dynamic_cast<Stats_youtube*>(a)) {
+            stats.push_back(new Stats_youtube(*b));
+        }else if(auto *b = dynamic_cast<Stats_facebook*>(a)){
+            stats.push_back(new Stats_facebook(*b));
+        }else if(auto *b = dynamic_cast<Stats_instagram*>(a)){
+            stats.push_back(new Stats_instagram(*b));
+        }
+    }
 }
 
 ostream &operator<<(ostream &_os, const Account &_a)

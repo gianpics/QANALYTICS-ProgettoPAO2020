@@ -18,9 +18,9 @@ private:
     string email;
     account_type type;
     vector<Content> contents;
-    vector<Stats_account> stats;
+    vector<Stats_account*> stats;
 public:
-    Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& contents, const vector<Stats_account>& stats);
+    Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& contents, const vector<Stats_account*>& stats);
     Account(const Account& _account);
     Account& operator=(const Account& _account);
     u_int getId() const;

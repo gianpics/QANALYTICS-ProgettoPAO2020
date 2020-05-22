@@ -1,0 +1,24 @@
+/*******************
+ **** stylesheet ***
+ *******************/
+
+
+/*
+ * grigio scuro: #404040
+ */
+
+* {
+    background-color: white;
+    border: white;
+}
+
+QFrame#line {
+    background-color: rgba(40, 40, 40, 0.4);
+}
+
+QPushButton:pressed{
+    background-color: rgba(60,60,60, 0.4);
+}
+
+
+
