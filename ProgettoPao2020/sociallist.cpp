@@ -32,13 +32,13 @@ void SocialList::removeById(u_int _id)
             list.erase(list.begin()+i);
 }
 
-bool SocialList::isEmpty()
+bool SocialList::isEmpty() const
 {
     return list.empty();
 }
 
 
-u_int SocialList::size()
+u_int SocialList::size() const
 {
     return list.size();
 }
@@ -56,4 +56,9 @@ const Account &SocialList::getAccountById(u_int _id)
     throw "No matching accountS";
 }
 
-
+void SocialList::print(ostream &_os) const
+{
+    for(u_int i=0; i<size(); i++){
+        _os << list.at(i)<<";";
+    }
+}

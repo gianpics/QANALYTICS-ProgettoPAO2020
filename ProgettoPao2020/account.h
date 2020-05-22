@@ -31,10 +31,11 @@ public:
     void setEmail(string _email);
     account_type getType() const;
     void setType(account_type _type);
-    const vector<Content>& getContents() const;
+    const vector<Content>* getContents() const;
     void setContents(vector<Content>& _contents);
-    const vector<Stats_account*>& getStats() const;
-    void setStats(vector<Stats_account*> &_stats);
+    const vector<Stats_account>* getStats() const;
+    void setStats(vector<Stats_account> &_stats);
 };
+ostream& operator<<(ostream& _os, const Account& _a);
 
 #endif // ACCOUNT_H

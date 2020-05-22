@@ -11,8 +11,7 @@ public:
     virtual ~Stats_facebook() = default;
     u_int getPageLikes() const;
     void setPageLikes(u_int _page_likes);
-
-
 };
+ostream& operator<<(ostream& _os, const Stats_facebook _sf);
 
 #endif // STATS_FACEBOOK_H

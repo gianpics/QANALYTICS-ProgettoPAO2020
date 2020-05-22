@@ -61,8 +61,15 @@ void Persona::setVat(std::string _vat)
     vat=_vat;
 }
 
+void Persona::print(ostream &_os) const
+{
+    _os<<getName()<<","<<getLastName()<<","<<getSSN()<<","<<getAddress()<<","<<getVAT()<<";";
+
+}
+
+/*
 ostream &operator<<(ostream &_os, const Persona &_p)
 {
-    _os<<_p.getName()<<","<<_p.getLastName()<<","<<_p.getSSN()<<","<<_p.getAddress()<<","<<_p.getVAT();
+    _p.print(_os);
     return _os;
-}
+}*/

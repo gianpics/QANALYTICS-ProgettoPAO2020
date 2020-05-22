@@ -13,5 +13,6 @@ public:
     void setFollowing(u_int _following);
 
 };
+ostream& operator<<(ostream& _os, const Stats_instagram &_si);
 
 #endif // STATS_INSTAGRAM_H
