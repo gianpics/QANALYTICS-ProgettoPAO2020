@@ -29,7 +29,7 @@ QChart *Model::graphFollowers(u_int _id_account) const
     const vector<Stats_account*>& stats = acc.getStats();
     for(auto a : stats){
         QDateTime date;
-        date.setDate(a->getDate());
+        date.setDate(a->getDate().addMonths(-1));
         *set<<a->getFollowers();
         categories << date.toString("MMM yyyy");
     }

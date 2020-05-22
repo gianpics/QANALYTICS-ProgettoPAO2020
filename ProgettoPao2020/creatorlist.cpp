@@ -65,9 +65,7 @@ void CreatorList::InsertBack(Creator &c)
 {
     if(getCreatorIndex(c)>-1)
         throw "Could not insert already present element.";
-
     node* n = new node(c, last, nullptr);
-
     if(last==nullptr)
         // lista vuota
         first=last=n;
@@ -138,7 +136,7 @@ CreatorList::constiterator& CreatorList::constiterator::operator++()
     {
         if(ptr->next==nullptr)
         {
-            ptr=ptr->next;
+            ++ptr;
             pastTheEnd=true;
         }
         else
@@ -155,7 +153,7 @@ CreatorList::constiterator& CreatorList::constiterator::operator--()
     {
         if(pastTheEnd)
         {
-            ptr=ptr->prev;
+            --ptr;
             pastTheEnd=false;
         }
         else
@@ -174,7 +172,7 @@ CreatorList::constiterator CreatorList::constiterator::operator++(int)
     {
         if(ptr->next==nullptr)
         {
-            ptr=ptr->next;
+            ++ptr;
             pastTheEnd=true;
         }
         else
@@ -193,7 +191,7 @@ CreatorList::constiterator CreatorList::constiterator::operator--(int)
     {
         if(pastTheEnd)
         {
-            ptr=ptr->prev;
+            --ptr;
             pastTheEnd=false;
         }
         else

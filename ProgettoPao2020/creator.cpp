@@ -1,9 +1,8 @@
 #include "creator.h"
 
+Creator::Creator(const std::vector<Account> _sl, std::string _fname, std::string _lname, std::string _ssn, std::string _address, std::string _vat, std::string _nickname): Persona(_fname,_lname,_ssn, _address, _vat), SocialList(_sl), nickname(_nickname){}
 
-Creator::Creator(const std::vector<Account> _sl, std::string _fname, std::string _lname, std::string _ssn, std::string _address, std::string _vat, std::string _nickname):Persona(_fname,_lname,_ssn, _address, _vat), SocialList(_sl), nickname(_nickname){}
-
-Creator::Creator(const Account _a, std::string _fname, std::string _lname, std::string _ssn, std::string _address, std::string _vat, std::string _nickname):Persona(_fname,_lname,_ssn, _address, _vat), SocialList(_a), nickname(_nickname) {}
+Creator::Creator(const Account _a, std::string _fname, std::string _lname, std::string _ssn, std::string _address, std::string _vat, std::string _nickname): Persona(_fname,_lname,_ssn, _address, _vat), SocialList(_a), nickname(_nickname){}
 
 bool Creator::operator==(const Creator& c)
 {

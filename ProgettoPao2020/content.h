@@ -19,7 +19,7 @@ class Content
         vector<Stats_content> stats;
 
     public:
-        Content(string _title, string _description, QDateTime _timestamp, content_type _type, const vector<Stats_content>& _stats);
+        Content(QDateTime _timestamp, content_type _type, const vector<Stats_content>& _stats, string _title = "", string _description = "");
         Content(const Content& _content);
         ~Content();
         Content &operator=(const Content& _content);

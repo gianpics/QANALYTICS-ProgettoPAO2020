@@ -1,6 +1,7 @@
 #include "account.h"
 
-Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, const vector<Stats_account>& _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
+
+Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, const vector<Stats_account*>& _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
 
 Account::Account(const Account& _account)
 {
