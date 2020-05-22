@@ -1,6 +1,6 @@
 #include "content.h"
 
-Content::Content(string _title, string _description, QDateTime _timestamp, content_type _type, const vector<Stats_content>& _stats) : title(_title), description(_description), timestamp(_timestamp), type(_type), stats(_stats){}
+Content::Content(QDateTime _timestamp, content_type _type, const vector<Stats_content>& _stats, string _title, string _description) : title(_title), description(_description), timestamp(_timestamp), type(_type), stats(_stats){}
 
 Content::Content(const Content &_content)
 {
