@@ -4,5 +4,10 @@
         <file>resources/config.ini</file>
         <file>resources/info.png</file>
         <file>resources/stylesheet.css</file>
+        <file>resources/facebook.png</file>
+        <file>resources/instagram.png</file>
+        <file>resources/youtube.png</file>
+        <file>resources/user.png</file>
+        <file>resources/users.png</file>
     </qresource>
 </RCC>

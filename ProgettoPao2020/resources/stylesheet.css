@@ -12,6 +12,16 @@
     border: white;
 }
 
+QListView {
+    border: red;
+}
+
+QLabel#section {
+    color: rgba(40, 40, 40);
+    font-weight:600;
+    font-size: 10 pt;
+}
+
 QFrame#line {
     background-color: rgba(40, 40, 40, 0.4);
 }

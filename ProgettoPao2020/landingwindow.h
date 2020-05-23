@@ -22,7 +22,6 @@ private:
     QListView *creatorsLvw;
     QFrame *line;
 
-
     void setWidgets();
     void setWinStyle();
 
@@ -33,7 +32,6 @@ private slots:
 
 public:
     LandingWindow();
-
 
 };
 

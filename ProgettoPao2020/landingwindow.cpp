@@ -4,7 +4,6 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
-#include <QFrame>
 #include "landingwindow.h"
 
 LandingWindow::LandingWindow()
@@ -22,6 +21,8 @@ LandingWindow::LandingWindow()
 
 void LandingWindow::setWidgets(){
 
+    // - upper layout
+
     // btn impostazioni
     settingBtn=new QPushButton;
     connect(settingBtn,SIGNAL(clicked()), this, SLOT(settingBtnClick()));
@@ -35,14 +36,15 @@ void LandingWindow::setWidgets(){
     buttonsLyt->addWidget(infoBtn);
     buttonsLyt->addWidget(settingBtn);
 
+
+     // - lower layout
+
     // search box
     searchTxt=new QLineEdit;
     connect(searchTxt,SIGNAL(textChanged(const QString&)),SLOT(searchTxtChanged(const QString&)));
 
     // line
     line=new QFrame;
-    line->setFixedHeight(1);
-    line->setObjectName("line");
 
     // creator list
     creatorsLvw=new QListView;
@@ -89,10 +91,14 @@ void LandingWindow::setWinStyle(){
 
     buttonsLyt->setAlignment(Qt::AlignRight);
 
+
+
     // layout creators
     searchTxt->setPlaceholderText("Search");
     searchTxt->setFixedWidth(300);
 
+    line->setFixedHeight(1);
+    line->setObjectName("line");
     line->setFrameShape(QFrame::HLine);
     line->setFrameShadow(QFrame::Sunken);
 
