@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    std::vector<Stats_content> listsc;
+    std::vector<const Stats_content*> listsc;
     std::vector<Content> lc;
-    std::vector<Stats_account*> listsa;
+    std::vector<const Stats_account*> listsa;
     std::vector<Account> la;
 
     //INSERIMENTO DATI  CREATOR 1
@@ -35,22 +35,22 @@ int main(int argc, char *argv[])
     Stats_content sc6a(*new QDate(2020, 02, 1), 300, 500, 1000, 200, 120, 20000, 0);      //TEXT
     Stats_content sc6b(*new QDate(2020, 03, 1), 100, 400, 1300, 250, 150, 30000, 0);      //TEXT
 
-    listsc.clear(); listsc.push_back(sc1a); listsc.push_back(sc1b);
+    listsc.clear(); listsc.push_back(&sc1a); listsc.push_back(&sc1b);
     Content c1a(*(new QDateTime(*new QDate(2020, 01, 3))), video, listsc, "SCHERZO EPIKO FINITO MALE", "desc1");
 
-    listsc.clear(); listsc.push_back(sc2a); listsc.push_back(sc2b);
+    listsc.clear(); listsc.push_back(&sc2a); listsc.push_back(&sc2b);
     Content c1b(*(new QDateTime(*new QDate(2020, 01, 12))), video, listsc, "COME FOSSERO I GIOCATORI SENZA DENTI", "desc2");
 
-    listsc.clear(); listsc.push_back(sc3a); listsc.push_back(sc3b);
+    listsc.clear(); listsc.push_back(&sc3a); listsc.push_back(&sc3b);
     Content c2a(*(new QDateTime(*new QDate(2020, 01, 15))), image, listsc, "", "finalmente estate xoxo");
 
-    listsc.clear(); listsc.push_back(sc4a);
+    listsc.clear(); listsc.push_back(&sc4a);
     Content c2b(*(new QDateTime(*new QDate(2020, 01, 24))), story, listsc);
 
-    listsc.clear(); listsc.push_back(sc5a);
+    listsc.clear(); listsc.push_back(&sc5a);
     Content c3a(*(new QDateTime(*new QDate(2020, 01, 16))), livestream, listsc, "SPAKKETTAMENTO EPIKO FIFA20", "desc3");
 
-    listsc.clear(); listsc.push_back(sc6a); listsc.push_back(sc6b);
+    listsc.clear(); listsc.push_back(&sc6a); listsc.push_back(&sc6b);
     Content c3b(*(new QDateTime(*new QDate(2020, 01, 18))), text, listsc, "", "Ci vediamo oggi pomeriggio in live qui su fb");
 
     //STATS_YT      QDATE, IMPRESSION, COVERAGE, LIKE, FOLLOWERS, FOLLOWING, DONATORS, TOTAL_VIEWS, AVG_WATCHTIME
@@ -86,11 +86,11 @@ int main(int argc, char *argv[])
     Stats_content sc9a(*new QDate(2020, 02, 1), 20, 800, 25, 150, 200, 500, 0);      //TEXT
     Stats_content sc9b(*new QDate(2020, 03, 1), 10, 900, 28, 190, 220, 800, 0);      //TEXT
 
-    listsc.clear(); listsc.push_back(sc7a); listsc.push_back(sc7b);
+    listsc.clear(); listsc.push_back(&sc7a); listsc.push_back(&sc7b);
     Content c4a(*(new QDateTime(*new QDate(2020, 01, 26))), image, listsc, "", "Nuovi acquisti");
-    listsc.clear(); listsc.push_back(sc8a); listsc.push_back(sc8b);
+    listsc.clear(); listsc.push_back(&sc8a); listsc.push_back(&sc8b);
     Content c4b(*(new QDateTime(*new QDate(2020, 01, 10))), image, listsc, "", "Non smettere mai di lottare, sei una leonessa.");
-    listsc.clear(); listsc.push_back(sc9a); listsc.push_back(sc9b);
+    listsc.clear(); listsc.push_back(&sc9a); listsc.push_back(&sc9b);
     Content c5a(*(new QDateTime(*new QDate(2020, 01, 11))), text, listsc, "", "Quanto mi piacciono i bambini XD");
 
     //STATS_INSTA   QDATE, IMPRESSION, COVERAGE, LIKE, FOLLOWERS, FOLLOWING
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
     Stats_content sc10a(*new QDate(2020, 02, 1), 30000, 600000, 150000, 1000, 10000, 800000, 800);      //VIDEO
     Stats_content sc10b(*new QDate(2020, 03, 1), 40000, 800000, 200000, 1500, 12000, 1000000, 787);      //VIDEO
 
-    listsc.clear(); listsc.push_back(sc10a); listsc.push_back(sc10b);
+    listsc.clear(); listsc.push_back(&sc10a); listsc.push_back(&sc10b);
     Content c6a(*(new QDateTime(*new QDate(2020, 01, 1))), video, listsc, "FREE CATS <3", "descxxx 4catlover");
 
     //STATS_YT      QDATE, IMPRESSION, COVERAGE, LIKE, FOLLOWERS, FOLLOWING, DONATORS, TOTAL_VIEWS, AVG_WATCHTIME
@@ -132,7 +132,6 @@ int main(int argc, char *argv[])
     CreatorList cl(c1);
     cl.InsertBack(c2);
     cl.InsertBack(c3);
-
     //MODELLO
     Model m(cl);
     m.setSelected("SSSGCM");

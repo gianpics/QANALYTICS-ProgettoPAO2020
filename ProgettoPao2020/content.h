@@ -16,10 +16,10 @@ class Content
         string description;
         QDateTime timestamp;
         content_type type;
-        vector<Stats_content> stats;
+        vector<const Stats_content*> stats;
 
     public:
-        Content(QDateTime _timestamp, content_type _type, const vector<Stats_content>& _stats, string _title = "", string _description = "");
+        Content(QDateTime _timestamp, content_type _type, const vector<const Stats_content*>& _stats, string _title = "", string _description = "");
         Content(const Content& _content);
         ~Content();
         Content &operator=(const Content& _content);
@@ -31,8 +31,8 @@ class Content
         void setTimeStamp(QDateTime _timestamp);
         content_type getType() const;
         void setType(content_type _type);
-        vector<Stats_content> *getStats();
-        void setStats(vector<Stats_content>&_stats);
+        const vector<const Stats_content*>& getStats() const;
+        void setStats(vector<const Stats_content*>&_stats);
 
 };
 ostream &operator<<(ostream& _os, const Content& _c);

@@ -11,7 +11,7 @@ class Model
 private:
     CreatorList list;
     Creator* selected;
-    QChart& setChart(QBarSeries * qls, const QStringList& _cat) const;
+    QChart& setChart(QBarSeries* qls, const vector<const Stats_account*>& _stats) const;
 public:
     Model(const CreatorList& _cl);
     void setSelected(std::string _SSD);
