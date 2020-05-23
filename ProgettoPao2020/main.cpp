@@ -3,6 +3,7 @@
 #include <QCoreApplication>
 #include "mainwindow.h"
 #include "model.h"
+#include "graphswindow.h"
 #include "landingwindow.h"
 #include <QApplication>
 #include <iostream>
@@ -152,5 +153,7 @@ int main(int argc, char *argv[])
     w.show();
     LandingWindow l;
     l.show();
+    Graphswindow g;
+    g.show();
     return a.exec();
 }

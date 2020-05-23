@@ -9,7 +9,7 @@
 #include <QLabel>
 #include <QSplitter>
 
-class graphswindow: public QWidget
+class Graphswindow: public QWidget
 {
     Q_OBJECT
 
@@ -26,7 +26,7 @@ private:
     void setWinStyle();
 
 public:
-    graphswindow();
+    Graphswindow();
 };
 
 #endif // GRAPHSWINDOW_H
