@@ -1,6 +1,6 @@
 #include "content.h"
 
-Content::Content(QDateTime _timestamp, content_type _type, const vector<Stats_content>& _stats, string _title, string _description) : title(_title), description(_description), timestamp(_timestamp), type(_type), stats(_stats){}
+Content::Content(QDateTime _timestamp, content_type _type, const vector<const Stats_content*>& _stats, string _title, string _description) : title(_title), description(_description), timestamp(_timestamp), type(_type), stats(_stats){}
 
 Content::Content(const Content &_content)
 {
@@ -8,10 +8,10 @@ Content::Content(const Content &_content)
     description = _content.description;
     timestamp = _content.timestamp;
     type = _content.type;
-    stats=_content.stats;
-    /*for(auto a : _content.stats){
+    //stats=_content.stats;
+    for(auto a : _content.stats){
         stats.push_back(new Stats_content(*a));
-    }*/
+    }
 }
 
 Content::~Content()
@@ -25,10 +25,11 @@ Content &Content::operator=(const Content &_content)
         title = _content.title;
         description = _content.description;
         timestamp = _content.timestamp;
-        stats=_content.stats;
-        /*type = _content.type;for(auto a : _content.stats){
+        //stats=_content.stats;
+        type = _content.type;
+        for(auto a : _content.stats){
             stats.push_back(new Stats_content(*a));
-        }*/
+        }
     }
     return *this;
 }
@@ -61,17 +62,20 @@ void Content::setType(content_type _type)
     type=_type;
 }
 
-vector<Stats_content> *Content::getStats() { return &stats;}
+const vector<const Stats_content*>& Content::getStats() const { return stats;}
 
-void Content::setStats(vector<Stats_content> &_stats)
+void Content::setStats(vector<const Stats_content*> &_stats)
 {
-    stats=_stats;
+    //stats=_stats;
+    for(auto a : _stats){
+        stats.push_back(new Stats_content(*a));
+    }
 }
 
 ostream &operator<<(ostream &_os, Content &_c)
 {
 
     _os<<_c.getTitle()<<","<<_c.getDescription()<<","<<_c.getTimestamp().toString("dd.MM.yyyy").toStdString()<<_c.getType();
-    _os<<_c.getStats();
+    _os<<&_c.getStats();
     return _os;
 }
