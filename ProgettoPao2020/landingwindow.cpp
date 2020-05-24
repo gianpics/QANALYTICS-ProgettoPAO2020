@@ -110,17 +110,17 @@ void LandingWindow::setWinStyle(){
 
 void LandingWindow::settingBtnClick(){
     // visualizza settingsWindow
-    qInfo()<<"click btnsetting";
+
 }
 
 void LandingWindow::infoBtnClick(){
     // visualizza infoWindow
-    qInfo()<<"click btninfo";
+
 }
 
 void LandingWindow::searchTxtChanged(const QString &text){
     // filtra elementi creatorsLyt
-    qInfo()<<"txt: "<<text;
+
     if(text=="")
     {
         // mostra tutti risultati
