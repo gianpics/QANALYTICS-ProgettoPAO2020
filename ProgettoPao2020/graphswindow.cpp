@@ -56,12 +56,22 @@ void GraphsWindow::setWinStyle()
 
     // titolo finestra da nome creator
     setWindowTitle("temp");
-    setMinimumSize(QSize(600,400));
+    setMinimumSize(QSize(900,600));
 
     accountsLbl->setText("Accounts");
     accountsLbl->setObjectName("section");
     statsLbl->setText("Stats");
     statsLbl->setObjectName("section");
+
+    mainLyt->setSpacing(0);
+    mainLyt->setMargin(0);
+
+    accountsLbl->setMargin(8);
+    statsLbl->setMargin(8);
+
+    accountsLvw->setFixedWidth(270);
+    statsLvw->setFixedWidth(270);
+    hLine->setFixedWidth(270);
 
     hLine->setFixedHeight(1);
     hLine->setObjectName("line");
