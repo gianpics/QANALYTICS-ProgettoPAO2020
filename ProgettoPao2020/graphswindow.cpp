@@ -2,14 +2,14 @@
 #include <QFile>
 #include <QDebug>
 
-Graphswindow::Graphswindow()
+GraphsWindow::GraphsWindow()
 {
     setWidget();
 
     setWinStyle();
 }
 
-void Graphswindow::setWidget()
+void GraphsWindow::setWidget()
 {
     setSideWidget();
 
@@ -23,7 +23,7 @@ void Graphswindow::setWidget()
     mainLyt->addLayout(graphsLyt);
 }
 
-void Graphswindow::setSideWidget()
+void GraphsWindow::setSideWidget()
 {
     accountsLbl=new QLabel;
     accountsLvw=new QListView;
@@ -38,7 +38,7 @@ void Graphswindow::setSideWidget()
     sideLyt->addWidget(statsLvw);
 }
 
-void Graphswindow::setGraphsWidget()
+void GraphsWindow::setGraphsWidget()
 {
     graphsLvw=new QListView;
 
@@ -46,7 +46,7 @@ void Graphswindow::setGraphsWidget()
     graphsLyt->addWidget(graphsLvw);
 }
 
-void Graphswindow::setWinStyle()
+void GraphsWindow::setWinStyle()
 {
     // imposta foglio di stile
     QFile file(":/resources/stylesheet.css");
