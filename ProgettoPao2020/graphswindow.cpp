@@ -2,14 +2,14 @@
 #include <QFile>
 #include <QDebug>
 
-Graphswindow::Graphswindow()
+GraphsWindow::GraphsWindow()
 {
     setWidget();
 
     setWinStyle();
 }
 
-void Graphswindow::setWidget()
+void GraphsWindow::setWidget()
 {
     setSideWidget();
 
@@ -23,7 +23,7 @@ void Graphswindow::setWidget()
     mainLyt->addLayout(graphsLyt);
 }
 
-void Graphswindow::setSideWidget()
+void GraphsWindow::setSideWidget()
 {
     accountsLbl=new QLabel;
     accountsLvw=new QListView;
@@ -38,7 +38,7 @@ void Graphswindow::setSideWidget()
     sideLyt->addWidget(statsLvw);
 }
 
-void Graphswindow::setGraphsWidget()
+void GraphsWindow::setGraphsWidget()
 {
     graphsLvw=new QListView;
 
@@ -46,7 +46,7 @@ void Graphswindow::setGraphsWidget()
     graphsLyt->addWidget(graphsLvw);
 }
 
-void Graphswindow::setWinStyle()
+void GraphsWindow::setWinStyle()
 {
     // imposta foglio di stile
     QFile file(":/resources/stylesheet.css");
@@ -56,12 +56,22 @@ void Graphswindow::setWinStyle()
 
     // titolo finestra da nome creator
     setWindowTitle("temp");
-    setMinimumSize(QSize(600,400));
+    setMinimumSize(QSize(900,600));
 
     accountsLbl->setText("Accounts");
     accountsLbl->setObjectName("section");
     statsLbl->setText("Stats");
     statsLbl->setObjectName("section");
+
+    mainLyt->setSpacing(0);
+    mainLyt->setMargin(0);
+
+    accountsLbl->setMargin(8);
+    statsLbl->setMargin(8);
+
+    accountsLvw->setFixedWidth(270);
+    statsLvw->setFixedWidth(270);
+    hLine->setFixedWidth(270);
 
     hLine->setFixedHeight(1);
     hLine->setObjectName("line");
