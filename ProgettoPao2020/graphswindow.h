@@ -5,8 +5,8 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QListView>
 #include <QLabel>
+#include <QToolButton>
 #include <QSplitter>
 
 class GraphsWindow: public QWidget
@@ -15,15 +15,19 @@ class GraphsWindow: public QWidget
 
 private:
     QHBoxLayout *mainLyt;
-    QVBoxLayout *sideLyt, *graphsLyt;
-    QListView *accountsLvw, *statsLvw, *graphsLvw;
+    QVBoxLayout *sideLyt, *graphsLyt, *accountsLyt, *statsLyt;
     QLabel *accountsLbl, *statsLbl;
     QFrame *hLine, *vLine;
+    QToolButton *allaccountsBtn, *fbBtn, *igBtn, *ytBtn;
 
     void setWidget();
     void setSideWidget();
     void setGraphsWidget();
     void setWinStyle();
+    void fillStatsLyt(int);
+
+private slots:
+    void accountBtnClick();
 
 public:
     GraphsWindow();
