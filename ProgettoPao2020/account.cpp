@@ -105,6 +105,13 @@ void Account::setStats(vector<const Stats_account*> &_stats)
     }
 }
 
+string Account::getStringType() const
+{
+    switch (type) {
+        case instagram: return "Instagram";
+        case facebook: return "Facebook";
+        case youtube: return "Youtube";
+}
 void Account::print(ostream &_os) const
 {
     _os<<getId()<<","<<getUsername()<<","<<getEmail()<<","<<getType()<<",";

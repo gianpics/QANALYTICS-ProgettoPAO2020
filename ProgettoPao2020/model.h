@@ -9,21 +9,25 @@
 class Model
 {
 private:
-    CreatorList list;
+    CreatorList* list;
     Creator* selected;
-    QChart& setChart(QBarSeries* qls, const vector<const Stats_account*>& _stats) const;
+    void setChart(QBarSeries* qls, QStringList * qsl, QChart* chart) const;
+    void setCategories(vector<u_int>* _id, QStringList * categories) const;
+    void setQBarSetColor(QBarSet* qbs) const;
 public:
-    Model(const CreatorList& _cl);
+    Model();
+    void setList(CreatorList * _cl);
     void setSelected(std::string _SSD);
-    QChart *graphFollowers(u_int _id) const;
-    QChart *graphImpression(u_int _id) const;
-    QChart *graphCoverage(u_int _id) const;
-    QChart *graphLike(u_int _id) const;
-    QChart *graphPageLikes(u_int _id) const;  //ONLY FACEBOOK
-    QChart *graphFollowing(u_int _id) const;  //ONLY YOUTUBE & INSTAGRAM
-    QChart *graphDonators(u_int _id) const;   //ONLY YOUTUBE
-    QChart *graphTotalViews(u_int _id) const; //ONLY YOUTUBE
-    QChart *graphAvgWatchtime(u_int _id) const;   //ONLY YOUTUBE
+    QChart *graphFollowers(vector<u_int>* _id) const;
+    QChart *graphImpression(vector<u_int>* _id) const;
+    QChart *graphCoverage(vector<u_int>* _id) const;
+    QChart *graphLike(vector<u_int>* _id) const;
+    QChart *graphPageLikes(vector<u_int>* _id) const;  //ONLY FACEBOOK
+    QChart *graphFollowing(vector<u_int>* _id) const;  //ONLY YOUTUBE & INSTAGRAM
+    QChart *graphDonators(vector<u_int>* _id) const;   //ONLY YOUTUBE
+    QChart *graphTotalViews(vector<u_int>* _id) const; //ONLY YOUTUBE
+    QChart *graphAvgWatchtime(vector<u_int>* _id) const;   //ONLY YOUTUBE
+    void reset();
 };
 
 #endif // MODEL_H

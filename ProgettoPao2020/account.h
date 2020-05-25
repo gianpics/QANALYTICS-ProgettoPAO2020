@@ -35,6 +35,7 @@ public:
     void setContents(vector<Content>& _contents);
     const vector<const Stats_account*>& getStats() const;
     void setStats(vector<const Stats_account*> &_stats);
+    string getStringType() const;
     void print(ostream& _os)const;
 };
 ostream& operator<<(ostream& _os, const Account& _a);
