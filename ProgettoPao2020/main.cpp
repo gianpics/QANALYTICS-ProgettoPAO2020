@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
     w.show();
     LandingWindow l;
     l.show();
-    Graphswindow g;
+    GraphsWindow g;
     g.show();
     return a.exec();
 }
