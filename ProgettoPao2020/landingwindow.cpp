@@ -5,6 +5,7 @@
 #include <QDesktopWidget>
 #include <QFile>
 #include "landingwindow.h"
+#include "controller.h"
 
 LandingWindow::LandingWindow()
 {
