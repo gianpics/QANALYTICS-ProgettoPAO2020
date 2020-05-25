@@ -111,6 +111,7 @@ string Account::getStringType() const
         case instagram: return "Instagram";
         case facebook: return "Facebook";
         case youtube: return "Youtube";
+    }
 }
 void Account::print(ostream &_os) const
 {
