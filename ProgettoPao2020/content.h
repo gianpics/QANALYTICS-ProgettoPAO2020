@@ -33,7 +33,7 @@ class Content
         void setType(content_type _type);
         const vector<const Stats_content*>& getStats() const;
         void setStats(vector<const Stats_content*>&_stats);
-
+        virtual void print(ostream &_os) const;
 };
 ostream &operator<<(ostream& _os, const Content& _c);
 #endif

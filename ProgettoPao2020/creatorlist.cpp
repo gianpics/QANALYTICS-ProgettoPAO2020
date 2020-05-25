@@ -216,6 +216,6 @@ CreatorList::constiterator CreatorList::end() const { return constiterator(last+
 ostream &operator<<(ostream &_os, const CreatorList &_cl)
 {
     for(CreatorList::constiterator i = _cl.begin(); i!= _cl.end(); ++i)
-        _os << &i <<";";
+        _os << *i <<"\n";
     return _os;
 }
