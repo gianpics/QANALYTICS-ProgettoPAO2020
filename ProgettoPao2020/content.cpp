@@ -72,10 +72,17 @@ void Content::setStats(vector<const Stats_content*> &_stats)
     }
 }
 
-ostream &operator<<(ostream &_os, Content &_c)
+void Content::print(ostream &_os) const
 {
+    _os << title << "," << description << "," << timestamp.toString().toStdString() << "," << type <<",";
+    _os << "[";
+    for(auto s : stats)
+        _os << *s;
+    _os << "]";
+}
 
-    _os<<_c.getTitle()<<","<<_c.getDescription()<<","<<_c.getTimestamp().toString("dd.MM.yyyy").toStdString()<<_c.getType();
-    _os<<&_c.getStats();
+ostream &operator<<(ostream &_os, const Content &_c)
+{
+    _c.print(_os);
     return _os;
 }

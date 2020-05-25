@@ -105,10 +105,22 @@ void Account::setStats(vector<const Stats_account*> &_stats)
     }
 }
 
+void Account::print(ostream &_os) const
+{
+    _os<<getId()<<","<<getUsername()<<","<<getEmail()<<","<<getType()<<",";
+    _os<<"[";
+    for(auto a: contents){
+        _os << a;
+    }
+    _os<<"]";
+    _os<<"[";
+    for(auto a: stats)
+        _os << *a;
+    _os<<"]";
+}
+
 ostream &operator<<(ostream &_os, const Account &_a)
 {
-    _os<<_a.getId()<<","<<_a.getUsername()<<","<<_a.getEmail()<<","<<_a.getType()<<",";
-    _os<<&_a.getContents();
-    _os<<&_a.getStats();
+    _a.print(_os);
     return _os;
 }
