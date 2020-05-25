@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     account.cpp \
     content.cpp \
+   controller.cpp \
     creator.cpp \
     creatorlist.cpp \
     graphswindow.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 HEADERS += \
     account.h \
     content.h \
+    controller.h \
     creator.h \
     creatorlist.h \
     graphswindow.h \
