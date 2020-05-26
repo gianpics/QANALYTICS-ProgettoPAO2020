@@ -19,14 +19,20 @@ QListView {
 QLabel#section {
     color: rgba(40, 40, 40);
     font-weight:600;
-    font-size: 10 pt;
+    font-size: 10pt;
 }
 
 QFrame#line {
     background-color: rgba(40, 40, 40, 0.4);
 }
 
-QPushButton:pressed{
+QPushButton {
+    text-align: left;
+    padding: 6px;
+}
+
+
+QPushButton:pressed {
     background-color: rgba(60,60,60, 0.4);
 }
 
@@ -41,4 +47,3 @@ QBarSet#Facebook {
 QBarSet#Instagram {
    color: rgba(255, 51, 0);
 }
-

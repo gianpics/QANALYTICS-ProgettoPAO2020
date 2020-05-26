@@ -7,7 +7,8 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QToolButton>
-#include <QSplitter>
+
+class Controller;
 
 class GraphsWindow: public QWidget
 {
@@ -20,17 +21,20 @@ private:
     QFrame *hLine, *vLine;
     QToolButton *allaccountsBtn, *fbBtn, *igBtn, *ytBtn;
 
+    Controller *controller;
+
     void setWidget();
     void setSideWidget();
     void setGraphsWidget();
     void setWinStyle();
-    void fillStatsLyt(int);
+
 
 private slots:
     void accountBtnClick();
+    void statsBtnClick();
 
 public:
-    GraphsWindow();
+    GraphsWindow(Controller* c);
 };
 
 #endif // GRAPHSWINDOW_H
