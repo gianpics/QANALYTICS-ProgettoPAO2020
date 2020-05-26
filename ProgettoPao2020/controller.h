@@ -22,7 +22,6 @@ public:
     void setView(LandingWindow* _lw);
     void setView(GraphsWindow* _gw);
     void fillStatsLyt(GraphsWindow*,QVBoxLayout*,QString);
-    static void eraseLayout(QLayout*);
     CreatorList* retrieveCreators();
     void launchCreatorGraphs(QString);
     void restoreLandingWindow();
@@ -35,7 +34,6 @@ public:
     int getAccountId(int i) const;
 
 public slots:
-    static void fillGraphsLyt(GraphsWindow*,QVBoxLayout*,QString);
     void accountBtnClick();
 };
 

@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
     //g.show();
     */
 
-    //GraphsWindow gw(&c);
     LandingWindow lw(&c);
     c.setView(&lw);
     lw.show();

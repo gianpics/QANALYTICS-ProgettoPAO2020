@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QCloseEvent>
 #include <QPushButton>
+#include "controller.h"
 
 GraphsWindow::GraphsWindow(Controller* c): controller(c)
 {
@@ -10,7 +11,7 @@ GraphsWindow::GraphsWindow(Controller* c): controller(c)
 
     setWinStyle();
 
-    emit allaccountsBtn->clicked();
+    //emit allaccountsBtn->clicked();
 }
 
 // chiede di visualizzare la landingwindow e termina la finestra
@@ -27,8 +28,8 @@ void GraphsWindow::setBtnType(QToolButton *btn, int type, QString email, QString
     btn->setFixedSize(QSize(275,50));
     btn->setIconSize(QSize(30,30));
     btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    connect(btn, SIGNAL(clicked()), this, SLOT(Controller::accountBtnClick()));
-    btn->setText("  "+username+"\n "+email);
+    connect(btn, SIGNAL(clicked()), controller, SLOT(accountBtnClick()));
+    btn->setText("  "+username+"\n  "+email);
     btn->setObjectName(QString::number(id));
 
     switch(type){
@@ -56,6 +57,15 @@ void GraphsWindow::setBtnType(QToolButton *btn, int type, QString email, QString
     }
 }
 
+void GraphsWindow::eraseLayout(QLayout* layout)
+{
+    QLayoutItem *item;
+    while((item = layout->takeAt(0))) {
+        delete item->widget();
+        delete item;
+    }
+}
+
 void GraphsWindow::setWidget()
 {
     setSideWidget();
@@ -79,11 +89,10 @@ void GraphsWindow::setSideWidget()
     statsLyt=new QVBoxLayout;
     sideLyt=new QVBoxLayout;
 
-    fillAccountButtons();
+    insertAccountButtons();
 
     sideLyt->addWidget(accountsLbl);
     sideLyt->addLayout(accountsLyt);
-    accountsLyt->addWidget(allaccountsBtn);
     sideLyt->addWidget(hLine);
     sideLyt->addWidget(statsLbl);
     sideLyt->addLayout(statsLyt);
@@ -137,7 +146,7 @@ void GraphsWindow::setWinStyle()
     vLine->setFrameShadow(QFrame::Sunken);
 }
 
-void GraphsWindow::fillAccountButtons()
+void GraphsWindow::insertAccountButtons()
 {
     int nAccounts=controller->getAccountsNumber();
     account_type type;
@@ -148,6 +157,7 @@ void GraphsWindow::fillAccountButtons()
     // aggiunge allaccount
     btn=new QToolButton;
     setBtnType(btn, -1, "", "", -1);
+    allaccountsBtn = btn;
     accountsLyt->addWidget(btn);
 
     for(int i=0; i<nAccounts; i++)
@@ -164,41 +174,81 @@ void GraphsWindow::fillAccountButtons()
     }
 }
 
-// cambia stylesheet del tasto selezionato
-void GraphsWindow::updateAccountButtons(QString objname){
+// cambia stylesheet dopo avere selezionato un account
+void GraphsWindow::updateAccountButtonsStyle(QString objname){
 
-    // risetta tutti i pulsanti account a non selezionati
-    QPushButton *btn;
+    QToolButton *btn;
     for(int i=0; i<accountsLyt->count(); i++)
     {
-        btn=qobject_cast<QPushButton*>(statsLyt->itemAt(i)->widget());
-        btn->setStyleSheet("background-color: white;");
-        btn->setDown(false);
+        btn=qobject_cast<QToolButton*>(accountsLyt->itemAt(i)->widget());
+        if(btn->objectName() == objname){
+            btn->setStyleSheet("background-color: rgba(60,60,60, 0.3);");
+            btn->setDown(true);
+        }else{
+            btn->setStyleSheet("background-color: white;");
+            btn->setDown(false);
+        }
     }
-
-    // aggiorna stile del pulsante account premuto
-    QPushButton *senderBtn=accountsLyt->findChild<QPushButton*>(objname);
-    senderBtn->setStyleSheet("background-color: rgba(60,60,60, 0.3);");
-    senderBtn->setDown(true);
 }
-
-// richiede al controller di mostrare il grafico della statistica selezionata
-// cambia stylesheet del tasto selezionato
-void GraphsWindow::statsBtnClick()
+// cambia stylesheet dopo avere selezionato una stats
+void GraphsWindow::updateStatsButtonsStyle(QString objname)
 {
-    cazzo;
     QPushButton *btn;
     for(int i=0; i<statsLyt->count(); i++)
     {
         btn=qobject_cast<QPushButton*>(statsLyt->itemAt(i)->widget());
-        btn->setStyleSheet("background-color: white;");
-        btn->setDown(false);
+        if(btn->objectName() == objname){
+            btn->setStyleSheet("background-color: rgba(60,60,60, 0.3);");
+            btn->setDown(true);
+        }else{
+            btn->setStyleSheet("background-color: white;");
+            btn->setDown(false);
+        }
     }
-
-    QPushButton *senderBtn=qobject_cast<QPushButton*>(sender());
-    senderBtn->setStyleSheet("background-color: rgba(60,60,60, 0.3);");
-    senderBtn->setDown(true);
-    controller->fillGraphsLyt(this, graphsLyt, sender()->objectName());
 }
+
+void GraphsWindow::insertStatsButtons(QStringList *stats, QString accountId)
+{
+    eraseLayout(statsLyt);
+    QPushButton* btn;
+    for(auto a : *stats){
+        btn=new QPushButton;
+        btn->setObjectName(accountId);
+        btn->setFlat(true);
+        btn->setFixedSize(QSize(275,25));
+        if(a.compare("followers")==0){
+            btn->setText("Followers");
+            btn->setToolTip("Compare socials' followers");
+            //connect(btn, SIGNAL(clicked()), controller, SLOT(statsBtnClick()));
+        }else if(a.compare("impression")==0){
+            btn->setText("Impressions");
+            btn->setToolTip("Compare socials' impression");
+        }else if(a.compare("coverage")==0){
+            btn->setText("Coverage");
+            btn->setToolTip("Compare socials' coverage");
+        }else if(a.compare("likes")==0){
+            btn->setText("Likes");
+            btn->setToolTip("Compare socials likes");
+        }else if(a.compare("following")==0){
+            btn->setText("Following");
+            btn->setToolTip("View following monthly growth");
+        }else if(a.compare("donators")==0){
+            btn->setText("Donators");
+            btn->setToolTip("View donators monthly growth");
+        }else if(a.compare("totalviews")==0){
+            btn->setText("Total Views");
+            btn->setToolTip("View total views monthly growth");
+        }else if(a.compare("avgwatchtime")==0){
+            btn->setText("Average Watch Time");
+            btn->setToolTip("View average watch time monthly growth");
+        }else if(a.compare("pagelikes")==0){
+            btn->setText("Page likes");
+            btn->setToolTip("View page's likes monthly growth");
+        }
+        statsLyt->addWidget(btn);
+    }
+    delete stats;
+}
+
 
 

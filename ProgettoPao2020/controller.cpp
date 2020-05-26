@@ -13,275 +13,6 @@ void Controller::setView(GraphsWindow *_gw)
     gw=_gw;
 }
 
-
-void Controller::fillStatsLyt(GraphsWindow *gw, QVBoxLayout *statsLyt, QString id)
-{
-    // svuota layout
-    eraseLayout(statsLyt);
-
-    int type=model->getSelectedTypeById();
-
-    QPushButton* btn;
-
-    if(acc=="all")
-    {
-        // all
-
-        //getFollowers
-        btn=new QPushButton;
-        btn->setText("Followers");
-        btn->setToolTip("Compare socials' followers");
-        btn->setObjectName("allfollowers");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getImpressions
-        btn=new QPushButton;
-        btn->setText("Impressions");
-        btn->setToolTip("Compare socials' impressions");
-        btn->setObjectName("allimpressions");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getCoverage
-        btn=new QPushButton;
-        btn->setText("Coverage");
-        btn->setToolTip("Compare socials' coverage");
-        btn->setObjectName("allcoverage");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getLike
-        btn=new QPushButton;
-        btn->setText("Likes");
-        btn->setToolTip("Compare socials likes");
-        btn->setObjectName("alllikes");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        return;
-    }
-
-    if(acc=="fb")
-    {
-        // fb
-
-        //getFollowers
-        btn=new QPushButton;
-        btn->setText("Followers");
-        btn->setToolTip("View followers monthly growth");
-        btn->setObjectName("fbfollowers");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getImpressions
-        btn=new QPushButton;
-        btn->setText("Impressions");
-        btn->setToolTip("View impressions monthly growth");
-        btn->setObjectName("fbimpressions");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getCoverage
-        btn=new QPushButton;
-        btn->setText("Coverage");
-        btn->setToolTip("View coverage monthly growth");
-        btn->setObjectName("fbcoverage");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getLike
-        btn=new QPushButton;
-        btn->setText("Likes");
-        btn->setToolTip("View likes monthly growth");
-        btn->setObjectName("fblikes");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getPageLikes
-        btn=new QPushButton;
-        btn->setText("Page likes");
-        btn->setToolTip("View page's likes monthly growth");
-        btn->setObjectName("fbpagelikes");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        return;
-    }
-
-    if(acc=="ig")
-    {
-        // ig
-
-        //getFollowers
-        btn=new QPushButton;
-        btn->setText("Followers");
-        btn->setToolTip("View followers monthly growth");
-        btn->setObjectName("igfollowers");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getImpressions
-        btn=new QPushButton;
-        btn->setText("Impressions");
-        btn->setToolTip("View impressions monthly growth");
-        btn->setObjectName("igimpressions");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getCoverage
-        btn=new QPushButton;
-        btn->setText("Coverage");
-        btn->setToolTip("View coverage monthly growth");
-        btn->setObjectName("igcoverage");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getLike
-        btn=new QPushButton;
-        btn->setText("Likes");
-        btn->setToolTip("View likes monthly growth");
-        btn->setObjectName("iglikes");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getFollowing
-        btn=new QPushButton;
-        btn->setText("Following");
-        btn->setToolTip("View following monthly growth");
-        btn->setObjectName("igfollowing");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        return;
-    }
-
-    if(acc=="yt")
-    {
-        // yt
-
-        //getFollowers
-        btn=new QPushButton;
-        btn->setText("Followers");
-        btn->setToolTip("View followers monthly growth");
-        btn->setObjectName("ytfollowers");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getImpressions
-        btn=new QPushButton;
-        btn->setText("Impressions");
-        btn->setToolTip("View impressions monthly growth");
-        btn->setObjectName("ytimpressions");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getCoverage
-        btn=new QPushButton;
-        btn->setText("Coverage");
-        btn->setToolTip("View coverage monthly growth");
-        btn->setObjectName("ytcoverage");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getLike
-        btn=new QPushButton;
-        btn->setText("Likes");
-        btn->setToolTip("View likes monthly growth");
-        btn->setObjectName("ytlikes");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getFollowing
-        btn=new QPushButton;
-        btn->setText("Following");
-        btn->setToolTip("View following monthly growth");
-        btn->setObjectName("ytfollowing");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getDonators
-        btn=new QPushButton;
-        btn->setText("Donators");
-        btn->setToolTip("View donators monthly growth");
-        btn->setObjectName("ytdonators");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getTotalViews
-        btn=new QPushButton;
-        btn->setText("Total Views");
-        btn->setToolTip("View total views monthly growth");
-        btn->setObjectName("yttotalviews");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        //getAvgWatchTime
-        btn=new QPushButton;
-        btn->setText("Average Watch Time");
-        btn->setToolTip("View average watch time monthly growth");
-        btn->setObjectName("ytavgwatchtime");
-        btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
-        connect(btn, SIGNAL(clicked()), gw, SLOT(statsBtnClick()));
-        statsLyt->addWidget(btn);
-
-        return;
-    }
-
-}
-
-void Controller::eraseLayout(QLayout *layout)
-{
-    QLayoutItem *item;
-    while((item = layout->takeAt(0))) {
-        delete item->widget();
-        delete item;
-    }
-}
-
 CreatorList* Controller::retrieveCreators()
 {
     std::vector<const Stats_content*> listsc;
@@ -457,7 +188,7 @@ int Controller::getAccountId(int i) const
 
 
 // riempie graphsLyt con il grafico richiesto
-void Controller::fillGraphsLyt(GraphsWindow *g, QVBoxLayout *graphsLyt, QString stat)
+/*void Controller::fillGraphsLyt(GraphsWindow *g, QVBoxLayout *graphsLyt, QString stat)
 {
 
 
@@ -632,12 +363,37 @@ void Controller::fillGraphsLyt(GraphsWindow *g, QVBoxLayout *graphsLyt, QString 
 
         return;
     }
-}
+}*/
 
 void Controller::accountBtnClick()
 {
+    gw->updateAccountButtonsStyle(sender()->objectName());
+    QStringList *stats = new QStringList();
+    //Stats all account
+    stats->append(QString::fromStdString("impression"));
+    stats->append(QString::fromStdString("coverage"));
+    stats->append(QString::fromStdString("likes"));
+    stats->append(QString::fromStdString("followers"));
+    int id = sender()->objectName().toInt();
+    if(id!=-1){//non è all account
+        id = model->getSelectedTypeById(sender()->objectName().toInt());
+        switch(id){//lo switch è sul tipo
+            case 0://Youtube
+                stats->append(QString::fromStdString("following"));
+                stats->append(QString::fromStdString("donators"));
+                stats->append(QString::fromStdString("totalviews"));
+                stats->append(QString::fromStdString("avgwatchtime"));
+                break;
+            case 1://facebook
+                stats->append(QString::fromStdString("pagelikes"));
+                break;
+            case 2://instagram
+                stats->append(QString::fromStdString("following"));
+                break;
+        }
+    }
 
-    gw->updateAccountButtons(sender()->objectName());
+    gw->insertStatsButtons(stats, sender()->objectName());
     // richiama statistiche account selezionato
     //controller->fillStatsLyt(this, statsLyt, senderBtn->objectName());
 }
