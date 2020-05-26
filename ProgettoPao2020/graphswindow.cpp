@@ -1,7 +1,7 @@
 ﻿#include "graphswindow.h"
-#include "controller.h"
 #include <QFile>
 #include <QDebug>
+#include <QCloseEvent>
 #include <QPushButton>
 
 GraphsWindow::GraphsWindow(Controller* c): controller(c)
@@ -11,6 +11,49 @@ GraphsWindow::GraphsWindow(Controller* c): controller(c)
     setWinStyle();
 
     emit allaccountsBtn->clicked();
+}
+
+// chiede di visualizzare la landingwindow e termina la finestra
+void GraphsWindow::closeEvent(QCloseEvent *event)
+{
+    controller->restoreLandingWindow();
+    event->accept();
+}
+
+void GraphsWindow::setBtnType(QToolButton *btn, int type, QString email, QString username, int id)
+{
+    // account_type{youtube = 0, facebook = 1, instagram = 2};
+
+    btn->setFixedSize(QSize(275,50));
+    btn->setIconSize(QSize(30,30));
+    btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    connect(btn, SIGNAL(clicked()), this, SLOT(Controller::accountBtnClick()));
+    btn->setText("  "+username+"\n "+email);
+    btn->setObjectName(QString::number(id));
+
+    switch(type){
+        case 0:
+            // youtube
+            btn->setIcon(QIcon(":/resources/youtube.png"));
+            btn->setToolTip("View YouTube statistics");
+            break;
+        case 1:
+            // facebook
+            btn->setIcon(QIcon(":/resources/facebook.png"));
+            btn->setToolTip("View Facebook statistics");
+            break;
+        case 2:
+            // instagram
+            btn->setIcon(QIcon(":/resources/instagram.png"));
+            btn->setToolTip("View Instagram statistics");
+            break;
+        default:
+            // allaccounts
+            btn->setText("  All accounts");
+            btn->setIcon(QIcon(":/resources/users.png"));
+            btn->setToolTip("View all accounts statistics");
+            break;
+    }
 }
 
 void GraphsWindow::setWidget()
@@ -36,22 +79,11 @@ void GraphsWindow::setSideWidget()
     statsLyt=new QVBoxLayout;
     sideLyt=new QVBoxLayout;
 
-    allaccountsBtn=new QToolButton;
-    connect(allaccountsBtn, SIGNAL(clicked()), this, SLOT(accountBtnClick()));
-    fbBtn=new QToolButton;
-    connect(fbBtn, SIGNAL(clicked()), this, SLOT(accountBtnClick()));
-    igBtn=new QToolButton;
-    connect(igBtn, SIGNAL(clicked()), this, SLOT(accountBtnClick()));
-    ytBtn=new QToolButton;
-    connect(ytBtn, SIGNAL(clicked()), this, SLOT(accountBtnClick()));
-
+    fillAccountButtons();
 
     sideLyt->addWidget(accountsLbl);
     sideLyt->addLayout(accountsLyt);
     accountsLyt->addWidget(allaccountsBtn);
-    accountsLyt->addWidget(fbBtn);
-    accountsLyt->addWidget(igBtn);
-    accountsLyt->addWidget(ytBtn);
     sideLyt->addWidget(hLine);
     sideLyt->addWidget(statsLbl);
     sideLyt->addLayout(statsLyt);
@@ -72,7 +104,7 @@ void GraphsWindow::setWinStyle()
     //qInfo()<<"style: "<<QLatin1String(file.readAll());
 
     // titolo finestra da nome creator
-    setWindowTitle("Creator's stats");
+    setWindowTitle(controller->getCreatorName()+"'s stats");
     setMinimumSize(QSize(1000,700));
 
     accountsLbl->setText("Accounts");
@@ -83,39 +115,6 @@ void GraphsWindow::setWinStyle()
     sideLyt->setAlignment(Qt::AlignTop);
     accountsLyt->setAlignment(Qt::AlignTop);
     statsLyt->setAlignment(Qt::AlignLeft);
-
-    // pulsanti accounts
-    allaccountsBtn->setFixedSize(QSize(275,50));
-    allaccountsBtn->setObjectName("all");
-    allaccountsBtn->setToolTip("View all accounts statistics");
-    allaccountsBtn->setIcon(QIcon(":/resources/users.png"));
-    allaccountsBtn->setIconSize(QSize(30,30));
-    allaccountsBtn->setText("  All accounts");
-    allaccountsBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-    fbBtn->setFixedSize(QSize(275,50));
-    fbBtn->setObjectName("fb");
-    fbBtn->setToolTip("View Facebook statistics");
-    fbBtn->setIcon(QIcon(":/resources/facebook.png"));
-    fbBtn->setIconSize(QSize(30,30));
-    fbBtn->setText("  Facebook username\n  E-mail");
-    fbBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-    igBtn->setFixedSize(QSize(275,50));
-    igBtn->setObjectName("ig");
-    igBtn->setToolTip("View Instagram statistics");
-    igBtn->setIcon(QIcon(":/resources/instagram.png"));
-    igBtn->setIconSize(QSize(30,30));
-    igBtn->setText("  Instagram username\n  E-mail");
-    igBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-    ytBtn->setFixedSize(QSize(275,50));
-    ytBtn->setObjectName("yt");
-    ytBtn->setToolTip("View YouTube statistics");
-    ytBtn->setIcon(QIcon(":/resources/youtube.png"));
-    ytBtn->setIconSize(QSize(30,30));
-    ytBtn->setText("  YouTube username\n  E-mail");
-    ytBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
     accountsLyt->setMargin(3);
     statsLyt->setMargin(3);
@@ -138,31 +137,56 @@ void GraphsWindow::setWinStyle()
     vLine->setFrameShadow(QFrame::Sunken);
 }
 
-// richiede al controller di caricare le statistiche dell'account selezionato
-// cambia stylesheet del tasto selezionato
-void GraphsWindow::accountBtnClick(){
-    allaccountsBtn->setStyleSheet("background-color: white;");
-    allaccountsBtn->setDown(false);
-    fbBtn->setStyleSheet("background-color: white;");
-    fbBtn->setDown(false);
-    igBtn->setStyleSheet("background-color: white;");
-    igBtn->setDown(false);
-    ytBtn->setStyleSheet("background-color: white;");
-    ytBtn->setDown(false);
+void GraphsWindow::fillAccountButtons()
+{
+    int nAccounts=controller->getAccountsNumber();
+    account_type type;
+    QString email, username;
+    int id;
+    QToolButton* btn;
 
-    QToolButton *senderBtn=qobject_cast<QToolButton*>(sender());
+    // aggiunge allaccount
+    btn=new QToolButton;
+    setBtnType(btn, -1, "", "", -1);
+    accountsLyt->addWidget(btn);
+
+    for(int i=0; i<nAccounts; i++)
+    {
+        // tipo, email, id, username
+        type=controller->getAccountType(i);
+        email=controller->getAccountEmail(i);
+        username=controller->getAccountUsername(i);
+        id=controller->getAccountId(i);
+
+        btn=new QToolButton;
+        setBtnType(btn, type, email, username, id);
+        accountsLyt->addWidget(btn);
+    }
+}
+
+// cambia stylesheet del tasto selezionato
+void GraphsWindow::updateAccountButtons(QString objname){
+
+    // risetta tutti i pulsanti account a non selezionati
+    QPushButton *btn;
+    for(int i=0; i<accountsLyt->count(); i++)
+    {
+        btn=qobject_cast<QPushButton*>(statsLyt->itemAt(i)->widget());
+        btn->setStyleSheet("background-color: white;");
+        btn->setDown(false);
+    }
+
+    // aggiorna stile del pulsante account premuto
+    QPushButton *senderBtn=accountsLyt->findChild<QPushButton*>(objname);
     senderBtn->setStyleSheet("background-color: rgba(60,60,60, 0.3);");
     senderBtn->setDown(true);
-
-    // richiama statistiche account selezionato
-    controller->fillStatsLyt(this, statsLyt, senderBtn->objectName());
-
 }
 
 // richiede al controller di mostrare il grafico della statistica selezionata
 // cambia stylesheet del tasto selezionato
 void GraphsWindow::statsBtnClick()
 {
+    cazzo;
     QPushButton *btn;
     for(int i=0; i<statsLyt->count(); i++)
     {

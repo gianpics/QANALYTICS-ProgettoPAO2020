@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QToolButton>
+#include "controller.h"
 
 class Controller;
 
@@ -19,7 +20,7 @@ private:
     QVBoxLayout *sideLyt, *graphsLyt, *accountsLyt, *statsLyt;
     QLabel *accountsLbl, *statsLbl;
     QFrame *hLine, *vLine;
-    QToolButton *allaccountsBtn, *fbBtn, *igBtn, *ytBtn;
+    QToolButton *allaccountsBtn;
 
     Controller *controller;
 
@@ -27,14 +28,16 @@ private:
     void setSideWidget();
     void setGraphsWidget();
     void setWinStyle();
-
+    void fillAccountButtons();
+    void closeEvent(QCloseEvent *event);
+    void setBtnType(QToolButton *btn, int type, QString email, QString username, int id);
 
 private slots:
-    void accountBtnClick();
     void statsBtnClick();
 
 public:
     GraphsWindow(Controller* c);
+    void updateAccountButtons(QString objname);
 };
 
 #endif // GRAPHSWINDOW_H

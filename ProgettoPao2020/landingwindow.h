@@ -5,10 +5,11 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QListView>
 #include <QSettings>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+
+class Controller;
 
 class LandingWindow: public QWidget
 {
@@ -19,19 +20,21 @@ private:
     QHBoxLayout *buttonsLyt;
     QPushButton *infoBtn, *settingBtn;
     QLineEdit *searchTxt;
-    QListView *creatorsLvw;
     QFrame *line;
+    Controller* controller;
 
     void setWidgets();
     void setWinStyle();
+    void fillCreatorsLyt();
 
 private slots:
     void settingBtnClick();
     void infoBtnClick();
+    void viewCreatorGraphs();
     void searchTxtChanged(const QString&);
 
 public:
-    LandingWindow();
+    LandingWindow(Controller*);
 
 };
 

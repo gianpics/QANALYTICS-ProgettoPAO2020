@@ -77,7 +77,7 @@ void CreatorList::InsertBack(Creator &c)
 int CreatorList::size() const
 {
     int i=0;
-    for(constiterator x=begin(); x!=end(); i++) i++;
+    for(constiterator x=begin(); x!=end(); x++) i++;
 
     return i;
 }

@@ -5,6 +5,7 @@
 #include "graphswindow.h"
 #include "model.h"
 #include <QObject>
+#include <vector>
 
 
 class Controller : public QObject
@@ -22,11 +23,20 @@ public:
     void setView(GraphsWindow* _gw);
     void fillStatsLyt(GraphsWindow*,QVBoxLayout*,QString);
     static void eraseLayout(QLayout*);
+    CreatorList* retrieveCreators();
+    void launchCreatorGraphs(QString);
+    void restoreLandingWindow();
+    QString getCreatorName() const;
+    int getAccountsNumber() const;
+    account_type getAccountType(int i) const;
+    account_type getAccountTypeByid(int i) const;
+    QString getAccountEmail(int i) const;
+    QString getAccountUsername(int i) const;
+    int getAccountId(int i) const;
 
 public slots:
     static void fillGraphsLyt(GraphsWindow*,QVBoxLayout*,QString);
-signals:
-
+    void accountBtnClick();
 };
 
 #endif // CONTROLLER_H
