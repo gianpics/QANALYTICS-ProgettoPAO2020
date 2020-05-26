@@ -60,6 +60,41 @@ void Model::setList(CreatorList *_cl){ list=_cl;}
 
 void Model::setSelected(std::string _SSN){selected = &list->getCreatorBySSN(_SSN);}
 
+int Model::getSelectedAccountsNumber() const
+{
+    return selected->size();
+}
+
+account_type Model::getSelectedAccountType(int i) const
+{
+    return selected->operator[](i).getType();
+}
+
+QString Model::getSelectedAccountEmail(int i) const
+{
+    return QString::fromStdString(selected->operator[](i).getEmail());
+}
+
+QString Model::getSelectedAccountUsername(int i) const
+{
+    return QString::fromStdString(selected->operator[](i).getUsername());
+}
+
+int Model::getSelectedAccountId(int i) const
+{
+    return selected->operator[](i).getId();
+}
+
+account_type Model::getSelectedTypeById(int i) const
+{
+    return selected->getAccountById(i).getType();
+}
+
+QString Model::getSelectedFullName() const
+{
+    return QString::fromStdString(selected->getFullName());
+}
+
 QChart *Model::graphFollowers(vector<u_int>* _id_account) const
 {
     //Imposto i mesi delle stats che devo analizzare

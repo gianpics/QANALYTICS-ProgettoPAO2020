@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     Model m;
     Controller c(&m);
     //MODELLO
-    m.setList(addCreator());
+    /*
     m.setSelected("SSSGCM");
     vector<u_int> v;
     v.push_back(01);v.push_back(00);v.push_back(02);
@@ -35,14 +35,20 @@ int main(int argc, char *argv[])
     chartView->setRenderHint(QPainter::Antialiasing);
     w.setCentralWidget(chartView);
     w.resize(400, 300);
-    w.show();
-    LandingWindow l;
+    //w.show();
+    //LandingWindow l;
     //l.show();
-    GraphsWindow g;
+    //GraphsWindow g;
     //g.show();
+    */
+
+    LandingWindow lw(&c);
+    c.setView(&lw);
+    lw.show();
     return a.exec();
 }
 
+/*
 CreatorList* addCreator(){
     std::vector<const Stats_content*> listsc;
     std::vector<Content> lc;
@@ -165,3 +171,4 @@ CreatorList* addCreator(){
     cl->InsertBack(c3);
     return cl;
 }
+*/

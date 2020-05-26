@@ -4,14 +4,16 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
+#include <QToolButton>
 #include "landingwindow.h"
 #include "controller.h"
 
-LandingWindow::LandingWindow()
+LandingWindow::LandingWindow(Controller* c): controller(c)
 {
     // carica titolo finestra dal file config
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     setWindowTitle(settings.value("app/title").toString());
+
 
     // spawn widget
     setWidgets();
@@ -47,14 +49,12 @@ void LandingWindow::setWidgets(){
     // line
     line=new QFrame;
 
-    // creator list
-    creatorsLvw=new QListView;
 
     // inserimento in layout inferiore
     creatorsLyt=new QVBoxLayout;
     creatorsLyt->addWidget(searchTxt);
     creatorsLyt->addWidget(line);
-    creatorsLyt->addWidget(creatorsLvw);
+    fillCreatorsLyt();
 
     mainLyt=new QVBoxLayout(this);
     mainLyt->addLayout(buttonsLyt);
@@ -103,10 +103,38 @@ void LandingWindow::setWinStyle(){
     line->setFrameShape(QFrame::HLine);
     line->setFrameShadow(QFrame::Sunken);
 
-    creatorsLvw->setFixedSize(QSize(300,300));
-
     creatorsLyt->setAlignment(Qt::AlignCenter);
 
+}
+
+void LandingWindow::fillCreatorsLyt()
+{
+    CreatorList* creators=controller->retrieveCreators();
+    QToolButton* btn;
+
+    for(int i=0; i<creators->size(); i++)
+    {
+
+        btn=new QToolButton;
+        btn->setIcon(QIcon(":/resources/user.png"));
+        btn->setText(" "+QString::fromStdString(" "+creators->operator[](i).getFullName())+"\n  "+QString::fromStdString(creators->operator[](i).getSSN()));
+        btn->setToolTip("Load "+QString::fromStdString(creators->operator[](i).getFullName())+" information");
+        btn->setFixedSize(QSize(300,50));
+        btn->setStyleSheet("font-size: 10pt;");
+        btn->setIconSize(QSize(40,40));
+        btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));
+        btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        connect(btn, SIGNAL(clicked()), this, SLOT(viewCreatorGraphs()));
+        creatorsLyt->addWidget(btn);
+    }
+}
+
+// visualizza dati del creator selezionato in una GraphsWindow
+void LandingWindow::viewCreatorGraphs()
+{
+    QString ssn=sender()->objectName();
+
+    controller->launchCreatorGraphs(ssn);
 }
 
 void LandingWindow::settingBtnClick(){

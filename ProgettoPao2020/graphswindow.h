@@ -19,7 +19,7 @@ private:
     QVBoxLayout *sideLyt, *graphsLyt, *accountsLyt, *statsLyt;
     QLabel *accountsLbl, *statsLbl;
     QFrame *hLine, *vLine;
-    QToolButton *allaccountsBtn, *fbBtn, *igBtn, *ytBtn;
+    QToolButton *allaccountsBtn;
 
     Controller *controller;
 
@@ -27,14 +27,18 @@ private:
     void setSideWidget();
     void setGraphsWidget();
     void setWinStyle();
-
+    void insertAccountButtons();
+    void closeEvent(QCloseEvent *event);
+    void setBtnType(QToolButton *btn, int type, QString email, QString username, int id);
+    static void eraseLayout(QLayout* layout);
 
 private slots:
-    void accountBtnClick();
-    void statsBtnClick();
 
 public:
     GraphsWindow(Controller* c);
+    void updateAccountButtonsStyle(QString objname);
+    void updateStatsButtonsStyle(QString objname);
+    void insertStatsButtons(QStringList* stats, QString accountId);
 };
 
 #endif // GRAPHSWINDOW_H

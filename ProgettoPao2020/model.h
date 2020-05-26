@@ -17,7 +17,14 @@ private:
 public:
     Model();
     void setList(CreatorList * _cl);
-    void setSelected(std::string _SSD);
+    void setSelected(std::string _SSN);
+    int getSelectedAccountsNumber() const;
+    account_type getSelectedAccountType(int i) const;
+    QString getSelectedAccountEmail(int i) const;
+    QString getSelectedAccountUsername(int i) const;
+    int getSelectedAccountId(int i) const;
+    account_type getSelectedTypeById(int i) const;
+    QString getSelectedFullName() const;
     QChart *graphFollowers(vector<u_int>* _id) const;
     QChart *graphImpression(vector<u_int>* _id) const;
     QChart *graphCoverage(vector<u_int>* _id) const;
