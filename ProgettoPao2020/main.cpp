@@ -5,14 +5,45 @@
 #include "model.h"
 #include "graphswindow.h"
 #include "landingwindow.h"
+#include "controller.h"
 #include <QApplication>
 #include <iostream>
 
+CreatorList* addCreator();
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+    Model m;
+    Controller c(&m);
+    //MODELLO
+    m.setList(addCreator());
+    m.setSelected("SSSGCM");
+    vector<u_int> v;
+    v.push_back(01);v.push_back(00);v.push_back(02);
+    //QChart *chart = m.graphImpression(&v);
+    //QChart *chart = m.graphCoverage(&v);
+    //QChart *chart = m.graphLike(&v);
+    QChart *chart = m.graphFollowers(&v);
+    //QChart *chart = m.graphFollowing(0);
+    //QChart *chart = m.graphDonators(0);
+    //QChart *chart = m.graphTotalViews(0);
+    //QChart *chart = m.graphAvgWatchtime(0);
+    //QChart *chart = m.graphPageLikes(1);
+    //VISTA
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    w.setCentralWidget(chartView);
+    w.resize(400, 300);
+    w.show();
+    LandingWindow l;
+    //l.show();
+    GraphsWindow g;
+    //g.show();
+    return a.exec();
+}
 
+CreatorList* addCreator(){
     std::vector<const Stats_content*> listsc;
     std::vector<Content> lc;
     std::vector<const Stats_account*> listsa;
@@ -61,8 +92,8 @@ int main(int argc, char *argv[])
     listsa.clear(); listsa.push_back(&sy1a); listsa.push_back(&sy1b);
     Account acc1a(00, "panzYT", "panz@gmail.com", youtube, lc, listsa);
     //STATS_INSTA   QDATE, IMPRESSION, COVERAGE, LIKE, FOLLOWERS, FOLLOWING
-    Stats_instagram si1a(*new QDate(2020, 02, 1),800,3000,1000,10000, 125);
-    Stats_instagram si1b(*new QDate(2020, 03, 1),1000,4000,1100,10100, 130);
+    Stats_instagram si1a(*new QDate(2020, 04, 1),800,3000,1000,10000, 125);
+    Stats_instagram si1b(*new QDate(2020, 05, 1),1000,4000,1100,10100, 130);
     lc.clear(); lc.push_back(c2a);lc.push_back(c2b);
     listsa.clear(); listsa.push_back(&si1a); listsa.push_back(&si1b);
     Account acc1b(01, "panzINSTA", "panz@gmail.com", instagram, lc, listsa);
@@ -129,31 +160,8 @@ int main(int argc, char *argv[])
     la.clear(); la.push_back(acc3a);
     Creator c3(la, "Gianpiero Giuseppe", "TOVO", "GNPTVO", "Via milano", "000098562", "Gianpics");
 //----------------------------------------------------------------------------------------------------------------------------
-
-    CreatorList cl(c1);
-    cl.InsertBack(c2);
-    cl.InsertBack(c3);
-    //MODELLO
-    Model m(cl);
-    m.setSelected("SSSGCM");
-    QChart *chart = m.graphImpression(2);
-    //QChart *chart = m.graphCoverage(2);
-    //QChart *chart = m.graphLike(2);
-    //QChart *chart = m.graphFollowers(1);
-    //QChart *chart = m.graphFollowing(0);
-    //QChart *chart = m.graphDonators(0);
-    //QChart *chart = m.graphTotalViews(0);
-    //QChart *chart = m.graphAvgWatchtime(0);
-    //QChart *chart = m.graphPageLikes(1);
-    //VISTA
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    w.setCentralWidget(chartView);
-    w.resize(400, 300);
-    w.show();
-    LandingWindow l;
-    l.show();
-    GraphsWindow g;
-    g.show();
-    return a.exec();
+    CreatorList *cl = new CreatorList(c1);
+    cl->InsertBack(c2);
+    cl->InsertBack(c3);
+    return cl;
 }

@@ -31,6 +31,19 @@ QPushButton {
     padding: 6px;
 }
 
+
 QPushButton:pressed {
     background-color: rgba(60,60,60, 0.4);
+}
+
+QBarSet#Youtube {
+   color: rgba(255, 51, 0);
+}
+
+QBarSet#Facebook {
+   color: rgba(255, 51, 0);
+}
+
+QBarSet#Instagram {
+   color: rgba(255, 51, 0);
 }
