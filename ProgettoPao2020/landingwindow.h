@@ -28,10 +28,8 @@ private:
     void fillCreatorsLyt();
 
 private slots:
-    void settingBtnClick();
-    void infoBtnClick();
-    void viewCreatorGraphs();
     void searchTxtChanged(const QString&);
+    void infoBtnClick();
 
 public:
     LandingWindow(Controller*);

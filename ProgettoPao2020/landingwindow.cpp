@@ -27,11 +27,11 @@ void LandingWindow::setWidgets(){
 
     // btn impostazioni
     settingBtn=new QPushButton;
-    connect(settingBtn,SIGNAL(clicked()), this, SLOT(settingBtnClick()));
+    connect(settingBtn,SIGNAL(clicked()), controller, SLOT(settingBtnClick()));
 
     // btn info
     infoBtn=new QPushButton;
-    connect(infoBtn, SIGNAL(clicked()), SLOT(infoBtnClick()));
+    connect(infoBtn, SIGNAL(clicked()), this, SLOT(infoBtnClick()));
 
     // inserimento buttons in layout superiore
     buttonsLyt=new QHBoxLayout;
@@ -117,27 +117,9 @@ void LandingWindow::fillCreatorsLyt()
         btn->setIconSize(QSize(40,40));
         btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));
         btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-        connect(btn, SIGNAL(clicked()), this, SLOT(viewCreatorGraphs()));
+        connect(btn, SIGNAL(clicked()), controller, SLOT(creatorBtnClick()));
         creatorsLyt->addWidget(btn);
     }
-}
-
-// visualizza dati del creator selezionato in una GraphsWindow
-void LandingWindow::viewCreatorGraphs()
-{
-    QString ssn=sender()->objectName();
-
-    controller->launchCreatorGraphs(ssn);
-}
-
-void LandingWindow::settingBtnClick(){
-    // visualizza settingsWindow
-
-}
-
-void LandingWindow::infoBtnClick(){
-    // visualizza infoWindow
-
 }
 
 void LandingWindow::searchTxtChanged(const QString &text){
@@ -151,4 +133,22 @@ void LandingWindow::searchTxtChanged(const QString &text){
     {
         // regex su nome creator
     }
+}
+
+void LandingWindow::infoBtnClick()
+{
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    QDialog d(this);
+    d.setWindowTitle("About "+settings.value("app/title").toString());
+    /*d.setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),qApp->desktop()->availableGeometry()));
+    d.setFixedSize(400,400);
+    QVBoxLayout* mainw = new QVBoxLayout();
+    QHBoxLayout* infow = new QHBoxLayout();
+    QLabel *lbl = new QLabel();
+    QLabel l;
+    lbl->setPixmap(QPixmap("D:/Programmi/Qt/Project/ProgettoPAO2020/ProgettoPao2020/resources/youtube.png"));
+    l.setPixmap(QPixmap(":/resources/youtube.png"));
+    mainw->addWidget(lbl);
+    mainw->addWidget(&l);*/
+    d.exec();
 }
