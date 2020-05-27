@@ -167,7 +167,8 @@ void GraphsWindow::setWinStyle()
     accountsLbl->setMargin(8);
     statsLbl->setMargin(8);
 
-    hLine->setFixedWidth(278);
+    hLine->setFixedHeight(1);
+    hLine->setFixedWidth(281);
 
     hLine->setFixedHeight(1);
     hLine->setObjectName("line");
