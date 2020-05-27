@@ -21,7 +21,7 @@ void GraphsWindow::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-void GraphsWindow::setBtnType(QToolButton *btn, int type, QString email, QString username, int id)
+void GraphsWindow::setAccountBtnType(QToolButton *btn, int type, QString email, QString username, int id)
 {
     // account_type{youtube = 0, facebook = 1, instagram = 2};
 
@@ -66,6 +66,30 @@ void GraphsWindow::eraseLayout(QLayout* layout)
     }
 }
 
+QString GraphsWindow::enumToString(stats_type s) const
+{
+    switch(s){
+        case impressions:
+            return QString::fromStdString("impressions");
+        case coverage:
+            return QString::fromStdString("coverage");
+        case likes:
+            return QString::fromStdString("likes");
+        case followers:
+            return QString::fromStdString("followers");
+        case following:
+            return QString::fromStdString("following");
+        case donators:
+            return QString::fromStdString("donators");
+        case totalviews:
+            return QString::fromStdString("totalviews");
+        case avgwatchtime:
+            return QString::fromStdString("avgwatchtime");
+        case pagelikes:
+            return QString::fromStdString("pagelikes");
+    }
+}
+
 void GraphsWindow::setWidget()
 {
     setSideWidget();
@@ -89,7 +113,7 @@ void GraphsWindow::setSideWidget()
     statsLyt=new QVBoxLayout;
     sideLyt=new QVBoxLayout;
 
-    insertAccountButtons();
+    insertAccountBtn();
 
     sideLyt->addWidget(accountsLbl);
     sideLyt->addLayout(accountsLyt);
@@ -146,7 +170,7 @@ void GraphsWindow::setWinStyle()
     vLine->setFrameShadow(QFrame::Sunken);
 }
 
-void GraphsWindow::insertAccountButtons()
+void GraphsWindow::insertAccountBtn()
 {
     int nAccounts=controller->getAccountsNumber();
     account_type type;
@@ -156,7 +180,7 @@ void GraphsWindow::insertAccountButtons()
 
     // aggiunge allaccount
     btn=new QToolButton;
-    setBtnType(btn, -1, "", "", -1);
+    setAccountBtnType(btn, -1, "", "", -1);
     allaccountsBtn = btn;
     accountsLyt->addWidget(btn);
 
@@ -169,13 +193,13 @@ void GraphsWindow::insertAccountButtons()
         id=controller->getAccountId(i);
 
         btn=new QToolButton;
-        setBtnType(btn, type, email, username, id);
+        setAccountBtnType(btn, type, email, username, id);
         accountsLyt->addWidget(btn);
     }
 }
 
 // cambia stylesheet dopo avere selezionato un account
-void GraphsWindow::updateAccountButtonsStyle(QString objname){
+void GraphsWindow::updateAccountBtnStyle(QString objname){
 
     QToolButton *btn;
     for(int i=0; i<accountsLyt->count(); i++)
@@ -191,7 +215,7 @@ void GraphsWindow::updateAccountButtonsStyle(QString objname){
     }
 }
 // cambia stylesheet dopo avere selezionato una stats
-void GraphsWindow::updateStatsButtonsStyle(QString objname)
+void GraphsWindow::updateStatsBtnStyle(QString objname)
 {
     QPushButton *btn;
     for(int i=0; i<statsLyt->count(); i++)
@@ -207,47 +231,73 @@ void GraphsWindow::updateStatsButtonsStyle(QString objname)
     }
 }
 
-void GraphsWindow::insertStatsButtons(QStringList *stats, QString accountId)
+void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accountId)
 {
     eraseLayout(statsLyt);
+    eraseLayout(graphsLyt);
+    //mi salvo l'id dell'account selezionato
+    selectedAccountId = accountId;
     QPushButton* btn;
-    for(auto a : *stats){
+    for(auto stat : *stats){
         btn=new QPushButton;
-        btn->setObjectName(accountId);
         btn->setFlat(true);
         btn->setFixedSize(QSize(275,25));
-        if(a.compare("followers")==0){
-            btn->setText("Followers");
-            btn->setToolTip("Compare socials' followers");
-            //connect(btn, SIGNAL(clicked()), controller, SLOT(statsBtnClick()));
-        }else if(a.compare("impression")==0){
-            btn->setText("Impressions");
-            btn->setToolTip("Compare socials' impression");
-        }else if(a.compare("coverage")==0){
-            btn->setText("Coverage");
-            btn->setToolTip("Compare socials' coverage");
-        }else if(a.compare("likes")==0){
-            btn->setText("Likes");
-            btn->setToolTip("Compare socials likes");
-        }else if(a.compare("following")==0){
-            btn->setText("Following");
-            btn->setToolTip("View following monthly growth");
-        }else if(a.compare("donators")==0){
-            btn->setText("Donators");
-            btn->setToolTip("View donators monthly growth");
-        }else if(a.compare("totalviews")==0){
-            btn->setText("Total Views");
-            btn->setToolTip("View total views monthly growth");
-        }else if(a.compare("avgwatchtime")==0){
-            btn->setText("Average Watch Time");
-            btn->setToolTip("View average watch time monthly growth");
-        }else if(a.compare("pagelikes")==0){
-            btn->setText("Page likes");
-            btn->setToolTip("View page's likes monthly growth");
+        connect(btn, SIGNAL(clicked()), controller, SLOT(statsBtnClick()));
+        btn->setObjectName(enumToString(stat));
+        switch(stat){
+            case impressions:
+                btn->setText("Impressions");
+                btn->setToolTip("Compare socials' impressions");
+                break;
+            case coverage:
+                btn->setText("Coverage");
+                btn->setToolTip("Compare socials' coverage");
+                break;
+            case likes:
+                btn->setText("Likes");
+                btn->setToolTip("Compare socials likes");
+                break;
+            case followers:
+                btn->setText("Followers");
+                btn->setToolTip("Compare socials' followers");
+                break;
+            case following:
+                btn->setText("Following");
+                btn->setToolTip("View following monthly growth");
+                break;
+            case donators:
+                btn->setText("Donators");
+                btn->setToolTip("View donators monthly growth");
+                break;
+            case totalviews:
+                btn->setText("Total Views");
+                btn->setToolTip("View total views monthly growth");
+                break;
+            case avgwatchtime:
+                btn->setText("Average Watch Time");
+                btn->setToolTip("View average watch time monthly growth");
+                break;
+            case pagelikes:
+                btn->setText("Page Likes");
+                btn->setToolTip("View page's likes monthly growth");
+                break;
         }
         statsLyt->addWidget(btn);
     }
     delete stats;
+}
+
+void GraphsWindow::displayChart(QChart *chart)
+{
+    eraseLayout(graphsLyt);
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    graphsLyt->addWidget(chartView);
+}
+
+QString GraphsWindow::getSelectedAccountId() const
+{
+    return selectedAccountId;
 }
 
 
