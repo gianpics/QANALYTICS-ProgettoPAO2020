@@ -19,7 +19,6 @@ private:
     QVBoxLayout *sideLyt, *graphsLyt, *accountsLyt, *statsLyt;
     QLabel *accountsLbl, *statsLbl;
     QFrame *hLine, *vLine;
-    QToolButton *allaccountsBtn;
 
     Controller *controller;
 
