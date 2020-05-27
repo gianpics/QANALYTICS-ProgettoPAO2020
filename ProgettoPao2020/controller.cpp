@@ -1,6 +1,29 @@
 #include "controller.h"
 #include <QPushButton>
 
+stats_type Controller::stringToEnum(QString s) const
+{
+    if(s.toStdString()=="impressions"){
+        return impressions;
+    }else if(s.toStdString()=="coverage"){
+        return coverage;
+    }else if(s.toStdString()=="likes"){
+        return likes;
+    }else if(s.toStdString()=="followers"){
+        return followers;
+    }else if(s.toStdString()=="following"){
+        return following;
+    }else if(s.toStdString()=="donators"){
+        return donators;
+    }else if(s.toStdString()=="totalviews"){
+        return totalviews;
+    }else if(s.toStdString()=="avgwatchtime"){
+        return avgwatchtime;
+    }else if(s.toStdString()=="pagelikes"){
+        return pagelikes;
+    }
+}
+
 Controller::Controller(Model *m, QObject *parent) : QObject(parent), model(m), lw(nullptr), gw(nullptr){}
 
 void Controller::setView(LandingWindow *_lw)
@@ -367,33 +390,83 @@ int Controller::getAccountId(int i) const
 
 void Controller::accountBtnClick()
 {
-    gw->updateAccountButtonsStyle(sender()->objectName());
-    QStringList *stats = new QStringList();
+    gw->updateAccountBtnStyle(sender()->objectName());
+    vector<stats_type> stats;
     //Stats all account
-    stats->append(QString::fromStdString("impression"));
-    stats->append(QString::fromStdString("coverage"));
-    stats->append(QString::fromStdString("likes"));
-    stats->append(QString::fromStdString("followers"));
+    stats.push_back(impressions);
+    stats.push_back(coverage);
+    stats.push_back(likes);
+    stats.push_back(followers);
     int id = sender()->objectName().toInt();
     if(id!=-1){//non è all account
         id = model->getSelectedTypeById(sender()->objectName().toInt());
         switch(id){//lo switch è sul tipo
             case 0://Youtube
-                stats->append(QString::fromStdString("following"));
-                stats->append(QString::fromStdString("donators"));
-                stats->append(QString::fromStdString("totalviews"));
-                stats->append(QString::fromStdString("avgwatchtime"));
+                stats.push_back(following);
+                stats.push_back(donators);
+                stats.push_back(totalviews);
+                stats.push_back(avgwatchtime);
                 break;
             case 1://facebook
-                stats->append(QString::fromStdString("pagelikes"));
+                stats.push_back(pagelikes);
                 break;
             case 2://instagram
-                stats->append(QString::fromStdString("following"));
+                stats.push_back(following);
                 break;
         }
     }
 
-    gw->insertStatsButtons(stats, sender()->objectName());
+    gw->insertStatsBtn(&stats, sender()->objectName());
     // richiama statistiche account selezionato
     //controller->fillStatsLyt(this, statsLyt, senderBtn->objectName());
 }
+
+void Controller::statsBtnClick()
+{
+    gw->updateStatsBtnStyle(sender()->objectName());
+    QString accountId = gw->getSelectedAccountId();
+    QString statType = sender()->objectName();
+    //controllo se è all account
+    //se true devo fare un vettore con gli id di tutti gli account
+    vector<u_int> ids;
+    QChart * chart;
+    if(accountId.toInt()==-1){
+        for(int i = 0; i< getAccountsNumber(); i++){
+            ids.push_back(getAccountId(i));
+        }
+    }else{
+        ids.push_back(accountId.toUInt());
+    }
+    stats_type stat = stringToEnum(statType);
+    switch(stat){
+        case impressions:
+            chart = model->graphImpression(&ids);
+            break;
+        case coverage:
+            chart = model->graphCoverage(&ids);
+            break;
+        case likes:
+            chart = model->graphLike(&ids);
+            break;
+        case followers:
+            chart = model->graphFollowers(&ids);
+            break;
+        case following:
+            chart = model->graphFollowing(&ids);
+            break;
+        case donators:
+            chart = model->graphDonators(&ids);
+            break;
+        case totalviews:
+            chart = model->graphTotalViews(&ids);
+            break;
+        case avgwatchtime:
+            chart = model->graphAvgWatchtime(&ids);
+            break;
+        case pagelikes:
+            chart = model->graphPageLikes(&ids);
+            break;
+    }
+    gw->displayChart(chart);
+}
+
