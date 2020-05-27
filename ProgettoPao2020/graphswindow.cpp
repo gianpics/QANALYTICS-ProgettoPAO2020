@@ -88,6 +88,8 @@ QString GraphsWindow::enumToString(stats_type s) const
         case pagelikes:
             return QString::fromStdString("pagelikes");
     }
+
+   return "";
 }
 
 void GraphsWindow::setWidget()
@@ -191,7 +193,7 @@ void GraphsWindow::insertAccountBtn()
     // aggiunge allaccount se esiste il creator ne ha più di uno
     if(nAccounts>1)
     {
-        setBtnType(btn, -1, "", "", -1);
+        setAccountBtnType(btn, -1, "", "", -1);
         accountsLyt->addWidget(btn);
      }
 
