@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
+#include <QRegularExpression>
 #include "landingwindow.h"
 #include "controller.h"
 
@@ -43,7 +44,7 @@ void LandingWindow::setWidgets(){
 
     // search box
     searchTxt=new QLineEdit;
-    connect(searchTxt,SIGNAL(textChanged(const QString&)),SLOT(searchTxtChanged(const QString&)));
+    connect(searchTxt,SIGNAL(textChanged(const QString&)), this, SLOT(searchTxtChanged(const QString&)));
 
     // line
     hLine=new QFrame;
@@ -95,6 +96,7 @@ void LandingWindow::setWinStyle(){
     // layout creators
     searchTxt->setPlaceholderText("Search");
 
+    hLine->setFixedHeight(1);
     hLine->setObjectName("line");
     hLine->setFrameShape(QFrame::HLine);
     hLine->setFrameShadow(QFrame::Sunken);
@@ -141,14 +143,21 @@ void LandingWindow::infoBtnClick(){
 }
 
 void LandingWindow::searchTxtChanged(const QString &text){
-    // filtra elementi creatorsLyt
+    // regex su attributo Text (sia nome che SSN) dei ToolButton di CreatorsLyt
+    QRegularExpression pattern("\\w*"+text+"\\w*",QRegularExpression::CaseInsensitiveOption);
 
-    if(text=="")
+    // cicla ogni tasto e visualizzalo se il regex dà risultati
+    QToolButton* btn;
+    for(int i=0; i<creatorsLyt->count(); i++)
     {
-        // mostra tutti risultati
+        // controllo tipo (creatorsLyt contiene anche QLineEdit e QFrame)
+        if((btn=qobject_cast<QToolButton*>(creatorsLyt->itemAt(i)->widget())))
+        {
+            if(pattern.match(btn->text()).hasMatch())
+                btn->show();
+            else
+                btn->hide();
+        }
     }
-    else
-    {
-        // regex su nome creator
-    }
+
 }
