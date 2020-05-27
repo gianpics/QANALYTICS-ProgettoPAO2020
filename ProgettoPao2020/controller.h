@@ -7,7 +7,6 @@
 #include <QObject>
 #include <vector>
 
-
 class Controller : public QObject
 {
     Q_OBJECT
@@ -16,6 +15,7 @@ private:
     Model* model;
     LandingWindow* lw;
     GraphsWindow* gw;
+    stats_type stringToEnum(QString s) const;
 
 public:
     explicit Controller(Model* model, QObject *parent = nullptr);
@@ -35,6 +35,7 @@ public:
 
 public slots:
     void accountBtnClick();
+    void statsBtnClick();
 };
 
 #endif // CONTROLLER_H
