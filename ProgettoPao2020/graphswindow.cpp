@@ -11,7 +11,8 @@ GraphsWindow::GraphsWindow(Controller* c): controller(c)
 
     setWinStyle();
 
-    //emit allaccountsBtn->clicked();
+    // visualizza statistiche del primo account nel layout
+    //emit qobject_cast<QToolButton*>(accountsLyt->itemAt(0)->widget())->click();
 }
 
 // chiede di visualizzare la landingwindow e termina la finestra
@@ -25,7 +26,6 @@ void GraphsWindow::setAccountBtnType(QToolButton *btn, int type, QString email, 
 {
     // account_type{youtube = 0, facebook = 1, instagram = 2};
 
-    btn->setFixedSize(QSize(275,50));
     btn->setIconSize(QSize(30,30));
     btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     connect(btn, SIGNAL(clicked()), controller, SLOT(accountBtnClick()));
@@ -134,11 +134,19 @@ void GraphsWindow::setWinStyle()
     QFile file(":/resources/stylesheet.css");
     file.open(QFile::ReadOnly);
     setStyleSheet(QLatin1String(file.readAll()));
-    //qInfo()<<"style: "<<QLatin1String(file.readAll());
+
+    // finestra
+    setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
 
     // titolo finestra da nome creator
     setWindowTitle(controller->getCreatorName()+"'s stats");
-    setMinimumSize(QSize(1000,700));
 
     accountsLbl->setText("Accounts");
     accountsLbl->setObjectName("section");
@@ -157,7 +165,7 @@ void GraphsWindow::setWinStyle()
     accountsLbl->setMargin(8);
     statsLbl->setMargin(8);
 
-    hLine->setFixedWidth(allaccountsBtn->width()+accountsLyt->margin());
+    hLine->setFixedWidth(278);
 
     hLine->setFixedHeight(1);
     hLine->setObjectName("line");
@@ -178,11 +186,14 @@ void GraphsWindow::insertAccountBtn()
     int id;
     QToolButton* btn;
 
-    // aggiunge allaccount
     btn=new QToolButton;
-    setAccountBtnType(btn, -1, "", "", -1);
-    allaccountsBtn = btn;
-    accountsLyt->addWidget(btn);
+  
+    // aggiunge allaccount se esiste il creator ne ha più di uno
+    if(nAccounts>1)
+    {
+        setBtnType(btn, -1, "", "", -1);
+        accountsLyt->addWidget(btn);
+     }
 
     for(int i=0; i<nAccounts; i++)
     {

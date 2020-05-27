@@ -20,7 +20,7 @@ private:
     QHBoxLayout *buttonsLyt;
     QPushButton *infoBtn, *settingBtn;
     QLineEdit *searchTxt;
-    QFrame *line;
+    QFrame *hLine;
     Controller* controller;
 
     void setWidgets();

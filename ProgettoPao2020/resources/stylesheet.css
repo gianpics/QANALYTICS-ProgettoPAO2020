@@ -12,6 +12,37 @@
     border: white;
 }
 
+LandingWindow {
+    min-width: 800px;
+    max-width: 800px;
+
+    min-height: 600px;
+    max-height: 600px;
+}
+
+GraphsWindow {
+    width: 1000px;
+    min-width: 1000px;
+
+    height: 700px;
+    min-height: 700px;
+}
+
+QToolButton{
+    width: 275px;
+    max-width: 275px;
+
+    height: 50px;
+    max-height: 50px;
+
+    font-size: 10pt;
+}
+
+QLineEdit {
+    width: 275;
+    max-width: 275;
+}
+
 QListView {
     border: red;
 }
@@ -20,6 +51,16 @@ QLabel#section {
     color: rgba(40, 40, 40);
     font-weight:600;
     font-size: 10pt;
+}
+
+QFrame#hLine {
+    height: 1px;
+    max-height: 1px;
+}
+
+QFrame#vLine {
+    width: 1px;
+    max-width: 1px;
 }
 
 QFrame#line {

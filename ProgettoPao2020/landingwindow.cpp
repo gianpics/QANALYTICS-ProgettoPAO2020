@@ -4,7 +4,6 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
-#include <QToolButton>
 #include "landingwindow.h"
 #include "controller.h"
 
@@ -47,13 +46,13 @@ void LandingWindow::setWidgets(){
     connect(searchTxt,SIGNAL(textChanged(const QString&)),SLOT(searchTxtChanged(const QString&)));
 
     // line
-    line=new QFrame;
+    hLine=new QFrame;
 
 
     // inserimento in layout inferiore
     creatorsLyt=new QVBoxLayout;
     creatorsLyt->addWidget(searchTxt);
-    creatorsLyt->addWidget(line);
+    creatorsLyt->addWidget(hLine);
     fillCreatorsLyt();
 
     mainLyt=new QVBoxLayout(this);
@@ -69,7 +68,6 @@ void LandingWindow::setWinStyle(){
     setStyleSheet(QLatin1String(file.readAll()));
 
     // finestra
-    setFixedSize(QSize(800,600));
     setGeometry(
         QStyle::alignedRect(
             Qt::LeftToRight,
@@ -79,14 +77,14 @@ void LandingWindow::setWinStyle(){
         )
     );
 
+    setFixedSize(size());
+
     // layout pulsanti
     settingBtn->setIcon(QIcon(":/resources/gear.png"));
-    settingBtn->setFlat(true);
     settingBtn->setToolTip("Settings");
     settingBtn->setFixedSize(QSize(26,26));
 
     infoBtn->setIcon(QIcon(":/resources/info.png"));
-    infoBtn->setFlat(true);
     infoBtn->setToolTip("Information");
     infoBtn->setFixedSize(QSize(26,26));
 
@@ -96,12 +94,10 @@ void LandingWindow::setWinStyle(){
 
     // layout creators
     searchTxt->setPlaceholderText("Search");
-    searchTxt->setFixedWidth(300);
 
-    line->setFixedHeight(1);
-    line->setObjectName("line");
-    line->setFrameShape(QFrame::HLine);
-    line->setFrameShadow(QFrame::Sunken);
+    hLine->setObjectName("line");
+    hLine->setFrameShape(QFrame::HLine);
+    hLine->setFrameShadow(QFrame::Sunken);
 
     creatorsLyt->setAlignment(Qt::AlignCenter);
 
@@ -114,13 +110,10 @@ void LandingWindow::fillCreatorsLyt()
 
     for(int i=0; i<creators->size(); i++)
     {
-
         btn=new QToolButton;
         btn->setIcon(QIcon(":/resources/user.png"));
         btn->setText(" "+QString::fromStdString(" "+creators->operator[](i).getFullName())+"\n  "+QString::fromStdString(creators->operator[](i).getSSN()));
         btn->setToolTip("Load "+QString::fromStdString(creators->operator[](i).getFullName())+" information");
-        btn->setFixedSize(QSize(300,50));
-        btn->setStyleSheet("font-size: 10pt;");
         btn->setIconSize(QSize(40,40));
         btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));
         btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
