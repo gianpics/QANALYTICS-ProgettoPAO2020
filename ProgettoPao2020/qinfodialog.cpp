@@ -4,31 +4,40 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
 {
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     setWindowTitle("About "+settings.value("app/title").toString());
-    setFixedSize(300,200);
+    setFixedSize(400,200);
+    move(parent->geometry().center() - rect().center());
     QHBoxLayout* mainLyt = new QHBoxLayout();
+    mainLyt->setAlignment(Qt::AlignVCenter);
+    //Logo
     QLabel *lbl = new QLabel();
     QPixmap image(":/resources/youtube.png");
-    image = image.scaled(100,100,Qt::IgnoreAspectRatio);
+    image = image.scaled(80,80,Qt::IgnoreAspectRatio);
     lbl->setPixmap(image);
     lbl->setFixedSize(100,100);
+    lbl->setMargin(5);
+    lbl->setAlignment(Qt::AlignCenter);
     mainLyt->addWidget(lbl);
-    QString title(settings.value("app/title").toString()+" "+settings.value("app/version").toString());
-    QString based("Based on Qt "+settings.value("app/qt_version").toString());
-    QString build("Built on "+settings.value("app/last_build").toString());
-    QString copyleft(settings.value("app/copyleft").toString());
-    QString desc(settings.value("app/description").toString());
-    QVBoxLayout* textLyt = new QVBoxLayout();
-    textLyt->setAlignment(Qt::AlignRight);
-    QLabel *l1 = new QLabel(title+"<hr>"+based+"<hr>"+build+"<hr>"+copyleft+"<hr>"+desc);
-    l1->setTextFormat(Qt::RichText);
-    l1->setFixedSize(150,200);
-    textLyt->addWidget(l1);
-    mainLyt->addLayout(textLyt);
-    /*QListWidget *qlw=new QListWidget();
-    qlw->addItem(settings.value("app/title").toString()+" "+settings.value("app/version").toString());
-    qlw->addItem("Based on Qt "+settings.value("app/qt_version").toString());
-    qlw->addItem("Built on "+settings.value("app/last_build").toString());
-    qlw->setFixedSize(150, 200);
-    mainLyt->addWidget(qlw);*/
+    //Vertical Line
+    QFrame *vLine = new QFrame();
+    vLine->setFixedWidth(1);
+    vLine->setObjectName("line");
+    vLine->setFrameShape(QFrame::VLine);
+    vLine->setFrameShadow(QFrame::Sunken);
+    mainLyt->addWidget(vLine);
+    //Text
+    QString text;
+    text += "<p>"+settings.value("app/title").toString()+" "+settings.value("app/version").toString()+"</p>";
+    text += "<p>Based on Qt "+settings.value("app/qt_version").toString()+"</p>";
+    text += "<p>Built on "+settings.value("app/last_build").toString()+"</p>";
+    text += "<p>"+settings.value("app/copyleft").toString()+"</p>";
+    text += "<p>"+settings.value("app/description").toString()+"<p>";
+    QLabel *textLbl = new QLabel();
+    textLbl->setText(text);
+    textLbl->setWordWrap(true);
+    textLbl->setTextFormat(Qt::RichText);
+    textLbl->setMargin(5);
+    textLbl->setAlignment(Qt::AlignVCenter);
+    textLbl->setFixedHeight(160);
+    mainLyt->addWidget(textLbl);
     setLayout(mainLyt);
 }

@@ -10,7 +10,7 @@ class QInfoDialog : public QDialog
 {
     Q_OBJECT
 public:
-    QInfoDialog(QWidget *parent = nullptr);
+    QInfoDialog(QWidget *parent);
 };
 
 #endif // QINFODIALOG_H
