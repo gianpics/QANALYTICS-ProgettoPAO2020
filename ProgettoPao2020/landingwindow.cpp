@@ -71,7 +71,7 @@ void LandingWindow::setWinStyle(){
     // finestra
     setGeometry(
         QStyle::alignedRect(
-            Qt::LeftToRight,
+            Qt::LayoutDirection::LeftToRight,
             Qt::AlignCenter,
             size(),
             qApp->desktop()->availableGeometry()
@@ -83,11 +83,11 @@ void LandingWindow::setWinStyle(){
     // layout pulsanti
     settingBtn->setIcon(QIcon(":/resources/gear.png"));
     settingBtn->setToolTip("Settings");
-    settingBtn->setFixedSize(QSize(26,26));
+    settingBtn->setFixedSize(QSize(24,24));
 
     infoBtn->setIcon(QIcon(":/resources/info.png"));
     infoBtn->setToolTip("Information");
-    infoBtn->setFixedSize(QSize(26,26));
+    infoBtn->setFixedSize(QSize(24,24));
 
     buttonsLyt->setAlignment(Qt::AlignRight);
 
@@ -115,6 +115,7 @@ void LandingWindow::fillCreatorsLyt()
         btn=new QToolButton;
         btn->setIcon(QIcon(":/resources/user.png"));
         btn->setText(" "+QString::fromStdString(" "+creators->operator[](i).getFullName())+"\n  "+QString::fromStdString(creators->operator[](i).getSSN()));
+        // text format
         btn->setToolTip("Load "+QString::fromStdString(creators->operator[](i).getFullName())+" information");
         btn->setIconSize(QSize(40,40));
         btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));

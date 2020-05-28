@@ -94,32 +94,76 @@ QString GraphsWindow::enumToString(stats_type s) const
 
 void GraphsWindow::setWidget()
 {
+    setTopLayout();
+
     setSideWidget();
 
     vLine=new QFrame;
 
     setGraphsWidget();
 
-    mainLyt=new QHBoxLayout(this);
+    mainLyt=new QHBoxLayout;
     mainLyt->addLayout(sideLyt);
     mainLyt->addWidget(vLine);
     mainLyt->addLayout(graphsLyt);
+
+    outerLyt=new QVBoxLayout(this);
+    outerLyt->setAlignment(Qt::AlignTop);
+    outerLyt->setMargin(0);
+    outerLyt->addLayout(topLyt);
+    outerLyt->addLayout(mainLyt);
+}
+
+void GraphsWindow::setTopLayout()
+{
+    // frecciaback, export, info
+
+    backBtn=new QPushButton;
+    backBtn->setIcon(QIcon(":/resources/back.png"));
+    backBtn->setToolTip("Go back");
+    backBtn->setFixedSize(QSize(25,25));
+    connect(backBtn, SIGNAL(clicked()), this, SLOT(close()));
+
+    exportBtn=new QPushButton;
+    exportBtn->setIcon(QIcon(":/resources/save.png"));
+    exportBtn->setToolTip("Export chart");
+    exportBtn->setFixedSize(QSize(25,25));
+    connect(exportBtn, SIGNAL(clicked()), controller, SLOT(exportBtnClick())); // disabilita quando no chart
+
+    infoBtn=new QPushButton;
+    infoBtn->setIcon(QIcon(":/resources/info.png"));
+    infoBtn->setToolTip("Information");
+    infoBtn->setFixedSize(QSize(25,25));
+    connect(infoBtn, SIGNAL(clicked()), this, SLOT());
+
+    topLyt=new QHBoxLayout;
+    topLyt->setAlignment(Qt::AlignLeft);
+    topLyt->setContentsMargins(2,0,0,0);
+    topLyt->addWidget(backBtn);
+    topLyt->addWidget(exportBtn);
+    topLyt->addWidget(infoBtn);
 }
 
 void GraphsWindow::setSideWidget()
 {
+    infoLbl=new QLabel;
+    creatorInfoLbl=new QLabel;
     accountsLbl=new QLabel;
     accountsLyt=new QVBoxLayout;
-    hLine=new QFrame;
+    hLineA=new QFrame;
+    hLineB=new QFrame;
     statsLbl=new QLabel;
     statsLyt=new QVBoxLayout;
     sideLyt=new QVBoxLayout;
 
     insertAccountBtn();
 
+    sideLyt->addWidget(infoLbl);
+    sideLyt->addWidget(creatorInfoLbl);
+    sideLyt->addWidget(hLineA);
     sideLyt->addWidget(accountsLbl);
     sideLyt->addLayout(accountsLyt);
-    sideLyt->addWidget(hLine);
+    sideLyt->addWidget(hLineB);
     sideLyt->addWidget(statsLbl);
     sideLyt->addLayout(statsLyt);
 }
@@ -140,7 +184,7 @@ void GraphsWindow::setWinStyle()
     // finestra
     setGeometry(
         QStyle::alignedRect(
-            Qt::LeftToRight,
+            Qt::LayoutDirection::LayoutDirectionAuto,
             Qt::AlignCenter,
             size(),
             qApp->desktop()->availableGeometry()
@@ -150,6 +194,10 @@ void GraphsWindow::setWinStyle()
     // titolo finestra da nome creator
     setWindowTitle(controller->getCreatorName()+"'s stats");
 
+    infoLbl->setText("Creator");
+    infoLbl->setObjectName("section");
+    creatorInfoLbl->setText(controller->getCreatorInfo());
+    creatorInfoLbl->setTextFormat(Qt::RichText);
     accountsLbl->setText("Accounts");
     accountsLbl->setObjectName("section");
     statsLbl->setText("Stats");
@@ -159,21 +207,33 @@ void GraphsWindow::setWinStyle()
     accountsLyt->setAlignment(Qt::AlignTop);
     statsLyt->setAlignment(Qt::AlignLeft);
 
-    accountsLyt->setMargin(3);
     statsLyt->setMargin(3);
+    accountsLyt->setMargin(3);
     mainLyt->setSpacing(0);
     mainLyt->setMargin(0);
 
-    accountsLbl->setMargin(8);
+    infoLbl->setFixedWidth(270);
+    infoLbl->setMargin(8);
+    creatorInfoLbl->setMargin(8);
     statsLbl->setMargin(8);
+    accountsLbl->setMargin(8);
 
-    hLine->setFixedHeight(1);
-    hLine->setFixedWidth(281);
 
-    hLine->setFixedHeight(1);
-    hLine->setObjectName("line");
-    hLine->setFrameShape(QFrame::HLine);
-    hLine->setFrameShadow(QFrame::Sunken);
+    hLineA->setFixedHeight(1);
+    hLineA->setFixedWidth(281);
+
+    hLineA->setFixedHeight(1);
+    hLineA->setObjectName("line");
+    hLineA->setFrameShape(QFrame::HLine);
+    hLineA->setFrameShadow(QFrame::Sunken);
+
+    hLineB->setFixedHeight(1);
+    hLineB->setFixedWidth(281);
+
+    hLineB->setFixedHeight(1);
+    hLineB->setObjectName("line");
+    hLineB->setFrameShape(QFrame::HLine);
+    hLineB->setFrameShadow(QFrame::Sunken);
 
     vLine->setFixedWidth(1);
     vLine->setObjectName("line");

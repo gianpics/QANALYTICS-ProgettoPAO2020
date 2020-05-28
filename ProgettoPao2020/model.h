@@ -24,6 +24,7 @@ public:
     QString getSelectedAccountUsername(int i) const;
     int getSelectedAccountId(int i) const;
     account_type getSelectedTypeById(int i) const;
+    QString getSelectedInfo() const;
     QString getSelectedFullName() const;
     QChart *graphFollowers(vector<u_int>* _id) const;
     QChart *graphImpression(vector<u_int>* _id) const;

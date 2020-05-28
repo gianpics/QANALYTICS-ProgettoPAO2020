@@ -184,6 +184,11 @@ int Controller::getAccountsNumber() const
     return model->getSelectedAccountsNumber();
 }
 
+QString Controller::getCreatorInfo() const
+{
+    return model->getSelectedInfo();
+}
+
 account_type Controller::getAccountType(int i) const
 {
     return model->getSelectedAccountType(i);
@@ -468,5 +473,10 @@ void Controller::statsBtnClick()
             break;
     }
     gw->displayChart(chart);
+}
+
+void Controller::exportBtnClick()
+{
+
 }
 

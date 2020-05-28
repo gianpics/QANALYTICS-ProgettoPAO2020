@@ -90,6 +90,11 @@ account_type Model::getSelectedTypeById(int i) const
     return selected->getAccountById(i).getType();
 }
 
+QString Model::getSelectedInfo() const
+{
+    return QString::fromStdString("<div style=\"line-height:160%\"><b>Name</b>  "+selected->getFullName()+"<br><b>Address  </b>"+selected->getAddress()+"<br><b>SSN</b>  "+selected->getSSN()+"<br><b>VAT </b>"+selected->getVAT())+"</div>";
+}
+
 QString Model::getSelectedFullName() const
 {
     return QString::fromStdString(selected->getFullName());

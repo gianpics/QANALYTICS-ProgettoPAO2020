@@ -9,5 +9,7 @@
         <file>resources/youtube.png</file>
         <file>resources/user.png</file>
         <file>resources/users.png</file>
+        <file>resources/back.png</file>
+        <file>resources/save.png</file>
     </qresource>
 </RCC>
