@@ -6,6 +6,7 @@
 #include "model.h"
 #include <QObject>
 #include <vector>
+#include "qinfodialog.h"
 
 class Controller : public QObject
 {

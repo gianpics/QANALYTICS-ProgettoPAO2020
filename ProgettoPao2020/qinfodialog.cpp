@@ -26,7 +26,7 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
     mainLyt->addWidget(vLine);
     //Text
     QString text;
-    text += "<p>"+settings.value("app/title").toString()+" "+settings.value("app/version").toString()+"</p>";
+    text += "<p><b>"+settings.value("app/title").toString()+" "+settings.value("app/version").toString()+"</b></p>";
     text += "<p>Based on Qt "+settings.value("app/qt_version").toString()+"</p>";
     text += "<p>Built on "+settings.value("app/last_build").toString()+"</p>";
     text += "<p>"+settings.value("app/copyleft").toString()+"</p>";
