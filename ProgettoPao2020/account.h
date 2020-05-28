@@ -39,5 +39,7 @@ public:
     void print(ostream& _os)const;
 };
 ostream& operator<<(ostream& _os, const Account& _a);
+istream& operator>>(istream& _is, vector<Account>& _a);
+
 
 #endif // ACCOUNT_H

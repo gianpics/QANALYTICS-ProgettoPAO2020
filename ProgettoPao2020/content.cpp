@@ -86,3 +86,25 @@ ostream &operator<<(ostream &_os, const Content &_c)
     _c.print(_os);
     return _os;
 }
+
+istream &operator>>(istream &_is, vector<Content> &_c)
+{
+    string tmp;
+    getline(_is,tmp);
+    if(tmp=="[")
+        while(tmp!="]"){
+            string _timestamp, _type, _title, _desc;
+            getline(_is, _title);
+            getline(_is, _desc);
+            getline(_is, _type);
+            getline(_is, _timestamp);
+            QDateTime d = QDateTime::fromString(QString::fromStdString(_timestamp));
+            vector<const Stats_content*> v;
+            _is >> v;
+            Content *c = new Content(QDateTime::fromString(QString::fromStdString(_timestamp)), static_cast<content_type>(stoi(_type)), v, _title, _desc);
+            _c.push_back(*c);
+        }
+
+    return _is;
+}
+
