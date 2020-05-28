@@ -26,6 +26,7 @@ public:
     void restoreLandingWindow();
     QString getCreatorName() const;
     int getAccountsNumber() const;
+    QString getCreatorInfo() const;
     account_type getAccountType(int i) const;
     account_type getAccountTypeByid(int i) const;
     QString getAccountEmail(int i) const;
@@ -36,6 +37,7 @@ public slots:
     void accountBtnClick();
     void statsBtnClick();
     void settingBtnClick();
+    void infoBtnClick();
     void creatorBtnClick();
 };
 

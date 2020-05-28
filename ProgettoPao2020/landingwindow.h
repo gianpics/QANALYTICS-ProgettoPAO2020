@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QSettings>
+#include <QToolBar>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include "qinfodialog.h"
@@ -30,7 +31,6 @@ private:
 
 private slots:
     void searchTxtChanged(const QString&);
-    void infoBtnClick();
 
 public:
     LandingWindow(Controller*);

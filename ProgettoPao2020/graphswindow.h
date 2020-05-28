@@ -17,16 +17,17 @@ class GraphsWindow: public QWidget
     Q_OBJECT
 
 private:
-    QHBoxLayout *mainLyt;
-    QVBoxLayout *sideLyt, *graphsLyt, *accountsLyt, *statsLyt;
-    QLabel *accountsLbl, *statsLbl;
-    QFrame *hLine, *vLine;
-    QToolButton *allaccountsBtn;
+    QHBoxLayout *mainLyt, *topLyt;
+    QVBoxLayout *outerLyt, *sideLyt, *graphsLyt, *accountsLyt, *statsLyt;
+    QLabel *infoLbl, *creatorInfoLbl, *accountsLbl, *statsLbl;
+    QFrame *hLineA, *hLineB, *vLine;
     QString selectedAccountId;
+    QPushButton *backBtn, *exportBtn, *infoBtn;
 
     Controller *controller;
 
     void setWidget();
+    void setTopLayout();
     void setSideWidget();
     void setGraphsWidget();
     void setWinStyle();
@@ -36,6 +37,9 @@ private:
     static void eraseLayout(QLayout* layout);
     QString enumToString(stats_type) const;
 
+private slots:
+    void exportBtnClick();
+
 public:
     GraphsWindow(Controller* c);
     void updateAccountBtnStyle(QString objname);
@@ -43,6 +47,8 @@ public:
     void insertStatsBtn(std::vector<stats_type>* stats, QString accountId);
     void displayChart(QChart * chart);
     QString getSelectedAccountId() const;
+
+
 };
 
 #endif // GRAPHSWINDOW_H

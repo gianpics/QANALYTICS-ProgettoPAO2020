@@ -176,6 +176,11 @@ int Controller::getAccountsNumber() const
     return model->getSelectedAccountsNumber();
 }
 
+QString Controller::getCreatorInfo() const
+{
+    return model->getSelectedInfo();
+}
+
 account_type Controller::getAccountType(int i) const
 {
     return model->getSelectedAccountType(i);
@@ -281,9 +286,28 @@ void Controller::statsBtnClick()
     gw->displayChart(chart);
 }
 
+
 void Controller::settingBtnClick()
 {
 
+}
+
+void Controller::infoBtnClick()
+{
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    QDialog d(qobject_cast<QWidget*>(sender()->parent()));
+    d.setWindowTitle("About "+settings.value("app/title").toString());
+    /*d.setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),qApp->desktop()->availableGeometry()));
+    d.setFixedSize(400,400);
+    QVBoxLayout* mainw = new QVBoxLayout();
+    QHBoxLayout* infow = new QHBoxLayout();
+    QLabel *lbl = new QLabel();
+    QLabel l;
+    lbl->setPixmap(QPixmap("D:/Programmi/Qt/Project/ProgettoPAO2020/ProgettoPao2020/resources/youtube.png"));
+    l.setPixmap(QPixmap(":/resources/youtube.png"));
+    mainw->addWidget(lbl);
+    mainw->addWidget(&l);*/
+    d.exec();
 }
 
 void Controller::creatorBtnClick()
