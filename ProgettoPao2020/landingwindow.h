@@ -9,6 +9,7 @@
 #include <QToolBar>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include "qinfodialog.h"
 
 class Controller;
 

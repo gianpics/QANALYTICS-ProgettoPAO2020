@@ -27,6 +27,7 @@ SOURCES += \
    landingwindow.cpp\
     model.cpp \
     persona.cpp \
+   qinfodialog.cpp \
     sociallist.cpp \
     stats.cpp \
     stats_account.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     mainwindow.h \
     model.h \
     persona.h \
+    qinfodialog.h \
     sociallist.h \
     stats.h \
     stats_account.h \
