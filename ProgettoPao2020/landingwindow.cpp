@@ -28,11 +28,11 @@ void LandingWindow::setWidgets(){
 
     // btn impostazioni
     settingBtn=new QPushButton;
-    connect(settingBtn,SIGNAL(clicked()), this, SLOT(settingBtnClick()));
+    connect(settingBtn,SIGNAL(clicked()), controller, SLOT(settingBtnClick()));
 
     // btn info
     infoBtn=new QPushButton;
-    connect(infoBtn, SIGNAL(clicked()), SLOT(infoBtnClick()));
+    connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
 
     // inserimento buttons in layout superiore
     buttonsLyt=new QHBoxLayout;
@@ -120,27 +120,9 @@ void LandingWindow::fillCreatorsLyt()
         btn->setIconSize(QSize(40,40));
         btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));
         btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-        connect(btn, SIGNAL(clicked()), this, SLOT(viewCreatorGraphs()));
+        connect(btn, SIGNAL(clicked()), controller, SLOT(creatorBtnClick()));
         creatorsLyt->addWidget(btn);
     }
-}
-
-// visualizza dati del creator selezionato in una GraphsWindow
-void LandingWindow::viewCreatorGraphs()
-{
-    QString ssn=sender()->objectName();
-
-    controller->launchCreatorGraphs(ssn);
-}
-
-void LandingWindow::settingBtnClick(){
-    // visualizza settingsWindow
-
-}
-
-void LandingWindow::infoBtnClick(){
-    // visualizza infoWindow
-
 }
 
 void LandingWindow::searchTxtChanged(const QString &text){

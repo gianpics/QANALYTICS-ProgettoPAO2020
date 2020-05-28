@@ -95,12 +95,10 @@ QString GraphsWindow::enumToString(stats_type s) const
 void GraphsWindow::setWidget()
 {
     setTopLayout();
-
     setSideWidget();
+    setGraphsWidget();
 
     vLine=new QFrame;
-
-    setGraphsWidget();
 
     mainLyt=new QHBoxLayout;
     mainLyt->addLayout(sideLyt);
@@ -128,13 +126,14 @@ void GraphsWindow::setTopLayout()
     exportBtn->setIcon(QIcon(":/resources/save.png"));
     exportBtn->setToolTip("Export chart");
     exportBtn->setFixedSize(QSize(25,25));
-    connect(exportBtn, SIGNAL(clicked()), controller, SLOT(exportBtnClick())); // disabilita quando no chart
+    exportBtn->setEnabled(false);
+    connect(exportBtn, SIGNAL(clicked()), this, SLOT(exportBtnClick())); // disabilita quando no chart
 
     infoBtn=new QPushButton;
     infoBtn->setIcon(QIcon(":/resources/info.png"));
     infoBtn->setToolTip("Information");
     infoBtn->setFixedSize(QSize(25,25));
-    connect(infoBtn, SIGNAL(clicked()), this, SLOT());
+    connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
 
     topLyt=new QHBoxLayout;
     topLyt->setAlignment(Qt::AlignLeft);
@@ -307,6 +306,7 @@ void GraphsWindow::updateStatsBtnStyle(QString objname)
 
 void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accountId)
 {
+    exportBtn->setEnabled(false);
     eraseLayout(statsLyt);
     eraseLayout(graphsLyt);
     //mi salvo l'id dell'account selezionato
@@ -364,6 +364,8 @@ void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accoun
 void GraphsWindow::displayChart(QChart *chart)
 {
     eraseLayout(graphsLyt);
+    exportBtn->setEnabled(true);
+
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
     graphsLyt->addWidget(chartView);
@@ -372,6 +374,23 @@ void GraphsWindow::displayChart(QChart *chart)
 QString GraphsWindow::getSelectedAccountId() const
 {
     return selectedAccountId;
+}
+
+void GraphsWindow::exportBtnClick()
+{
+    QChartView* graphv = qobject_cast<QChartView*>(graphsLyt->itemAt(0)->widget());
+    QPixmap p = graphv->grab();
+    QOpenGLWidget *glWidget  = graphv->findChild<QOpenGLWidget*>();
+    if(glWidget){
+        QPainter painter(&p);
+        QPoint d = glWidget->mapToGlobal(QPoint())-graphv->mapToGlobal(QPoint());
+        painter.setCompositionMode(QPainter::CompositionMode_SourceAtop);
+        painter.drawImage(d, glWidget->grabFramebuffer());
+        painter.end();
+    }
+
+    QString path = QFileDialog::getSaveFileName(this, "Save file","","Images (*.png)");
+    p.save(path, "PNG");
 }
 
 

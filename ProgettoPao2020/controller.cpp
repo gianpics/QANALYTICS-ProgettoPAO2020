@@ -19,7 +19,7 @@ stats_type Controller::stringToEnum(QString s) const
         return totalviews;
     }else if(s.toStdString()=="avgwatchtime"){
         return avgwatchtime;
-    }else if(s.toStdString()=="pagelikes"){
+    }else{
         return pagelikes;
     }
 }
@@ -161,14 +161,6 @@ CreatorList* Controller::retrieveCreators()
     return cl;
 }
 
-void Controller::launchCreatorGraphs(QString ssn)
-{
-    model->setSelected(ssn.toStdString());
-    setView(new GraphsWindow(this));
-    gw->show();
-    lw->hide();
-}
-
 void Controller::restoreLandingWindow()
 {
     lw->show();
@@ -214,185 +206,6 @@ int Controller::getAccountId(int i) const
     return model->getSelectedAccountId(i);
 }
 
-
-// riempie graphsLyt con il grafico richiesto
-/*void Controller::fillGraphsLyt(GraphsWindow *g, QVBoxLayout *graphsLyt, QString stat)
-{
-
-
-    if(stat=="allfollowers")
-    {
-        //allaccount getFollowers
-
-        return;
-    }
-
-    if(stat=="allimpressions")
-    {
-        //allaccount getImpressions
-
-        return;
-    }
-
-    if(stat=="allcoverage")
-    {
-        //allaccount getCoverage
-
-        return;
-    }
-
-    if(stat=="alllikes")
-    {
-        //allaccount getLikes
-
-        return;
-    }
-
-
-    if(stat=="fbfollowers")
-    {
-        //fb getFollowers
-
-        return;
-    }
-
-
-    if(stat=="fbimpressions")
-    {
-        //fb getImpressions
-
-        return;
-    }
-
-
-    if(stat=="fbcoverage")
-    {
-        //fb getCoverage
-
-        return;
-    }
-
-
-    if(stat=="fblikes")
-    {
-        //fb getLikes
-
-        return;
-    }
-
-
-    if(stat=="fbpagelikes")
-    {
-        //fb getPageLikes
-
-        return;
-    }
-
-
-    if(stat=="igfollowers")
-    {
-        //ig getFollowers
-
-        return;
-    }
-
-
-    if(stat=="igimpressions")
-    {
-        //ig getImpressions
-
-        return;
-    }
-
-
-    if(stat=="igcoverage")
-    {
-        //ig getCoverage
-
-        return;
-    }
-
-
-    if(stat=="iglikes")
-    {
-        //ig getLikes
-
-        return;
-    }
-
-
-    if(stat=="igfollowing")
-    {
-        //ig getFollowing
-
-        return;
-    }
-
-
-    if(stat=="ytfollowers")
-    {
-        //yt getFollowers
-
-        return;
-    }
-
-
-    if(stat=="ytimpressions")
-    {
-        //yt getImpressions
-
-        return;
-    }
-
-
-    if(stat=="ytcoverage")
-    {
-        //yt getCoverage
-
-        return;
-    }
-
-
-    if(stat=="ytlikes")
-    {
-        //yt getLikes
-
-        return;
-    }
-
-
-    if(stat=="ytfollowing")
-    {
-        //yt getFollowing
-
-        return;
-    }
-
-
-    if(stat=="ytdonators")
-    {
-        //yt getDonators
-
-        return;
-    }
-
-
-    if(stat=="yttotalviews")
-    {
-        //yt getTotalViews
-
-        return;
-    }
-
-
-    if(stat=="ytavgwatchtime")
-    {
-        //yt getAvgWatchTime
-
-        return;
-    }
-}*/
-
 void Controller::accountBtnClick()
 {
     gw->updateAccountBtnStyle(sender()->objectName());
@@ -422,8 +235,6 @@ void Controller::accountBtnClick()
     }
 
     gw->insertStatsBtn(&stats, sender()->objectName());
-    // richiama statistiche account selezionato
-    //controller->fillStatsLyt(this, statsLyt, senderBtn->objectName());
 }
 
 void Controller::statsBtnClick()
@@ -475,8 +286,36 @@ void Controller::statsBtnClick()
     gw->displayChart(chart);
 }
 
-void Controller::exportBtnClick()
+
+void Controller::settingBtnClick()
 {
 
+}
+
+void Controller::infoBtnClick()
+{
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    QDialog d(qobject_cast<QWidget*>(sender()->parent()));
+    d.setWindowTitle("About "+settings.value("app/title").toString());
+    /*d.setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),qApp->desktop()->availableGeometry()));
+    d.setFixedSize(400,400);
+    QVBoxLayout* mainw = new QVBoxLayout();
+    QHBoxLayout* infow = new QHBoxLayout();
+    QLabel *lbl = new QLabel();
+    QLabel l;
+    lbl->setPixmap(QPixmap("D:/Programmi/Qt/Project/ProgettoPAO2020/ProgettoPao2020/resources/youtube.png"));
+    l.setPixmap(QPixmap(":/resources/youtube.png"));
+    mainw->addWidget(lbl);
+    mainw->addWidget(&l);*/
+    d.exec();
+}
+
+void Controller::creatorBtnClick()
+{
+    QString ssn=sender()->objectName();
+    model->setSelected(ssn.toStdString());
+    setView(new GraphsWindow(this));
+    gw->show();
+    lw->hide();
 }
 

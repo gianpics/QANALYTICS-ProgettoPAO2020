@@ -3,6 +3,14 @@
 void Model::setChart(QBarSeries* qbs, QStringList* qsl, QChart* chart) const
 {
     chart->addSeries(qbs);
+    QFont font;
+    font.setBold(true);
+    font.setPointSize(12);
+    chart->setTitleFont(font);
+    if(qbs->count()<2)
+        chart->legend()->setVisible(false);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
 
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX->append(*qsl);
@@ -273,7 +281,7 @@ QChart *Model::graphFollowing(vector<u_int>* _id_account) const
     }
     QChart* chart = new QChart();
     setChart(series, &categories, chart);
-    chart->setTitle("Page Likes chart");
+    chart->setTitle("Following chart");
     return chart;
 
 }

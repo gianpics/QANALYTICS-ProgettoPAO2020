@@ -23,7 +23,6 @@ public:
     void setView(GraphsWindow* _gw);
     void fillStatsLyt(GraphsWindow*,QVBoxLayout*,QString);
     CreatorList* retrieveCreators();
-    void launchCreatorGraphs(QString);
     void restoreLandingWindow();
     QString getCreatorName() const;
     int getAccountsNumber() const;
@@ -37,7 +36,9 @@ public:
 public slots:
     void accountBtnClick();
     void statsBtnClick();
-    void exportBtnClick();
+    void settingBtnClick();
+    void infoBtnClick();
+    void creatorBtnClick();
 };
 
 #endif // CONTROLLER_H

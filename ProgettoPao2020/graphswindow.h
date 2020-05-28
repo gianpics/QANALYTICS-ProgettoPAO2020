@@ -37,6 +37,9 @@ private:
     static void eraseLayout(QLayout* layout);
     QString enumToString(stats_type) const;
 
+private slots:
+    void exportBtnClick();
+
 public:
     GraphsWindow(Controller* c);
     void updateAccountBtnStyle(QString objname);
@@ -44,6 +47,8 @@ public:
     void insertStatsBtn(std::vector<stats_type>* stats, QString accountId);
     void displayChart(QChart * chart);
     QString getSelectedAccountId() const;
+
+
 };
 
 #endif // GRAPHSWINDOW_H
