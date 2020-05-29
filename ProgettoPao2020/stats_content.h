@@ -1,6 +1,7 @@
 #ifndef STATS_CONTENT_H
 #define STATS_CONTENT_H
 #include <stats.h>
+#include <vector>
 
 class Stats_content : public Stats
 {
@@ -23,5 +24,6 @@ public:
 
 };
 ostream &operator<<(ostream &_os, const Stats_content &_sa);
+istream &operator>>(istream &_is, vector<const Stats_content *> &_v);
 
 #endif // STATS_CONTENT_H

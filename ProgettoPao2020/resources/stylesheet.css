@@ -43,11 +43,13 @@ QLabel[accessibleName="sectionlbl"]{
     font-weight:600;
     font-size: 10pt;
 }
+
 QFrame[accessibleName="hline"]{
     height: 1px;
     max-height: 1px;
     background-color: rgba(40, 40, 40, 0.4);
 }
+
 
 QFrame[accessibleName="vline"] {
     width: 1px;

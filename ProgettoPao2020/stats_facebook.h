@@ -1,6 +1,7 @@
 #ifndef STATS_FACEBOOK_H
 #define STATS_FACEBOOK_H
 #include <stats_account.h>
+#include <vector>
 
 class Stats_facebook : public Stats_account
 {
@@ -11,7 +12,9 @@ public:
     virtual ~Stats_facebook() = default;
     u_int getPageLikes() const;
     void setPageLikes(u_int _page_likes);
+    virtual void print(ostream &_os) const;
+    static void getStream(istream &_is, vector<const Stats_account*>& v);
+
 };
 ostream& operator<<(ostream& _os, const Stats_facebook _sf);
-
 #endif // STATS_FACEBOOK_H

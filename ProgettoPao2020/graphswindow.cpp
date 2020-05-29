@@ -209,6 +209,7 @@ void GraphsWindow::setWinStyle()
     mainLyt->setSpacing(0);
     mainLyt->setMargin(0);
 
+
     hLineA->setAccessibleName("hline");
     hLineA->setFrameShape(QFrame::HLine);
     hLineA->setFrameShadow(QFrame::Sunken);

@@ -8,6 +8,7 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
     move(parent->geometry().center() - rect().center());
     QHBoxLayout* mainLyt = new QHBoxLayout();
     mainLyt->setAlignment(Qt::AlignVCenter);
+
     //Logo
     QLabel *lbl = new QLabel();
     QPixmap image(":/resources/youtube.png");
@@ -17,6 +18,7 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
     lbl->setMargin(5);
     lbl->setAlignment(Qt::AlignCenter);
     mainLyt->addWidget(lbl);
+
     //Vertical Line
     QFrame *vLine = new QFrame();
     mainLyt->addWidget(vLine);
@@ -24,12 +26,12 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
     vLine->setFrameShape(QFrame::VLine);
     vLine->setFrameShadow(QFrame::Sunken);
     //Text
-    QString text;
-    text += "<p><b>"+settings.value("app/title").toString()+" "+settings.value("app/version").toString()+"</b></p>";
-    text += "<p>Based on Qt "+settings.value("app/qt_version").toString()+"</p>";
-    text += "<p>Built on "+settings.value("app/last_build").toString()+"</p>";
-    text += "<p>"+settings.value("app/copyleft").toString()+"</p>";
-    text += "<p>"+settings.value("app/description").toString()+"<p>";
+    QString text=   "<p><b>"+settings.value("app/title").toString()+" "+settings.value("app/version").toString()+"</b></p>"+
+                    "<p>Based on Qt "+settings.value("app/qt_version").toString()+"</p>"+
+                    "<p>Built on "+settings.value("app/last_build").toString()+"</p>"+
+                    "<p>"+settings.value("app/copyleft").toString()+"</p>"+
+                    "<p>"+settings.value("app/description").toString()+"<p>";
+
     QLabel *textLbl = new QLabel();
     textLbl->setText(text);
     textLbl->setWordWrap(true);
