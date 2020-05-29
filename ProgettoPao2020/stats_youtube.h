@@ -1,6 +1,7 @@
 #ifndef STATS_YOUTUBE_H
 #define STATS_YOUTUBE_H
 #include <stats_account.h>
+#include <vector>
 
 class Stats_youtube : public Stats_account
 {
@@ -21,8 +22,9 @@ public:
     void setDonators(u_int _donators);
     void setTotalViews(u_int _total_views);
     void setAvgWatchtime(u_int _avg_watchtime);
+    virtual void print(ostream &_os) const;
+    static void getStream(istream &_is, vector<const Stats_account*>& v);
 
 };
 ostream& operator<<(ostream& _os, const Stats_youtube& _sy);
-
 #endif // STATS_YOUTUBE_H

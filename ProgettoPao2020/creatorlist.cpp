@@ -219,3 +219,13 @@ ostream &operator<<(ostream &_os, const CreatorList &_cl)
         _os << *i <<"\n";
     return _os;
 }
+
+istream &operator>>(istream &_is, CreatorList &_cl)
+{
+    while(!_is.eof()){
+        Creator c;
+        _is >> c;
+        _cl.InsertBack(c);
+    }
+    return _is;
+}
