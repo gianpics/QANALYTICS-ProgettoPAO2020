@@ -28,6 +28,7 @@ SOURCES += \
     model.cpp \
     persona.cpp \
    qinfodialog.cpp \
+    qsettingdialog.cpp \
     sociallist.cpp \
     stats.cpp \
     stats_account.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     model.h \
     persona.h \
     qinfodialog.h \
+    qsettingdialog.h \
     sociallist.h \
     stats.h \
     stats_account.h \
