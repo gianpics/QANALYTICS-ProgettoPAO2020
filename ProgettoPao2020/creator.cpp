@@ -42,6 +42,7 @@ ostream &operator<<(ostream &_os, const Creator &_c)
 istream &operator>>(istream &_is, Creator &_c)
 {
     string _fname, _lname, _ssn, _address, _vat, _nick;
+    _is.ignore();
     getline(_is, _fname);
 
     getline(_is, _lname);
