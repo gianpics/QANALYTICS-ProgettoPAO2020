@@ -206,6 +206,11 @@ int Controller::getAccountId(int i) const
     return model->getSelectedAccountId(i);
 }
 
+void Controller::exportData(QString path) const
+{
+
+}
+
 void Controller::accountBtnClick()
 {
     gw->updateAccountBtnStyle(sender()->objectName());
@@ -288,7 +293,10 @@ void Controller::statsBtnClick()
 
 void Controller::settingBtnClick()
 {
+    QSettingDialog d(qobject_cast<QWidget*>(sender()->parent()));
+    d.exec();
     //model->exportList();
+    /*
     CreatorList cl;
     ifstream read;
     read.open("prova.txt");
@@ -299,7 +307,7 @@ void Controller::settingBtnClick()
     ofstream write;
         write.open("prova1.txt");
         write << cl;
-        write.close();
+        write.close();*/
 }
 
 void Controller::infoBtnClick()

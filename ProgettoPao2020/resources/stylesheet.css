@@ -31,9 +31,11 @@ QToolButton{
 QLineEdit {
     width: 220;
 }
+
 QLabel[accessibleName="creatorinfolbl"]{
     margin: 8px;
 }
+
 QLabel[accessibleName="sectionlbl"]{
     width: 220px;
     margin-top: 8px;
@@ -63,6 +65,15 @@ QPushButton[accessibleName="statsbtn"] {
     width: 220;
     max-width: 220;
     height: 25;
+}
+
+
+QPushButton[accessibleName="settingbtn"] {
+    text-align: left;
+
+    width: 50;
+    max-width: 50;
+    height: 40;
 }
 
 QPushButton[accessibleName="sidebtn"]{
