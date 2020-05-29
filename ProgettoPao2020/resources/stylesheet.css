@@ -12,14 +12,6 @@
     border: white;
 }
 
-LandingWindow {
-    min-width: 800px;
-    max-width: 800px;
-
-    min-height: 600px;
-    max-height: 600px;
-}
-
 GraphsWindow {
     width: 1000px;
     min-width: 1000px;
@@ -29,64 +21,52 @@ GraphsWindow {
 }
 
 QToolButton{
-    width: 275px;
-    max-width: 275px;
-
+    width: 220px;
+    max-width: 220px;
     height: 50px;
-    max-height: 50px;
 
     font-size: 10pt;
 }
 
 QLineEdit {
-    width: 275;
-    max-width: 275;
+    width: 220;
 }
-
-QListView {
-    border: red;
+QLabel[accessibleName="creatorinfolbl"]{
+    margin: 8px;
 }
-
-QLabel#section {
+QLabel[accessibleName="sectionlbl"]{
+    width: 220px;
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-bottom: 8px;
     color: rgba(40, 40, 40);
     font-weight:600;
     font-size: 10pt;
 }
-
-QFrame#hLine {
+QFrame[accessibleName="hline"]{
     height: 1px;
     max-height: 1px;
-    width: 281px;
-    max-width: 1px;
-}
-
-QFrame#vLine {
-    width: 1px;
-    max-width: 1px;
-}
-
-QFrame#line {
     background-color: rgba(40, 40, 40, 0.4);
 }
 
-QPushButton {
-    text-align: left;
-    padding: 6px;
+QFrame[accessibleName="vline"] {
+    width: 1px;
+    max-width: 1px;
+    background-color: rgba(40, 40, 40, 0.4);
 }
 
+QPushButton[accessibleName="statsbtn"] {
+    text-align: left;
+    padding-left: 6px;
+    width: 220;
+    max-width: 220;
+    height: 25;
+}
+
+QPushButton[accessibleName="sidebtn"]{
+   text-align: center;
+}
 
 QPushButton:pressed {
     background-color: rgba(60,60,60, 0.4);
-}
-
-QBarSet#Youtube {
-   color: rgba(255, 51, 0);
-}
-
-QBarSet#Facebook {
-   color: rgba(255, 51, 0);
-}
-
-QBarSet#Instagram {
-   color: rgba(255, 51, 0);
 }

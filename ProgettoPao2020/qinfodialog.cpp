@@ -19,11 +19,10 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
     mainLyt->addWidget(lbl);
     //Vertical Line
     QFrame *vLine = new QFrame();
-    vLine->setFixedWidth(1);
-    vLine->setObjectName("line");
+    mainLyt->addWidget(vLine);
+    vLine->setAccessibleName("vline");
     vLine->setFrameShape(QFrame::VLine);
     vLine->setFrameShadow(QFrame::Sunken);
-    mainLyt->addWidget(vLine);
     //Text
     QString text;
     text += "<p><b>"+settings.value("app/title").toString()+" "+settings.value("app/version").toString()+"</b></p>";
