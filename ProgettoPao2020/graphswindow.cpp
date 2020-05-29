@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QCloseEvent>
 #include <QPushButton>
+#include <QStyle>
+#include <QDesktopWidget>
 #include "controller.h"
 
 GraphsWindow::GraphsWindow(Controller* c): controller(c)
@@ -11,6 +13,9 @@ GraphsWindow::GraphsWindow(Controller* c): controller(c)
 
     setWinStyle();
 
+    //centra la finestra
+    adjustSize();
+    move(QApplication::desktop()->screen()->rect().center() - rect().center());
     // visualizza statistiche del primo account nel layout
     //emit qobject_cast<QToolButton*>(accountsLyt->itemAt(0)->widget())->click();
 }
@@ -101,6 +106,7 @@ void GraphsWindow::setWidget()
     vLine=new QFrame;
 
     mainLyt=new QHBoxLayout;
+    mainLyt->setAlignment(Qt::AlignLeft);
     mainLyt->addLayout(sideLyt);
     mainLyt->addWidget(vLine);
     mainLyt->addLayout(graphsLyt);
@@ -115,11 +121,11 @@ void GraphsWindow::setWidget()
 void GraphsWindow::setTopLayout()
 {
     // frecciaback, export, info
-
     backBtn=new QPushButton;
     backBtn->setIcon(QIcon(":/resources/back.png"));
     backBtn->setToolTip("Go back");
     backBtn->setFixedSize(QSize(25,25));
+    backBtn->setAccessibleName("sidebtn");
     connect(backBtn, SIGNAL(clicked()), this, SLOT(close()));
 
     exportBtn=new QPushButton;
@@ -127,17 +133,19 @@ void GraphsWindow::setTopLayout()
     exportBtn->setToolTip("Export chart");
     exportBtn->setFixedSize(QSize(25,25));
     exportBtn->setEnabled(false);
+    exportBtn->setAccessibleName("sidebtn");
     connect(exportBtn, SIGNAL(clicked()), this, SLOT(exportBtnClick())); // disabilita quando no chart
 
     infoBtn=new QPushButton;
     infoBtn->setIcon(QIcon(":/resources/info.png"));
     infoBtn->setToolTip("Information");
     infoBtn->setFixedSize(QSize(25,25));
+    infoBtn->setAccessibleName("sidebtn");
     connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
 
     topLyt=new QHBoxLayout;
     topLyt->setAlignment(Qt::AlignLeft);
-    topLyt->setContentsMargins(2,0,0,0);
+    topLyt->setContentsMargins(2,2,0,0);
     topLyt->addWidget(backBtn);
     topLyt->addWidget(exportBtn);
     topLyt->addWidget(infoBtn);
@@ -179,29 +187,18 @@ void GraphsWindow::setWinStyle()
     QFile file(":/resources/stylesheet.css");
     file.open(QFile::ReadOnly);
     setStyleSheet(QLatin1String(file.readAll()));
-
-    // finestra
-    setGeometry(
-        QStyle::alignedRect(
-            Qt::LayoutDirection::LayoutDirectionAuto,
-            Qt::AlignCenter,
-            size(),
-            qApp->desktop()->availableGeometry()
-        )
-    );
-
     // titolo finestra da nome creator
     setWindowTitle(controller->getCreatorName()+"'s stats");
 
     infoLbl->setText("Creator");
-    infoLbl->setObjectName("section");
+    infoLbl->setAccessibleName("sectionlbl");
     creatorInfoLbl->setText(controller->getCreatorInfo());
+    creatorInfoLbl->setAccessibleName("creatorinfolbl");
     creatorInfoLbl->setTextFormat(Qt::RichText);
     accountsLbl->setText("Accounts");
-    accountsLbl->setObjectName("section");
+    accountsLbl->setAccessibleName("sectionlbl");
     statsLbl->setText("Stats");
-    statsLbl->setObjectName("section");
-
+    statsLbl->setAccessibleName("sectionlbl");
     sideLyt->setAlignment(Qt::AlignTop);
     accountsLyt->setAlignment(Qt::AlignTop);
     statsLyt->setAlignment(Qt::AlignLeft);
@@ -211,31 +208,15 @@ void GraphsWindow::setWinStyle()
     mainLyt->setSpacing(0);
     mainLyt->setMargin(0);
 
-    infoLbl->setFixedWidth(270);
-    infoLbl->setMargin(8);
-    creatorInfoLbl->setMargin(8);
-    statsLbl->setMargin(8);
-    accountsLbl->setMargin(8);
-
-
-    hLineA->setFixedHeight(1);
-    hLineA->setFixedWidth(281);
-
-    hLineA->setFixedHeight(1);
-    hLineA->setObjectName("line");
+    hLineA->setAccessibleName("hline");
     hLineA->setFrameShape(QFrame::HLine);
     hLineA->setFrameShadow(QFrame::Sunken);
 
-    hLineB->setFixedHeight(1);
-    hLineB->setFixedWidth(281);
-
-    hLineB->setFixedHeight(1);
-    hLineB->setObjectName("line");
+    hLineB->setAccessibleName("hline");
     hLineB->setFrameShape(QFrame::HLine);
     hLineB->setFrameShadow(QFrame::Sunken);
 
-    vLine->setFixedWidth(1);
-    vLine->setObjectName("line");
+    vLine->setAccessibleName("vline");
     vLine->setFrameShape(QFrame::VLine);
     vLine->setFrameShadow(QFrame::Sunken);
 }
@@ -255,7 +236,7 @@ void GraphsWindow::insertAccountBtn()
     {
         setAccountBtnType(btn, -1, "", "", -1);
         accountsLyt->addWidget(btn);
-     }
+    }
 
     for(int i=0; i<nAccounts; i++)
     {
@@ -315,7 +296,7 @@ void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accoun
     for(auto stat : *stats){
         btn=new QPushButton;
         btn->setFlat(true);
-        btn->setFixedSize(QSize(275,25));
+        btn->setAccessibleName("statsbtn");
         connect(btn, SIGNAL(clicked()), controller, SLOT(statsBtnClick()));
         btn->setObjectName(enumToString(stat));
         switch(stat){

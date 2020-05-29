@@ -18,8 +18,8 @@ class LandingWindow: public QWidget
     Q_OBJECT
 
 private:
-    QVBoxLayout *mainLyt, *creatorsLyt;
-    QHBoxLayout *buttonsLyt;
+    QVBoxLayout *creatorsLyt;
+    QHBoxLayout *mainLyt, *buttonsLyt;
     QPushButton *infoBtn, *settingBtn;
     QLineEdit *searchTxt;
     QFrame *hLine;

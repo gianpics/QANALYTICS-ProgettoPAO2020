@@ -289,6 +289,8 @@ void Controller::statsBtnClick()
 
 void Controller::settingBtnClick()
 {
+    /*QInfoDialog d(qobject_cast<QWidget*>(sender()->parent()));
+    d.exec();*/
     //model->exportList();
     CreatorList cl;
     ifstream read;
@@ -305,7 +307,6 @@ void Controller::settingBtnClick()
 
 void Controller::infoBtnClick()
 {
-    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     QInfoDialog d(qobject_cast<QWidget*>(sender()->parent()));
     d.exec();
 }

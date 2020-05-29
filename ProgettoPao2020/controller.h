@@ -7,6 +7,7 @@
 #include <QObject>
 #include <vector>
 #include "qinfodialog.h"
+#include "qsettingdialog.h"
 
 class Controller : public QObject
 {
