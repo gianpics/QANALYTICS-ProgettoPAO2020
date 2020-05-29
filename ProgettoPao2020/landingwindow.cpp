@@ -87,21 +87,28 @@ void LandingWindow::setWinStyle(){
 
 void LandingWindow::fillCreatorsLyt()
 {
-    CreatorList* creators=controller->retrieveCreators();
-    QToolButton* btn;
+    CreatorList* creators = nullptr;
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    if(settings.value("app/datapath").toString().isEmpty()){
+        emit settingBtn->click();
+    }
+    else{
+         creators = controller->retrieveCreators();
+         QToolButton* btn;
 
-    for(int i=0; i<creators->size(); i++)
-    {
-        btn=new QToolButton;
-        btn->setIcon(QIcon(":/resources/user.png"));
-        btn->setText(" "+QString::fromStdString(" "+creators->operator[](i).getFullName())+"\n  "+QString::fromStdString(creators->operator[](i).getSSN()));
-        // text format
-        btn->setToolTip("Load "+QString::fromStdString(creators->operator[](i).getFullName())+" information");
-        btn->setIconSize(QSize(40,40));
-        btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));
-        btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-        connect(btn, SIGNAL(clicked()), controller, SLOT(creatorBtnClick()));
-        creatorsLyt->addWidget(btn);
+         for(int i=0; i<creators->size(); i++)
+         {
+             btn=new QToolButton;
+             btn->setIcon(QIcon(":/resources/user.png"));
+             btn->setText(" "+QString::fromStdString(" "+creators->operator[](i).getFullName())+"\n  "+QString::fromStdString(creators->operator[](i).getSSN()));
+             // text format
+             btn->setToolTip("Load "+QString::fromStdString(creators->operator[](i).getFullName())+" information");
+             btn->setIconSize(QSize(40,40));
+             btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));
+             btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+             connect(btn, SIGNAL(clicked()), controller, SLOT(creatorBtnClick()));
+             creatorsLyt->addWidget(btn);
+         }
     }
 }
 

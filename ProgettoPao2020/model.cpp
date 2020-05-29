@@ -375,8 +375,6 @@ void Model::reset()
 
 void Model::exportList()
 {
-
-
     ofstream write;
     write.open("prova.txt");
     if(write.is_open()){
@@ -393,5 +391,4 @@ void Model::importList()
        read >> *list;
        read.close();
     }
-
 }

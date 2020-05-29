@@ -19,7 +19,7 @@ class CreatorList
     public:
         CreatorList();
         CreatorList(Creator& c);
-        ~CreatorList();
+        //~CreatorList();
 
         int getCreatorIndex(const Creator &c) const;
         void InsertFront(Creator &c);

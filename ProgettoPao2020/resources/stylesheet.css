@@ -21,8 +21,8 @@ GraphsWindow {
 }
 
 QToolButton{
-    width: 220px;
-    max-width: 220px;
+    width: 226px;
+    max-width: 226px;
     height: 50px;
 
     font-size: 10pt;
