@@ -5,6 +5,7 @@
 #include <QDesktopWidget>
 #include <QFile>
 #include <QRegularExpression>
+#include <QDesktopWidget>
 #include "landingwindow.h"
 #include "controller.h"
 
@@ -14,95 +15,73 @@ LandingWindow::LandingWindow(Controller* c): controller(c)
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     setWindowTitle(settings.value("app/title").toString());
 
-
     // spawn widget
     setWidgets();
 
-    // stile
     setWinStyle();
+    //centra la finestra
+    adjustSize();
+    move(QApplication::desktop()->screen()->rect().center() - rect().center());
+    setFixedSize(size());
 }
 
 void LandingWindow::setWidgets(){
-
-    // - upper layout
-
+    // Layout buttons
+    buttonsLyt=new QHBoxLayout;
     // btn impostazioni
     settingBtn=new QPushButton;
     connect(settingBtn,SIGNAL(clicked()), controller, SLOT(settingBtnClick()));
-
     // btn info
     infoBtn=new QPushButton;
     connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
-
     // inserimento buttons in layout superiore
-    buttonsLyt=new QHBoxLayout;
     buttonsLyt->addWidget(infoBtn);
     buttonsLyt->addWidget(settingBtn);
 
-
-     // - lower layout
-
+    // Layout creators
+    creatorsLyt=new QVBoxLayout;
     // search box
     searchTxt=new QLineEdit;
     connect(searchTxt,SIGNAL(textChanged(const QString&)), this, SLOT(searchTxtChanged(const QString&)));
-
-    // line
+    // HLine
     hLine=new QFrame;
-
-
-    // inserimento in layout inferiore
-    creatorsLyt=new QVBoxLayout;
+    // inserimento widget in layout creator
     creatorsLyt->addWidget(searchTxt);
     creatorsLyt->addWidget(hLine);
+
     fillCreatorsLyt();
 
-    mainLyt=new QVBoxLayout(this);
-    mainLyt->addLayout(buttonsLyt);
+    mainLyt=new QHBoxLayout(this);
     mainLyt->addLayout(creatorsLyt);
+    mainLyt->addLayout(buttonsLyt);
+
 }
 
 void LandingWindow::setWinStyle(){
-
-    // imposta foglio di stile
     QFile file(":/resources/stylesheet.css");
     file.open(QFile::ReadOnly);
     setStyleSheet(QLatin1String(file.readAll()));
 
-    // finestra
-    setGeometry(
-        QStyle::alignedRect(
-            Qt::LayoutDirection::LeftToRight,
-            Qt::AlignCenter,
-            size(),
-            qApp->desktop()->availableGeometry()
-        )
-    );
-
-    setFixedSize(size());
-
-    // layout pulsanti
     settingBtn->setIcon(QIcon(":/resources/gear.png"));
     settingBtn->setToolTip("Settings");
-    settingBtn->setFixedSize(QSize(24,24));
+    settingBtn->setAccessibleName("sidebtn");
+    settingBtn->setFixedSize(QSize(25,25));
 
     infoBtn->setIcon(QIcon(":/resources/info.png"));
     infoBtn->setToolTip("Information");
-    infoBtn->setFixedSize(QSize(24,24));
+    infoBtn->setAccessibleName("sidebtn");
+    infoBtn->setFixedSize(QSize(25,25));
 
-    buttonsLyt->setAlignment(Qt::AlignRight);
+    buttonsLyt->setAlignment(Qt::AlignTop);
 
-
-
-    // layout creators
     searchTxt->setPlaceholderText("Search");
 
-    hLine->setFixedHeight(1);
-    hLine->setObjectName("hline");
+    hLine->setAccessibleName("hline");
     hLine->setFrameShape(QFrame::HLine);
     hLine->setFrameShadow(QFrame::Sunken);
 
-    creatorsLyt->setAlignment(Qt::AlignCenter);
-
+    creatorsLyt->setAlignment(Qt::AlignTop);
+    creatorsLyt->setContentsMargins(60, 5, 0, 0);
 }
 
 void LandingWindow::fillCreatorsLyt()
