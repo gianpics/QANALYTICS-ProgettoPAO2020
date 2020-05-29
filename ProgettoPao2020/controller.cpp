@@ -289,8 +289,20 @@ void Controller::statsBtnClick()
 
 void Controller::settingBtnClick()
 {
-    QInfoDialog d(qobject_cast<QWidget*>(sender()->parent()));
-    d.exec();
+    /*QInfoDialog d(qobject_cast<QWidget*>(sender()->parent()));
+    d.exec();*/
+    //model->exportList();
+    CreatorList cl;
+    ifstream read;
+    read.open("prova.txt");
+    if(read.is_open()){
+        read >> cl;
+        read.close();
+    }
+    ofstream write;
+        write.open("prova1.txt");
+        write << cl;
+        write.close();
 }
 
 void Controller::infoBtnClick()

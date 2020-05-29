@@ -34,6 +34,7 @@ void LandingWindow::setWidgets(){
     // btn info
     infoBtn=new QPushButton;
     connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
+
     // inserimento buttons in layout superiore
     buttonsLyt->addWidget(infoBtn);
     buttonsLyt->addWidget(settingBtn);
@@ -121,5 +122,4 @@ void LandingWindow::searchTxtChanged(const QString &text){
                 btn->hide();
         }
     }
-
 }

@@ -6,6 +6,7 @@ Creator::Creator(const Account _a, std::string _fname, std::string _lname, std::
 
 bool Creator::operator==(const Creator& c)
 {
+    cout << getSSN();
     return getSSN()==c.getSSN();
 
 }
@@ -41,6 +42,7 @@ ostream &operator<<(ostream &_os, const Creator &_c)
 istream &operator>>(istream &_is, Creator &_c)
 {
     string _fname, _lname, _ssn, _address, _vat, _nick;
+    _is.ignore();
     getline(_is, _fname);
 
     getline(_is, _lname);
@@ -55,6 +57,7 @@ istream &operator>>(istream &_is, Creator &_c)
     _c.setAddress(_address);
     _c.setSSN(_ssn);
     _c.setVat(_vat);
+    _c.setSocialList(v);
     _c.setNickname(_nick);
     return _is;
 }

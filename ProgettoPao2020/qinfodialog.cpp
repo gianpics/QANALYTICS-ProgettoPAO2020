@@ -8,7 +8,6 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
     move(parent->geometry().center() - rect().center());
     QHBoxLayout* mainLyt = new QHBoxLayout();
     mainLyt->setAlignment(Qt::AlignVCenter);
-
     //Logo
     QLabel *lbl = new QLabel();
     QPixmap image(":/resources/youtube.png");

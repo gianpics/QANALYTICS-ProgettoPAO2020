@@ -36,7 +36,7 @@ istream &operator>>(istream &_is, vector<const Stats_content *> &_v)
     if(tmp=="[")
         while(tmp!="]"){
             string _date, _impression, _coverage, _like, _dislike, _ncomment, _views, _watchtime;
-            if(tmp=="]")
+            if(tmp=="[")
                 getline(_is, _date);
             else
                 _date=tmp;

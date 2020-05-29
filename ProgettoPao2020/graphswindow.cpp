@@ -187,7 +187,6 @@ void GraphsWindow::setWinStyle()
     QFile file(":/resources/stylesheet.css");
     file.open(QFile::ReadOnly);
     setStyleSheet(QLatin1String(file.readAll()));
-
     // titolo finestra da nome creator
     setWindowTitle(controller->getCreatorName()+"'s stats");
 
@@ -208,7 +207,6 @@ void GraphsWindow::setWinStyle()
     accountsLyt->setMargin(3);
     mainLyt->setSpacing(0);
     mainLyt->setMargin(0);
-
 
     hLineA->setAccessibleName("hline");
     hLineA->setFrameShape(QFrame::HLine);
