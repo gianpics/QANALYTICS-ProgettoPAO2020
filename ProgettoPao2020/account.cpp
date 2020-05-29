@@ -115,16 +115,16 @@ string Account::getStringType() const
 }
 void Account::print(ostream &_os) const
 {
-    _os<<getId()<<","<<getUsername()<<","<<getEmail()<<","<<getType()<<",";
-    _os<<"[";
+    _os<<getId()<<endl<<getUsername()<<endl<<getEmail()<<endl<<getType()<<endl;
+    _os<<"["<<endl;
     for(auto a: contents){
         _os << a;
     }
-    _os<<"]";
-    _os<<"[";
+    _os<<"]"<<endl;
+    _os<<"["<<endl;
     for(auto a: stats)
         _os << *a;
-    _os<<"]";
+    _os<<"]"<<endl;
 }
 
 ostream &operator<<(ostream &_os, const Account &_a)
@@ -132,3 +132,39 @@ ostream &operator<<(ostream &_os, const Account &_a)
     _a.print(_os);
     return _os;
 }
+istream &operator>>(istream &_is, vector<Account> &_v)
+{
+    string tmp;
+    getline(_is, tmp);
+    while(tmp!="]"){
+        string _id,_username, _email,_type;
+        if(tmp=="[")
+            getline(_is, _id);
+        else
+            _id=tmp;
+        getline(_is, _username);
+        getline(_is, _email);
+        getline(_is, _type);
+        vector<Content> _contents;
+        vector<const Stats_account*> _stats;
+        _is >> _contents;
+        switch (stoi(_type)) {
+            case 0:         //yt
+                Stats_youtube::getStream(_is, _stats);
+            break;
+            case 1:         //fb
+
+                Stats_facebook::getStream(_is, _stats);
+            break;
+            case 2:         //ig
+
+                Stats_instagram::getStream(_is, _stats);
+            break;
+        }
+        Account *_a = new Account(stoi(_id), _username, _email, account_type(stoi(_type)), _contents, _stats);
+        _v.push_back(*_a);
+        getline(_is, tmp);
+    }
+    return _is;
+}
+

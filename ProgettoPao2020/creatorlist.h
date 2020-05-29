@@ -57,5 +57,5 @@ class CreatorList
 
 };
 ostream& operator<<(ostream& _os, const CreatorList& _cl);
-
+istream &operator>>(istream &_is, CreatorList &_cl);
 #endif // CREATORLIST_H

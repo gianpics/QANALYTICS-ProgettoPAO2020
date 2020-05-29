@@ -58,9 +58,10 @@ const Account &SocialList::getAccountById(u_int _id)
 
 void SocialList::print(ostream &_os) const
 {
-    _os<<"[";
+    _os<<"[\n";
     for(u_int i=0; i<size(); i++){
         _os << list.at(i);
     }
-    _os<<"]";
+    _os<<"]\n";
 }
+

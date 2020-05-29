@@ -4,10 +4,11 @@
 #include <string>
 #include <QDateTime>
 #include <stats_content.h>
+#include <vector>
 
 using namespace std;
 typedef unsigned int u_int;
-enum content_type{image, video, livestream, story, text};
+enum content_type{image = 0 , video = 1, livestream = 2, story= 3, text=4};
 
 class Content
 {
@@ -36,4 +37,5 @@ class Content
         virtual void print(ostream &_os) const;
 };
 ostream &operator<<(ostream& _os, const Content& _c);
+istream &operator>>(istream &_is, vector<Content> &_c);
 #endif

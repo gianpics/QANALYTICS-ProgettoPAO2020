@@ -45,7 +45,7 @@ int CreatorList::getCreatorIndex(const Creator &c) const
 
 void CreatorList::InsertFront(Creator &c)
 {
-    if(getCreatorIndex(c)>-1)
+    if(!empty() && getCreatorIndex(c)>-1)
         throw "Could not insert already present element.";
 
     node* n = new node(c, nullptr, first);
@@ -63,7 +63,7 @@ void CreatorList::InsertFront(Creator &c)
 
 void CreatorList::InsertBack(Creator &c)
 {
-    if(getCreatorIndex(c)>-1)
+    if(!empty() && getCreatorIndex(c)>-1)
         throw "Could not insert already present element.";
     node* n = new node(c, last, nullptr);
     if(last==nullptr)
@@ -215,7 +215,21 @@ CreatorList::constiterator CreatorList::end() const { return constiterator(last+
 
 ostream &operator<<(ostream &_os, const CreatorList &_cl)
 {
+    _os<<_cl.size()<<endl;
     for(CreatorList::constiterator i = _cl.begin(); i!= _cl.end(); ++i)
         _os << *i <<"\n";
     return _os;
+}
+
+istream &operator>>(istream &_is, CreatorList &_cl)
+{
+    int size;
+    _is >> size;
+    for(int i=0;i<size;i++){
+        Creator c;
+        _is >> c;
+        //cout<<c;
+        _cl.InsertBack(c);
+    }
+    return _is;
 }

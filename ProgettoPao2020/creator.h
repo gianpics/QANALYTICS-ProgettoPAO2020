@@ -20,4 +20,5 @@ public:
     void print(ostream &_os) const override;
 };
 ostream &operator<<(ostream& _os, const Creator& _c);
+istream &operator>>(istream &_is, Creator &_c);
 #endif // CREATOR_H
