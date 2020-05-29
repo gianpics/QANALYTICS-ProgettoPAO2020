@@ -222,7 +222,7 @@ void GraphsWindow::setWinStyle()
     hLineA->setFixedWidth(281);
 
     hLineA->setFixedHeight(1);
-    hLineA->setObjectName("line");
+    hLineA->setObjectName("hline");
     hLineA->setFrameShape(QFrame::HLine);
     hLineA->setFrameShadow(QFrame::Sunken);
 
@@ -230,12 +230,12 @@ void GraphsWindow::setWinStyle()
     hLineB->setFixedWidth(281);
 
     hLineB->setFixedHeight(1);
-    hLineB->setObjectName("line");
+    hLineB->setObjectName("hline");
     hLineB->setFrameShape(QFrame::HLine);
     hLineB->setFrameShadow(QFrame::Sunken);
 
     vLine->setFixedWidth(1);
-    vLine->setObjectName("line");
+    vLine->setObjectName("vline");
     vLine->setFrameShape(QFrame::VLine);
     vLine->setFrameShadow(QFrame::Sunken);
 }

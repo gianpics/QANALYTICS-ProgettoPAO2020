@@ -53,19 +53,15 @@ QLabel#section {
     font-size: 10pt;
 }
 
-QFrame#hLine {
+QFrame#hline {
     height: 1px;
     max-height: 1px;
-    width: 281px;
-    max-width: 1px;
+    background-color: rgba(40, 40, 40, 0.4);
 }
 
-QFrame#vLine {
+QFrame#vline {
     width: 1px;
     max-width: 1px;
-}
-
-QFrame#line {
     background-color: rgba(40, 40, 40, 0.4);
 }
 

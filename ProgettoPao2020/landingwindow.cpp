@@ -97,7 +97,7 @@ void LandingWindow::setWinStyle(){
     searchTxt->setPlaceholderText("Search");
 
     hLine->setFixedHeight(1);
-    hLine->setObjectName("line");
+    hLine->setObjectName("hline");
     hLine->setFrameShape(QFrame::HLine);
     hLine->setFrameShadow(QFrame::Sunken);
 
