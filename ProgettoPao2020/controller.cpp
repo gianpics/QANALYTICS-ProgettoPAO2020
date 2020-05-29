@@ -233,7 +233,6 @@ void Controller::accountBtnClick()
                 break;
         }
     }
-
     gw->insertStatsBtn(&stats, sender()->objectName());
 }
 
@@ -289,8 +288,6 @@ void Controller::statsBtnClick()
 
 void Controller::settingBtnClick()
 {
-    /*QInfoDialog d(qobject_cast<QWidget*>(sender()->parent()));
-    d.exec();*/
     //model->exportList();
     CreatorList cl;
     ifstream read;
@@ -317,6 +314,7 @@ void Controller::creatorBtnClick()
     model->setSelected(ssn.toStdString());
     setView(new GraphsWindow(this));
     gw->show();
+    emit gw->firstAccount->click();
     lw->hide();
 }
 

@@ -4,9 +4,9 @@ CreatorList::CreatorList(): first(), last(){}
 
 CreatorList::CreatorList(Creator& c): first(new node(c)), last(first){}
 
-CreatorList::~CreatorList(){ delete first; delete last; }
+//CreatorList::~CreatorList(){ delete first; delete last; }
 
-CreatorList::node::~node(){ delete next; }
+CreatorList::node::~node(){ delete &info; }
 
 Creator CreatorList::RemoveNode(node* n){
     Creator foo=n->info;

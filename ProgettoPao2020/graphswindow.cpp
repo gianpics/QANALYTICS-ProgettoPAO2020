@@ -16,8 +16,6 @@ GraphsWindow::GraphsWindow(Controller* c): controller(c)
     //centra la finestra
     adjustSize();
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
-    // visualizza statistiche del primo account nel layout
-    //emit qobject_cast<QToolButton*>(accountsLyt->itemAt(0)->widget())->click();
 }
 
 // chiede di visualizzare la landingwindow e termina la finestra
@@ -236,6 +234,7 @@ void GraphsWindow::insertAccountBtn()
     {
         setAccountBtnType(btn, -1, "", "", -1);
         accountsLyt->addWidget(btn);
+        firstAccount = btn;
     }
 
     for(int i=0; i<nAccounts; i++)
@@ -249,6 +248,8 @@ void GraphsWindow::insertAccountBtn()
         btn=new QToolButton;
         setAccountBtnType(btn, type, email, username, id);
         accountsLyt->addWidget(btn);
+        if(i==0 && nAccounts==1)
+            firstAccount=btn;
     }
 }
 
@@ -288,7 +289,7 @@ void GraphsWindow::updateStatsBtnStyle(QString objname)
 void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accountId)
 {
     exportBtn->setEnabled(false);
-    eraseLayout(statsLyt);
+    eraseLayout(statsLyt);   
     eraseLayout(graphsLyt);
     //mi salvo l'id dell'account selezionato
     selectedAccountId = accountId;
