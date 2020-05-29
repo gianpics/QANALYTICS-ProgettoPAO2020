@@ -12,7 +12,7 @@ void Stats_facebook::setPageLikes(u_int _page_likes)
 void Stats_facebook::print(ostream &_os) const
 {
     Stats_account::print(_os);
-    _os<<getFollowers()<<endl;
+    _os<<getPageLikes()<<endl;
 }
 
 void Stats_facebook::getStream(istream &_is, vector<const Stats_account *> &v)
@@ -31,7 +31,7 @@ void Stats_facebook::getStream(istream &_is, vector<const Stats_account *> &v)
             getline(_is, _like);
             getline(_is, _followers);
             getline(_is, _pagelikes);
-            v.push_back(new Stats_facebook(QDate::fromString(QString::fromStdString(_date)), stoi(_impression), stoi(_coverage), stoi(_like), stoi(_pagelikes)));
+            v.push_back(new Stats_facebook(QDate::fromString(QString::fromStdString(_date)), stoi(_impression), stoi(_coverage), stoi(_like), stoi(_followers), stoi(_pagelikes)));
             getline(_is, tmp);
         }
 }

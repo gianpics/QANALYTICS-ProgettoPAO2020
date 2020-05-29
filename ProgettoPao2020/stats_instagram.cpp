@@ -22,7 +22,7 @@ void Stats_instagram::getStream(istream &_is, vector<const Stats_account *> &v)
     getline(_is, tmp);
     if(tmp=="[")
         while(tmp!="]"){
-            string _date, _impression, _coverage, _like, _followers, _pagelikes;
+            string _date, _impression, _coverage, _like, _followers, _following;
             if(tmp=="[")
                 getline(_is, _date);
             else
@@ -31,8 +31,8 @@ void Stats_instagram::getStream(istream &_is, vector<const Stats_account *> &v)
             getline(_is, _coverage);
             getline(_is, _like);
             getline(_is, _followers);
-            getline(_is, _pagelikes);
-            v.push_back(new Stats_instagram(QDate::fromString(QString::fromStdString(_date)), stoi(_impression), stoi(_coverage), stoi(_like), stoi(_pagelikes)));
+            getline(_is, _following);
+            v.push_back(new Stats_instagram(QDate::fromString(QString::fromStdString(_date)), stoi(_impression), stoi(_coverage), stoi(_like), stoi(_followers), stoi(_following)));
             getline(_is, tmp);
         }
 }

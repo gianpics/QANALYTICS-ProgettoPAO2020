@@ -24,6 +24,7 @@ private:
     QString selectedAccountId;
     QPushButton *backBtn, *exportBtn, *infoBtn;
 
+
     Controller *controller;
 
     void setWidget();
@@ -47,6 +48,7 @@ public:
     void insertStatsBtn(std::vector<stats_type>* stats, QString accountId);
     void displayChart(QChart * chart);
     QString getSelectedAccountId() const;
+    QToolButton *firstAccount;
 
 
 };

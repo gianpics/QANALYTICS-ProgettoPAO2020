@@ -238,7 +238,6 @@ void Controller::accountBtnClick()
                 break;
         }
     }
-
     gw->insertStatsBtn(&stats, sender()->objectName());
 }
 
@@ -323,6 +322,7 @@ void Controller::creatorBtnClick()
     model->setSelected(ssn.toStdString());
     setView(new GraphsWindow(this));
     gw->show();
+    emit gw->firstAccount->click();
     lw->hide();
 }
 
