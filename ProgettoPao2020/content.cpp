@@ -74,11 +74,11 @@ void Content::setStats(vector<const Stats_content*> &_stats)
 
 void Content::print(ostream &_os) const
 {
-    _os << title << "," << description << "," << timestamp.toString().toStdString() << "," << type <<",";
-    _os << "[";
+    _os << title << endl << description << endl << timestamp.toString().toStdString() << endl << type << endl;
+    _os << "["<<endl;
     for(auto s : stats)
         _os << *s;
-    _os << "]";
+    _os << "]"<<endl;
 }
 
 ostream &operator<<(ostream &_os, const Content &_c)
@@ -94,15 +94,19 @@ istream &operator>>(istream &_is, vector<Content> &_c)
     if(tmp=="[")
         while(tmp!="]"){
             string _timestamp, _type, _title, _desc;
-            getline(_is, _title);
+            if(tmp =="[")
+                getline(_is, _title);
+            else
+                _title=tmp;
             getline(_is, _desc);
-            getline(_is, _type);
             getline(_is, _timestamp);
+            getline(_is, _type);
             QDateTime d = QDateTime::fromString(QString::fromStdString(_timestamp));
             vector<const Stats_content*> v;
             _is >> v;
             Content *c = new Content(QDateTime::fromString(QString::fromStdString(_timestamp)), static_cast<content_type>(stoi(_type)), v, _title, _desc);
             _c.push_back(*c);
+            getline(_is, tmp);
         }
 
     return _is;

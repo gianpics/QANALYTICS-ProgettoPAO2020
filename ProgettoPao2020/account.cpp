@@ -115,16 +115,16 @@ string Account::getStringType() const
 }
 void Account::print(ostream &_os) const
 {
-    _os<<getId()<<","<<getUsername()<<","<<getEmail()<<","<<getType()<<",";
-    _os<<"[";
+    _os<<getId()<<endl<<getUsername()<<endl<<getEmail()<<endl<<getType()<<endl;
+    _os<<"["<<endl;
     for(auto a: contents){
         _os << a;
     }
-    _os<<"]";
-    _os<<"[";
+    _os<<"]"<<endl;
+    _os<<"["<<endl;
     for(auto a: stats)
         _os << *a;
-    _os<<"]";
+    _os<<"]"<<endl;
 }
 
 ostream &operator<<(ostream &_os, const Account &_a)
@@ -138,7 +138,10 @@ istream &operator>>(istream &_is, vector<Account> &_v)
     getline(_is, tmp);
     while(tmp!="]"){
         string _id,_username, _email,_type;
-        getline(_is, _id);
+        if(tmp=="[")
+            getline(_is, _id);
+        else
+            _id=tmp;
         getline(_is, _username);
         getline(_is, _email);
         getline(_is, _type);

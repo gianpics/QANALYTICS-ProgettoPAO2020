@@ -5,6 +5,7 @@
 #include <QtCharts>
 #include <QLineSeries>
 #include <QDateTime>
+#include <fstream>
 
 class Model
 {
@@ -35,6 +36,8 @@ public:
     QChart *graphTotalViews(vector<u_int>* _id) const; //ONLY YOUTUBE
     QChart *graphAvgWatchtime(vector<u_int>* _id) const;   //ONLY YOUTUBE
     void reset();
+    void exportList();
+    void importList();
 };
 
 #endif // MODEL_H

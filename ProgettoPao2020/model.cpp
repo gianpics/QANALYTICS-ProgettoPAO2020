@@ -367,3 +367,26 @@ void Model::reset()
     selected = nullptr;
     list = nullptr;
 }
+
+void Model::exportList()
+{
+
+
+    ofstream write;
+    write.open("prova.txt");
+    if(write.is_open()){
+        write << *list;
+        write.close();
+    }
+}
+
+void Model::importList()
+{
+    ifstream read;
+    read.open("log.txt");
+    if(read.is_open()){
+       read >> *list;
+       read.close();
+    }
+
+}

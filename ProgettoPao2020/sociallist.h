@@ -21,6 +21,11 @@ public:
     u_int size() const ;
     Account &operator[](u_int i);
     const Account& getAccountById(u_int id);
+    virtual void setSocialList(const vector<Account> &v){
+        for(auto a : v){
+            list.push_back(a);
+        }
+    }
     virtual void print(ostream &_os) const;
 
 };

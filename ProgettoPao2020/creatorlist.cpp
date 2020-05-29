@@ -224,7 +224,9 @@ istream &operator>>(istream &_is, CreatorList &_cl)
 {
     while(!_is.eof()){
         Creator c;
+        //cout<<"creator";
         _is >> c;
+        //cout<<c;
         _cl.InsertBack(c);
     }
     return _is;

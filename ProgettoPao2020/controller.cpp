@@ -283,7 +283,18 @@ void Controller::statsBtnClick()
 
 void Controller::settingBtnClick()
 {
-
+    //model->exportList();
+    CreatorList cl;
+    ifstream read;
+    read.open("prova.txt");
+    if(read.is_open()){
+        read >> cl;
+        read.close();
+    }
+    ofstream write;
+        write.open("prova1.txt");
+        write << cl;
+        write.close();
 }
 
 void Controller::creatorBtnClick()
