@@ -9,9 +9,12 @@
 #include <QApplication>
 #include <iostream>
 
-CreatorList* addCreator();
+
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setOrganizationName("QANALYTICS");
+    QCoreApplication::setApplicationName("QANALYTICS");
+    QSettings settings("QANALYTICS", "QANALYTICS");
     QApplication a(argc, argv);
     Model m;
     Controller c(&m);

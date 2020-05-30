@@ -4,6 +4,7 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
 {
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     setWindowTitle("About "+settings.value("app/title").toString());
+    setWindowIcon(QIcon(":/resources/info.png"));
     setFixedSize(400,200);
     move(parent->geometry().center() - rect().center());
     QHBoxLayout* mainLyt = new QHBoxLayout();

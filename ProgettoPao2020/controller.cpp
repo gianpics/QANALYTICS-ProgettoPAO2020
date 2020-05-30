@@ -1,5 +1,6 @@
 #include "controller.h"
 #include <QPushButton>
+#include <QFile>
 
 stats_type Controller::stringToEnum(QString s) const
 {
@@ -38,6 +39,8 @@ void Controller::setView(GraphsWindow *_gw)
 
 CreatorList* Controller::retrieveCreators()
 {
+
+    /*
     std::vector<const Stats_content*> listsc;
     std::vector<Content> lc;
     std::vector<const Stats_account*> listsa;
@@ -158,7 +161,19 @@ CreatorList* Controller::retrieveCreators()
     cl->InsertBack(c2);
     cl->InsertBack(c3);
     model->setList(cl);
-    return cl;
+            return cl;*/
+
+   return nullptr;
+}
+
+int Controller::getCreatorsNumber() const
+{
+    return model->getListSize();
+}
+
+Creator *Controller::getCreatorAt(int i) const
+{
+    return model->getCreatorAt(i);
 }
 
 void Controller::restoreLandingWindow()
@@ -206,10 +221,6 @@ int Controller::getAccountId(int i) const
     return model->getSelectedAccountId(i);
 }
 
-void Controller::exportData(QString path) const
-{
-
-}
 
 void Controller::accountBtnClick()
 {
@@ -290,24 +301,25 @@ void Controller::statsBtnClick()
     gw->displayChart(chart);
 }
 
-
-void Controller::settingBtnClick()
+void Controller::importBtnClick()
 {
-    QSettingDialog d(qobject_cast<QWidget*>(sender()->parent()));
-    d.exec();
-    //model->exportList();
-    /*
-    CreatorList cl;
-    ifstream read;
-    read.open("prova.txt");
-    if(read.is_open()){
-        read >> cl;
-        read.close();
-    }
-    ofstream write;
-        write.open("prova1.txt");
-        write << cl;
-        write.close();*/
+    QString path=QFileDialog::getOpenFileName(gw, "Choose file data to import","","Text (*.txt)");
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    settings.setValue("app/datapath",path);
+
+    importData(path);
+}
+
+void Controller::importData(QString path)
+{
+    model->importList(path.toStdString());
+}
+
+void Controller::exportBtnClick()
+{
+    QString path=QFileDialog::getSaveFileName(gw, "Choose file data to import","","Text (*.txt)");
+    model->exportList(path.toStdString());
+
 }
 
 void Controller::infoBtnClick()
