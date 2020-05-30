@@ -28,16 +28,23 @@ LandingWindow::LandingWindow(Controller* c): controller(c)
 void LandingWindow::setWidgets(){
     // Layout buttons
     buttonsLyt=new QHBoxLayout;
-    // btn impostazioni
-    settingBtn=new QPushButton;
-    connect(settingBtn,SIGNAL(clicked()), controller, SLOT(settingBtnClick()));
+
+    // btn import
+    importBtn=new QPushButton;
+    connect(importBtn, SIGNAL(clicked()), controller, SLOT(importBtnClick()));
+
+    // btn export
+    exportBtn=new QPushButton;
+    connect(exportBtn, SIGNAL(clicked()), controller, SLOT(exportBtnClick()));
+
     // btn info
     infoBtn=new QPushButton;
     connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
 
     // inserimento buttons in layout superiore
+    buttonsLyt->addWidget(importBtn);
+    buttonsLyt->addWidget(exportBtn);
     buttonsLyt->addWidget(infoBtn);
-    buttonsLyt->addWidget(settingBtn);
 
     // Layout creators
     creatorsLyt=new QVBoxLayout;
@@ -63,10 +70,15 @@ void LandingWindow::setWinStyle(){
     file.open(QFile::ReadOnly);
     setStyleSheet(QLatin1String(file.readAll()));
 
-    settingBtn->setIcon(QIcon(":/resources/gear.png"));
-    settingBtn->setToolTip("Settings");
-    settingBtn->setAccessibleName("sidebtn");
-    settingBtn->setFixedSize(QSize(25,25));
+    importBtn->setIcon(QIcon(":/resources/down.png"));
+    importBtn->setToolTip("Import data");
+    importBtn->setAccessibleName("sidebtn");
+    importBtn->setFixedSize(QSize(25,25));
+
+    exportBtn->setIcon(QIcon(":/resources/up.png"));
+    exportBtn->setToolTip("Export data");
+    exportBtn->setAccessibleName("sidebtn");
+    exportBtn->setFixedSize(QSize(25,25));
 
     infoBtn->setIcon(QIcon(":/resources/info.png"));
     infoBtn->setToolTip("Information");
@@ -82,33 +94,35 @@ void LandingWindow::setWinStyle(){
     hLine->setFrameShadow(QFrame::Sunken);
 
     creatorsLyt->setAlignment(Qt::AlignTop);
-    creatorsLyt->setContentsMargins(60, 5, 0, 0);
+    creatorsLyt->setContentsMargins(90, 5, 0, 0);
 }
 
 void LandingWindow::fillCreatorsLyt()
 {
-    CreatorList* creators = nullptr;
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-    if(settings.value("app/datapath").toString().isEmpty()){
-        emit settingBtn->click();
-    }
-    else{
-         creators = controller->retrieveCreators();
-         QToolButton* btn;
 
-         for(int i=0; i<creators->size(); i++)
-         {
-             btn=new QToolButton;
-             btn->setIcon(QIcon(":/resources/user.png"));
-             btn->setText(" "+QString::fromStdString(" "+creators->operator[](i).getFullName())+"\n  "+QString::fromStdString(creators->operator[](i).getSSN()));
-             // text format
-             btn->setToolTip("Load "+QString::fromStdString(creators->operator[](i).getFullName())+" information");
-             btn->setIconSize(QSize(40,40));
-             btn->setObjectName(QString::fromStdString(creators->operator[](i).getSSN()));
-             btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-             connect(btn, SIGNAL(clicked()), controller, SLOT(creatorBtnClick()));
-             creatorsLyt->addWidget(btn);
-         }
+    if(settings.value("app/datapath").toString().isEmpty())
+        while(settings.value("app/datapath").toString().isEmpty())
+            emit importBtn->click();
+    else
+        controller->importData(settings.value("app/datapath").toString());
+
+    QToolButton* btn;
+    Creator* c;
+
+    for(int i=0; i<controller->getCreatorsNumber(); i++)
+    {
+        c=controller->getCreatorAt(i);
+        btn=new QToolButton;
+        btn->setIcon(QIcon(":/resources/user.png"));
+        btn->setText(" "+QString::fromStdString(" "+c->getFullName())+"\n  "+QString::fromStdString(c->getSSN()));
+        // text format
+        btn->setToolTip("Load "+QString::fromStdString(c->getFullName())+" information");
+        btn->setIconSize(QSize(40,40));
+        btn->setObjectName(QString::fromStdString(c->getSSN()));
+        btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        connect(btn, SIGNAL(clicked()), controller, SLOT(creatorBtnClick()));
+        creatorsLyt->addWidget(btn);
     }
 }
 

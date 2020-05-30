@@ -24,22 +24,21 @@ QSettingDialog::QSettingDialog(QWidget *parent):QDialog(parent)
     importBtn->setText("Import data");
     importBtn->setToolTip("Choose file data to view");
     importBtn->setAccessibleDescription("settingbtn");
-    connect(importBtn, SIGNAL(clicked), this, SLOT(importBtnClick()));
+    connect(importBtn, SIGNAL(clicked()), this, SLOT(importBtnClick()));
 
     exportBtn=new QPushButton;
     exportBtn->setText("Store data");
     exportBtn->setToolTip("Choose file path to store data");
     exportBtn->setAccessibleDescription("settingbtn");
-    connect(exportBtn, SIGNAL(clicked), this, SLOT(exportBtnClick()));
+    connect(exportBtn, SIGNAL(clicked()), this, SLOT(exportBtnClick()));
 
     topLyt = new QHBoxLayout;
     topLyt->setAlignment(Qt::AlignTop);
     topLyt->addWidget(importBtn);
     topLyt->addWidget(exportBtn);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     botLyt=new QHBoxLayout;
     botLyt->setAlignment(Qt::AlignRight);
@@ -67,4 +66,6 @@ void QSettingDialog::exportBtnClick()
 {
     QString path=QFileDialog::getSaveFileName(this, "Choose file data to import","","Text (*.txt)");
     // lancia export attraverso il controller
+
+
 }

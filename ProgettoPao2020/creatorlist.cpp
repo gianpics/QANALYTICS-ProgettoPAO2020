@@ -45,7 +45,7 @@ int CreatorList::getCreatorIndex(const Creator &c) const
 
 void CreatorList::InsertFront(Creator &c)
 {
-    if(!empty() && getCreatorIndex(c)>-1)
+    if(getCreatorIndex(c)>-1)
         throw "Could not insert already present element.";
 
     node* n = new node(c, nullptr, first);
@@ -82,7 +82,7 @@ int CreatorList::size() const
     return i;
 }
 
-bool CreatorList::empty() const { return first==nullptr; }
+bool CreatorList::empty() const { return (first==nullptr); }
 
 Creator CreatorList::RemoveAt(int i)
 {

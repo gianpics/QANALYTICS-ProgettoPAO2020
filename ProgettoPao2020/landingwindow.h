@@ -20,7 +20,7 @@ class LandingWindow: public QWidget
 private:
     QVBoxLayout *creatorsLyt;
     QHBoxLayout *mainLyt, *buttonsLyt;
-    QPushButton *infoBtn, *settingBtn;
+    QPushButton *infoBtn, *importBtn, *exportBtn;
     QLineEdit *searchTxt;
     QFrame *hLine;
     Controller* controller;
