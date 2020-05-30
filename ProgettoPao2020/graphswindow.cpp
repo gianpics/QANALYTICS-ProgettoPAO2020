@@ -9,6 +9,8 @@
 
 GraphsWindow::GraphsWindow(Controller* c): controller(c)
 {
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    setWindowIcon(QIcon(settings.value("app/logo").toString()));
     setWidget();
 
     setWinStyle();

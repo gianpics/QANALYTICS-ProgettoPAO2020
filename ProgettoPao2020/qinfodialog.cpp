@@ -11,7 +11,7 @@ QInfoDialog::QInfoDialog(QWidget *parent):QDialog(parent)
 
     //Logo
     QLabel *lbl = new QLabel();
-    QPixmap image(":/resources/youtube.png");
+    QPixmap image(settings.value("app/logo").toString());
     image = image.scaled(80,80,Qt::IgnoreAspectRatio);
     lbl->setPixmap(image);
     lbl->setFixedSize(100,100);

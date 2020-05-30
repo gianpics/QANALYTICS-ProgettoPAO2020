@@ -14,6 +14,7 @@ LandingWindow::LandingWindow(Controller* c): controller(c)
     // carica titolo finestra dal file config
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     setWindowTitle(settings.value("app/title").toString());
+    setWindowIcon(QIcon(settings.value("app/logo").toString()));
 
     // spawn widget
     setWidgets();
@@ -29,15 +30,18 @@ void LandingWindow::setWidgets(){
     // Layout buttons
     buttonsLyt=new QHBoxLayout;
     // btn impostazioni
-    settingBtn=new QPushButton;
-    connect(settingBtn,SIGNAL(clicked()), controller, SLOT(settingBtnClick()));
+    importBtn=new QPushButton;
+    connect(importBtn,SIGNAL(clicked()), controller, SLOT(settingBtnClick()));
     // btn info
     infoBtn=new QPushButton;
     connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
+    //export
+    exportBtn=new QPushButton;
 
     // inserimento buttons in layout superiore
     buttonsLyt->addWidget(infoBtn);
-    buttonsLyt->addWidget(settingBtn);
+    buttonsLyt->addWidget(importBtn);
+    buttonsLyt->addWidget(exportBtn);
 
     // Layout creators
     creatorsLyt=new QVBoxLayout;
@@ -63,10 +67,15 @@ void LandingWindow::setWinStyle(){
     file.open(QFile::ReadOnly);
     setStyleSheet(QLatin1String(file.readAll()));
 
-    settingBtn->setIcon(QIcon(":/resources/gear.png"));
-    settingBtn->setToolTip("Settings");
-    settingBtn->setAccessibleName("sidebtn");
-    settingBtn->setFixedSize(QSize(25,25));
+    importBtn->setIcon(QIcon(":/resources/gear.png"));
+    importBtn->setToolTip("Settings");
+    importBtn->setAccessibleName("sidebtn");
+    importBtn->setFixedSize(QSize(25,25));
+
+    exportBtn->setIcon(QIcon(":/resources/info.png"));
+    exportBtn->setToolTip("Information");
+    exportBtn->setAccessibleName("sidebtn");
+    exportBtn->setFixedSize(QSize(25,25));
 
     infoBtn->setIcon(QIcon(":/resources/info.png"));
     infoBtn->setToolTip("Information");
@@ -82,7 +91,7 @@ void LandingWindow::setWinStyle(){
     hLine->setFrameShadow(QFrame::Sunken);
 
     creatorsLyt->setAlignment(Qt::AlignTop);
-    creatorsLyt->setContentsMargins(60, 5, 0, 0);
+    creatorsLyt->setContentsMargins(90, 5, 0, 0);
 }
 
 void LandingWindow::fillCreatorsLyt()
@@ -90,7 +99,7 @@ void LandingWindow::fillCreatorsLyt()
     CreatorList* creators = nullptr;
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     if(settings.value("app/datapath").toString().isEmpty()){
-        emit settingBtn->click();
+        emit exportBtn->click();
     }
     else{
          creators = controller->retrieveCreators();
