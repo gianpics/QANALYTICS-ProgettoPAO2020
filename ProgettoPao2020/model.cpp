@@ -66,6 +66,17 @@ Model::Model(){reset();}
 
 void Model::setList(CreatorList *_cl){ list=_cl;}
 
+Creator* Model::getCreatorAt(int i) const
+{
+    return &(list->operator[](i));
+}
+
+int Model::getListSize() const
+{
+    return list->size();
+}
+
+
 void Model::setSelected(std::string _SSN){selected = &list->getCreatorBySSN(_SSN);}
 
 int Model::getSelectedAccountsNumber() const
@@ -370,23 +381,25 @@ QChart *Model::graphAvgWatchtime(vector<u_int>* _id_account) const
 void Model::reset()
 {
     selected = nullptr;
-    list = nullptr;
+    list = new CreatorList();
 }
 
-void Model::exportList()
+void Model::exportList(string path)
 {
     ofstream write;
-    write.open("prova.txt");
+    write.open(path);
     if(write.is_open()){
         write << *list;
         write.close();
     }
 }
 
-void Model::importList()
+void Model::importList(string path)
 {
+    reset();
+
     ifstream read;
-    read.open("log.txt");
+    read.open(path);
     if(read.is_open()){
        read >> *list;
        read.close();

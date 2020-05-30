@@ -11,7 +11,8 @@
         <file>resources/users.png</file>
         <file>resources/back.png</file>
         <file>resources/save.png</file>
-        <file>resources/instagram.svg</file>
         <file>resources/logo.svg</file>
+        <file>resources/down.png</file>
+        <file>resources/up.png</file>
     </qresource>
 </RCC>

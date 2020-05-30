@@ -18,6 +18,8 @@ private:
 public:
     Model();
     void setList(CreatorList * _cl);
+    int getListSize() const;
+    Creator* getCreatorAt(int i) const;
     void setSelected(std::string _SSN);
     int getSelectedAccountsNumber() const;
     account_type getSelectedAccountType(int i) const;
@@ -37,8 +39,8 @@ public:
     QChart *graphTotalViews(vector<u_int>* _id) const; //ONLY YOUTUBE
     QChart *graphAvgWatchtime(vector<u_int>* _id) const;   //ONLY YOUTUBE
     void reset();
-    void exportList();
-    void importList();
+    void exportList(string path);
+    void importList(string path);
 };
 
 #endif // MODEL_H
