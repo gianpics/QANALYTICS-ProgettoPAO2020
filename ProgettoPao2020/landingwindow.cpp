@@ -14,6 +14,7 @@ LandingWindow::LandingWindow(Controller* c): controller(c)
     // carica titolo finestra dal file config
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     setWindowTitle(settings.value("app/title").toString());
+    setWindowIcon(QIcon(settings.value("app/logo").toString()));
 
     // spawn widget
     setWidgets();
@@ -32,11 +33,9 @@ void LandingWindow::setWidgets(){
     // btn import
     importBtn=new QPushButton;
     connect(importBtn, SIGNAL(clicked()), controller, SLOT(importBtnClick()));
-
     // btn export
     exportBtn=new QPushButton;
     connect(exportBtn, SIGNAL(clicked()), controller, SLOT(exportBtnClick()));
-
     // btn info
     infoBtn=new QPushButton;
     connect(infoBtn, SIGNAL(clicked()), controller, SLOT(infoBtnClick()));
@@ -99,8 +98,7 @@ void LandingWindow::setWinStyle(){
 
 void LandingWindow::fillCreatorsLyt()
 {
-    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat)
     if(settings.value("app/datapath").toString().isEmpty())
         while(settings.value("app/datapath").toString().isEmpty())
             emit importBtn->click();
