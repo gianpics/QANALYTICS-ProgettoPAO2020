@@ -15,19 +15,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-    account.cpp \
+SOURCES += account.cpp \
     content.cpp \
-   controller.cpp \
+    controller.cpp \
     creator.cpp \
     creatorlist.cpp \
     graphswindow.cpp \
     main.cpp \
     mainwindow.cpp \
-   landingwindow.cpp\
+    landingwindow.cpp\
     model.cpp \
     persona.cpp \
-   qinfodialog.cpp \
+    qinfodialog.cpp \
     qsettingdialog.cpp \
     sociallist.cpp \
     stats.cpp \
@@ -35,10 +34,10 @@ SOURCES += \
     stats_content.cpp \
     stats_facebook.cpp \
     stats_instagram.cpp \
-    stats_youtube.cpp
+    stats_youtube.cpp \
+    statslist.cpp \
 
-HEADERS += \
-    account.h \
+HEADERS += account.h \
     content.h \
     controller.h \
     creator.h \
@@ -56,7 +55,8 @@ HEADERS += \
     stats_content.h \
     stats_facebook.h \
     stats_instagram.h \
-    stats_youtube.h
+    stats_youtube.h \
+    statslist.h \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

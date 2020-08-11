@@ -21,6 +21,11 @@ void Stats_content::setWatchtime(u_int _watchtime)
 {
     watchtime = _watchtime;
 }
+
+Stats_content *Stats_content::clone() const
+{
+    return new Stats_content(*this);
+}
 ostream &operator<<(ostream &_os, const Stats_content &_sc)
 {
     _sc.print(_os);

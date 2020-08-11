@@ -12,6 +12,7 @@ public:
     virtual ~Stats_instagram() = default;
     u_int getFollowing() const;
     void setFollowing(u_int _following);
+    Stats_instagram* clone() const;
     virtual void print(ostream &_os) const;
     static void getStream(istream &_is, vector<const Stats_account*>& v);
 

@@ -12,6 +12,7 @@ public:
     virtual ~Stats_facebook() = default;
     u_int getPageLikes() const;
     void setPageLikes(u_int _page_likes);
+    Stats_facebook* clone() const;
     virtual void print(ostream &_os) const;
     static void getStream(istream &_is, vector<const Stats_account*>& v);
 

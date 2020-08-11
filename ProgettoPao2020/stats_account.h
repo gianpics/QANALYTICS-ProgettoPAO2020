@@ -12,6 +12,7 @@ public:
     virtual ~Stats_account() = 0;
     virtual void setFollowers(u_int _followers);
     virtual void print(ostream& _os) const;
+    virtual Stats_account* clone() const = 0;
 };
 ostream& operator<<(ostream& _os, const Stats_account &_sa);
 

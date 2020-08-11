@@ -29,6 +29,11 @@ void Stats_youtube::setAvgWatchtime(u_int _avg_watchtime)
 {
     avg_watchtime = _avg_watchtime;
 }
+
+Stats_youtube *Stats_youtube::clone() const
+{
+    return new Stats_youtube(*this);
+}
 void Stats_youtube::print(ostream &_os) const
 {
     Stats_account::print(_os);

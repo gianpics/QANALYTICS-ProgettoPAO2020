@@ -1,6 +1,6 @@
 #include "content.h"
 
-Content::Content(QDateTime _timestamp, content_type _type, const vector<const Stats_content*>& _stats, string _title, string _description) : title(_title), description(_description), timestamp(_timestamp), type(_type), stats(_stats){}
+Content::Content(QDateTime _timestamp, content_type _type, StatsList &_stats, string _title, string _description) : title(_title), description(_description), timestamp(_timestamp), type(_type), stats(_stats){}
 
 Content::Content(const Content &_content)
 {
@@ -8,10 +8,10 @@ Content::Content(const Content &_content)
     description = _content.description;
     timestamp = _content.timestamp;
     type = _content.type;
-    //stats=_content.stats;
-    for(auto a : _content.stats){
+    stats=_content.stats;
+    /*for(auto a : _content.stats){
         stats.push_back(new Stats_content(*a));
-    }
+    }*/
 }
 
 Content::~Content()
@@ -25,11 +25,11 @@ Content &Content::operator=(const Content &_content)
         title = _content.title;
         description = _content.description;
         timestamp = _content.timestamp;
-        //stats=_content.stats;
+        stats=_content.stats;
         type = _content.type;
-        for(auto a : _content.stats){
+        /*for(auto a : _content.stats){
             stats.push_back(new Stats_content(*a));
-        }
+        }*/
     }
     return *this;
 }
@@ -62,34 +62,34 @@ void Content::setType(content_type _type)
     type=_type;
 }
 
-const vector<const Stats_content*>& Content::getStats() const { return stats;}
+const StatsList& Content::getStats() const { return stats;}
 
-void Content::setStats(vector<const Stats_content*> &_stats)
+void Content::setStats(StatsList &_stats)
 {
-    //stats=_stats;
-    for(auto a : _stats){
+    stats=_stats;
+    /*for(auto a : _stats){
         stats.push_back(new Stats_content(*a));
-    }
+    }*/
 }
 
 void Content::print(ostream &_os) const
 {
-    _os << title << endl << description << endl << timestamp.toString().toStdString() << endl << type << endl;
+    /*_os << title << endl << description << endl << timestamp.toString().toStdString() << endl << type << endl;
     _os << "["<<endl;
     for(auto s : stats)
         _os << *s;
-    _os << "]"<<endl;
+    _os << "]"<<endl;*/
 }
 
 ostream &operator<<(ostream &_os, const Content &_c)
 {
-    _c.print(_os);
+    //_c.print(_os);
     return _os;
 }
 
 istream &operator>>(istream &_is, vector<Content> &_c)
 {
-    string tmp;
+    /*string tmp;
     getline(_is,tmp);
     if(tmp=="[")
         while(tmp!="]"){
@@ -108,7 +108,7 @@ istream &operator>>(istream &_is, vector<Content> &_c)
             _c.push_back(*c);
             getline(_is, tmp);
         }
-
+*/
     return _is;
 }
 

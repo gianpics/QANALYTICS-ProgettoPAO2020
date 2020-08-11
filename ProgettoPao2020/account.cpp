@@ -1,7 +1,7 @@
 #include "account.h"
 
 
-Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, const vector<const Stats_account*>& _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
+Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, StatsList _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
 
 Account::Account(const Account& _account)
 {
@@ -10,19 +10,17 @@ Account::Account(const Account& _account)
     email=_account.email;
     type=_account.type;
     contents=_account.contents;
-    //stats=_account.stats;
-    /*for(auto a : _account.contents){
-        contents.push_back(new Content(*a));
-    }*/
-    for(auto a : _account.stats){
-        if (auto *b = dynamic_cast<const Stats_youtube*>(a)) {
-            stats.push_back(new Stats_youtube(*b));
+    stats=_account.stats;
+    /*for(int i=0; i<_account.stats.size(); i++){
+        Stats *a = &_account.stats[i];
+        if (auto *b = dynamic_cast<const Stats_youtube*>(a)){
+            stats.PushBack(*new Stats_youtube(*b));
         }else if(auto *b = dynamic_cast<const Stats_facebook*>(a)){
-            stats.push_back(new Stats_facebook(*b));
+            stats.PushBack(*new Stats_facebook(*b));
         }else if(auto *b = dynamic_cast<const Stats_instagram*>(a)){
-            stats.push_back(new Stats_instagram(*b));
+            stats.PushBack(*new Stats_instagram(*b));
         }
-    }
+    }*/
 }
 
 Account& Account::operator=(const Account& _account)
@@ -33,11 +31,11 @@ Account& Account::operator=(const Account& _account)
         email=_account.email;
         type=_account.type;
         contents=_account.contents;
-        //stats=_account.stats;
+        stats=_account.stats;
         /*for(auto a : _account.contents){
             contents.push_back(new Content(*a));
         }*/
-        for(auto a : _account.stats){
+        /*for(auto a : _account.stats){
             if (auto *b = dynamic_cast<const Stats_youtube*>(a)) {
                 stats.push_back(new Stats_youtube(*b));
             }else if(auto *b = dynamic_cast<const Stats_facebook*>(a)){
@@ -45,7 +43,7 @@ Account& Account::operator=(const Account& _account)
             }else if(auto *b = dynamic_cast<const Stats_instagram*>(a)){
                 stats.push_back(new Stats_instagram(*b));
             }
-        }
+        }*/
     }
     return *this;
 }
@@ -90,11 +88,12 @@ void Account::setContents(vector<Content> &_contents)
     contents=_contents;
 }
 
-const vector<const Stats_account*>& Account::getStats() const {return stats;}
+const StatsList& Account::getStats() const {return stats;}
 
-void Account::setStats(vector<const Stats_account*> &_stats)
+void Account::setStats(StatsList &_stats)
 {
-    for(auto a : _stats){
+    stats=_stats;
+    /*for(auto a : _stats){
         if (auto *b = dynamic_cast<const Stats_youtube* const>(a)) {
             stats.push_back(new Stats_youtube(*b));
         }else if(auto *b = dynamic_cast<const Stats_facebook* const>(a)){
@@ -102,7 +101,7 @@ void Account::setStats(vector<const Stats_account*> &_stats)
         }else if(auto *b = dynamic_cast<const Stats_instagram* const>(a)){
             stats.push_back(new Stats_instagram(*b));
         }
-    }
+    }*/
 }
 
 string Account::getStringType() const
@@ -113,7 +112,7 @@ string Account::getStringType() const
         case youtube: return "Youtube";
     }
 }
-void Account::print(ostream &_os) const
+/*void Account::print(ostream &_os) const
 {
     _os<<getId()<<endl<<getUsername()<<endl<<getEmail()<<endl<<getType()<<endl;
     _os<<"["<<endl;
@@ -125,14 +124,14 @@ void Account::print(ostream &_os) const
     for(auto a: stats)
         _os << *a;
     _os<<"]"<<endl;
-}
+}*/
 
-ostream &operator<<(ostream &_os, const Account &_a)
+/*ostream &operator<<(ostream &_os, const Account &_a)
 {
     _a.print(_os);
     return _os;
-}
-istream &operator>>(istream &_is, vector<Account> &_v)
+}*/
+/*istream &operator>>(istream &_is, vector<Account> &_v)
 {
     string tmp;
     getline(_is, tmp);
@@ -166,5 +165,5 @@ istream &operator>>(istream &_is, vector<Account> &_v)
         getline(_is, tmp);
     }
     return _is;
-}
+}*/
 

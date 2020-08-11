@@ -43,12 +43,12 @@ u_int SocialList::size() const
     return list.size();
 }
 
-Account &SocialList::operator[](u_int i)
+const Account &SocialList::operator[](u_int i) const
 {
     return list.at(i);
 }
 
-const Account &SocialList::getAccountById(u_int _id)
+const Account &SocialList::getAccountById(u_int _id) const
 {
     for(u_int i=0;i<size();i++)
         if(list.at(i).getId()==_id)
@@ -60,7 +60,7 @@ void SocialList::print(ostream &_os) const
 {
     _os<<"[\n";
     for(u_int i=0; i<size(); i++){
-        _os << list.at(i);
+        //_os << list.at(i);
     }
     _os<<"]\n";
 }

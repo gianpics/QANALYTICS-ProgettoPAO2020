@@ -4,56 +4,24 @@
 
 class CreatorList
 {
-    private:
-        class node{
-            public:
-                Creator info;
-                node *prev, *next;
+private:
+    std::vector<Creator> info;
 
-                node(Creator& _info, node* _prev=nullptr, node* _next=nullptr): info(_info), prev(_prev), next(_next){}
-                ~node();
-        };
+public:
+    CreatorList();
+    CreatorList(Creator& c);
 
-        node *first, *last;
-
-    public:
-        CreatorList();
-        CreatorList(Creator& c);
-        //~CreatorList();
-
-        int getCreatorIndex(const Creator &c) const;
-        void InsertFront(Creator &c);
-        void InsertBack(Creator &c);
-        int size() const;
-        bool empty() const;
-        Creator RemoveAt(int i);
-        Creator RemoveNode(node* n);
-        Creator RemoveCreator(const Creator &c);
-        Creator RemoveBySSN(std::string ssn);
-        Creator& getCreatorBySSN(std::string _ssn);
-        Creator& operator[](int i) const;
-
-        class constiterator{
-            friend class CreatorList;
-
-            private:
-                node* ptr;
-                bool pastTheEnd;
-                constiterator(node* n, bool pte): ptr(n), pastTheEnd(pte){}
-            public:
-                constiterator(): ptr(nullptr), pastTheEnd(false){}
-                const Creator& operator*() const;
-                const Creator* operator->() const;
-                constiterator& operator++();
-                constiterator& operator--();
-                constiterator operator++(int);
-                constiterator operator--(int);
-                bool operator==(const constiterator &x) const;
-                bool operator!=(const constiterator &x) const;
-        };
-
-        constiterator begin() const;
-        constiterator end() const;
+    int getCreatorIndex(const Creator &c) const;
+    void InsertCreator(Creator &c);
+    int size() const;
+    bool empty() const;
+    Creator RemoveAt(int i);
+    Creator RemoveCreator(const Creator &c);
+    Creator RemoveBySSN(std::string ssn);
+    const Creator& getCreatorBySSN(std::string _ssn) const;
+    const Creator& operator[](unsigned int i) const;
+    std::vector<Creator>::const_iterator begin() const;
+    std::vector<Creator>::const_iterator end() const;
 
 };
 ostream& operator<<(ostream& _os, const CreatorList& _cl);

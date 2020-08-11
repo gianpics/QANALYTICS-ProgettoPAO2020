@@ -9,6 +9,11 @@ void Stats_instagram::setFollowing(u_int _following)
     following=_following;
 }
 
+Stats_instagram *Stats_instagram::clone() const
+{
+    return new Stats_instagram(*this);
+}
+
 void Stats_instagram::print(ostream &_os) const
 {
     Stats_account::print(_os);

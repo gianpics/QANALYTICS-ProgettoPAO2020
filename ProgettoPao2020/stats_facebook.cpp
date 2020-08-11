@@ -9,6 +9,11 @@ void Stats_facebook::setPageLikes(u_int _page_likes)
     page_likes = _page_likes;
 }
 
+Stats_facebook *Stats_facebook::clone() const
+{
+    return new Stats_facebook(*this);
+}
+
 void Stats_facebook::print(ostream &_os) const
 {
     Stats_account::print(_os);

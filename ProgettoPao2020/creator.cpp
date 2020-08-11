@@ -28,20 +28,20 @@ void Creator::setNickname(string _nickname)
 
 void Creator::print(ostream &_os) const
 {
-    Persona::print(_os);
+    /*Persona::print(_os);
     SocialList::print(_os);
-    _os<<getNickname()<<"\n";
+    _os<<getNickname()<<"\n";*/
 }
 
 ostream &operator<<(ostream &_os, const Creator &_c)
 {
-    _c.print(_os);
+    //_c.print(_os);
     return _os;
 }
 
 istream &operator>>(istream &_is, Creator &_c)
 {
-    string _fname, _lname, _ssn, _address, _vat, _nick;
+    /*string _fname, _lname, _ssn, _address, _vat, _nick;
     _is.ignore();
     getline(_is, _fname);
 
@@ -58,6 +58,6 @@ istream &operator>>(istream &_is, Creator &_c)
     _c.setSSN(_ssn);
     _c.setVat(_vat);
     _c.setSocialList(v);
-    _c.setNickname(_nick);
+    _c.setNickname(_nick);*/
     return _is;
 }

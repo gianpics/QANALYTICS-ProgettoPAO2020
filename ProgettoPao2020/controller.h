@@ -26,7 +26,7 @@ public:
     void fillStatsLyt(GraphsWindow*,QVBoxLayout*,QString);
     CreatorList* retrieveCreators();
     int getCreatorsNumber() const;
-    Creator* getCreatorAt(int i) const;
+    const Creator* getCreatorAt(int i) const;
     void restoreLandingWindow();
     QString getCreatorName() const;
     int getAccountsNumber() const;
