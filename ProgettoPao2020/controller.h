@@ -24,7 +24,7 @@ public:
     void setView(LandingWindow* _lw);
     void setView(GraphsWindow* _gw);
     void fillStatsLyt(GraphsWindow*,QVBoxLayout*,QString);
-    CreatorList* retrieveCreators();
+    void retrieveCreators();
     int getCreatorsNumber() const;
     const Creator* getCreatorAt(int i) const;
     void restoreLandingWindow();
