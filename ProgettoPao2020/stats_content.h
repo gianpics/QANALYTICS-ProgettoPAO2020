@@ -21,6 +21,7 @@ public:
     void setNum_comments(u_int _numcomments);
     void setViews(u_int _views);
     void setWatchtime(u_int _watchtime);
+    Stats_content* clone() const;
 
 };
 ostream &operator<<(ostream &_os, const Stats_content &_sa);

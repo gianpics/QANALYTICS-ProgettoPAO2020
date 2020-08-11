@@ -23,6 +23,7 @@ class Stats
         virtual void setCoverage(u_int _coverage);
         virtual void setLike(u_int _like);
         virtual void print(ostream& _os)const;
+        virtual Stats* clone() const = 0;
 };
 
 #endif // STATS_H

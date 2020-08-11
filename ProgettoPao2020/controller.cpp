@@ -171,7 +171,7 @@ int Controller::getCreatorsNumber() const
     return model->getListSize();
 }
 
-Creator *Controller::getCreatorAt(int i) const
+const Creator *Controller::getCreatorAt(int i) const
 {
     return model->getCreatorAt(i);
 }

@@ -26,11 +26,12 @@ void Model::setCategories(vector<u_int> *_id, QStringList * categories) const
 {
     QDate min(3000,12,30), max(0,0,0);
     for(auto a : *_id){
-        for(auto s : selected->getAccountById(a).getStats()){
-            if(s->getDate().addMonths(-1)<min)
-                min = s->getDate().addMonths(-1);
-            if(s->getDate().addMonths(-1)>max)
-                max = s->getDate().addMonths(-1);
+        StatsList s = selected->getAccountById(a).getStats();
+        for(int i=0;i<s.size(); i++){
+            if(s[i].getDate().addMonths(-1)<min)
+                min = s[i].getDate().addMonths(-1);
+            if(s[i].getDate().addMonths(-1)>max)
+                max = s[i].getDate().addMonths(-1);
         }
     }
     QDate q;
@@ -66,9 +67,9 @@ Model::Model(){reset();}
 
 void Model::setList(CreatorList *_cl){ list=_cl;}
 
-Creator* Model::getCreatorAt(int i) const
+const Creator* Model::getCreatorAt(int i) const
 {
-    return &(list->operator[](i));
+    return &list->operator[](i);
 }
 
 int Model::getListSize() const
@@ -129,7 +130,7 @@ QChart *Model::graphFollowers(vector<u_int>* _id_account) const
     //Puntatore all'account del sociale che mi interessa(fb, instagram, yt)
     const Account *acc;
     //Puntatore al vettore di stats dell'account(stats_fb, stats_instagram, stats_yt)
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     //Ciclo su tutti gli account social di un creator di cui l'utente vuole sapere le stats
     for(auto a : *_id_account){
         //imposto l'account
@@ -141,12 +142,13 @@ QChart *Model::graphFollowers(vector<u_int>* _id_account) const
         //imposto le stats per prendere ciò che mi serve
         stats = &acc->getStats();
         //ciclo per riempire il set di 0 nei mesi precedenti alla creazione dell'account
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
         //ciclo per riempire il set con le stats di mio interesse
-        for(auto s : *stats){
-            *set<<s->getFollowers();
+        for(int i=0; i<stats->size(); i++){
+            Stats_account *s = dynamic_cast<Stats_account*>(&stats->operator[](i));
+            *set<< s->getFollowers();
         }
         //aggiungo il set alla serie(serie conterrà i set di tutti i vari account social)
         series->append(set);
@@ -167,17 +169,18 @@ QChart *Model::graphImpression(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
-        for(auto s : *stats){
-            *set<<s->getImpression();
+        for(int i=0; i<stats->size(); i++){
+            Stats_account *s = dynamic_cast<Stats_account*>(&stats->operator[](i));
+            *set<< s->getImpression();
         }
         series->append(set);
     }
@@ -193,17 +196,18 @@ QChart *Model::graphCoverage(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
-        for(auto s : *stats){
-            *set<<s->getCoverage();
+        for(int i=0; i<stats->size(); i++){
+            Stats_account *s = dynamic_cast<Stats_account*>(&stats->operator[](i));
+            *set<< s->getCoverage();
         }
         series->append(set);
     }
@@ -219,17 +223,18 @@ QChart *Model::graphLike(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
-        for(auto s : *stats){
-            *set<<s->getLike();
+        for(int i=0; i<stats->size(); i++){
+            Stats_account *s = dynamic_cast<Stats_account*>(&stats->operator[](i));
+            *set<< s->getLike();
         }
         series->append(set);
     }
@@ -245,18 +250,19 @@ QChart *Model::graphPageLikes(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
         if(!(acc->getType()==facebook)) {throw "This account doesn't have Page Like Stats";}
-        for(auto s : *stats){
-            *set<< static_cast<const Stats_facebook*>(s)->getPageLikes();
+        for(int i=0; i<stats->size(); i++){
+            Stats_facebook *s = dynamic_cast<Stats_facebook*>(&stats->operator[](i));
+            *set<< s->getPageLikes();
         }
         series->append(set);
     }
@@ -272,21 +278,21 @@ QChart *Model::graphFollowing(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
         if(acc->getType()==facebook) {throw "This account doesn't have Following Stats";}
-        for(auto s : *stats){
-            if(dynamic_cast<const Stats_youtube*>(s))
-                *set<<static_cast<const Stats_youtube*>(s)->getFollowing();
+        for(int i=0; i<stats->size(); i++){
+            if(dynamic_cast<Stats_youtube*>(&stats->operator[](i)))
+                 *set << dynamic_cast<Stats_youtube*>(&stats->operator[](i))->getFollowing();
             else
-                *set<<static_cast<const Stats_instagram*>(s)->getFollowing();
+                 *set << dynamic_cast<Stats_instagram*>(&stats->operator[](i))->getFollowing();
         }
         series->append(set);
     }
@@ -303,18 +309,18 @@ QChart *Model::graphDonators(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
         if(!(acc->getType()==youtube)) {throw "This account doesn't have Donators Stats";}
-        for(auto s : *stats){
-            *set<< static_cast<const Stats_youtube*>(s)->getDonators();
+        for(int i=0; i<stats->size(); i++){
+            *set << dynamic_cast<Stats_youtube*>(&stats->operator[](i))->getDonators();
         }
         series->append(set);
     }
@@ -330,18 +336,18 @@ QChart *Model::graphTotalViews(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
         if(!(acc->getType()==youtube)) {throw "This account doesn't have Total Views Stats";}
-        for(auto s : *stats){
-            *set<< static_cast<const Stats_youtube*>(s)->getTotalViews();
+        for(int i=0; i<stats->size(); i++){
+            *set << dynamic_cast<Stats_youtube*>(&stats->operator[](i))->getTotalViews();
         }
         series->append(set);
     }
@@ -357,18 +363,18 @@ QChart *Model::graphAvgWatchtime(vector<u_int>* _id_account) const
     setCategories(_id_account, &categories);
     QBarSeries* series = new QBarSeries();
     const Account *acc;
-    const vector<const Stats_account*>* stats;
+    const StatsList* stats;
     for(auto a : *_id_account){
         acc = &selected->getAccountById(a);
         QBarSet *set = new QBarSet(QString::fromStdString(acc->getStringType()));
         setQBarSetColor(set);
         stats = &acc->getStats();
-        for(auto i = 0; i<categories.size() && categories.at(i) != stats->at(0)->getDate().addMonths(-1).toString("MMM yyyy") ; i++){
+        for(auto i = 0; i<categories.size() && categories.at(i) != stats->operator[](0).getDate().addMonths(-1).toString("MMM yyyy") ; i++){
             *set << 0;
         }
         if(!(acc->getType()==youtube)) {throw "This account doesn't have Average Stats";}
-        for(auto s : *stats){
-            *set<< static_cast<const Stats_youtube*>(s)->getAvgWatchtime();
+        for(int i=0; i<stats->size(); i++){
+            *set << dynamic_cast<Stats_youtube*>(&stats->operator[](i))->getAvgWatchtime();
         }
         series->append(set);
     }
@@ -389,7 +395,7 @@ void Model::exportList(string path)
     ofstream write;
     write.open(path);
     if(write.is_open()){
-        write << *list;
+        //write << *list;
         write.close();
     }
 }
@@ -401,7 +407,7 @@ void Model::importList(string path)
     ifstream read;
     read.open(path);
     if(read.is_open()){
-       read >> *list;
+       //read >> *list;
        read.close();
     }
 }

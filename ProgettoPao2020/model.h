@@ -11,7 +11,7 @@ class Model
 {
 private:
     CreatorList* list;
-    Creator* selected;
+    const Creator* selected;
     void setChart(QBarSeries* qls, QStringList * qsl, QChart* chart) const;
     void setCategories(vector<u_int>* _id, QStringList * categories) const;
     void setQBarSetColor(QBarSet* qbs) const;
@@ -19,7 +19,7 @@ public:
     Model();
     void setList(CreatorList * _cl);
     int getListSize() const;
-    Creator* getCreatorAt(int i) const;
+    const Creator* getCreatorAt(int i) const;
     void setSelected(std::string _SSN);
     int getSelectedAccountsNumber() const;
     account_type getSelectedAccountType(int i) const;
