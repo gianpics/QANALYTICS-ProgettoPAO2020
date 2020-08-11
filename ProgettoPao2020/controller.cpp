@@ -312,14 +312,39 @@ void Controller::importBtnClick()
 
 void Controller::importData(QString path)
 {
-    model->importList(path.toStdString());
+    try {
+        model->importList(path.toStdString());
+    } catch (exception e) {
+        // notifica il fallimento dell'import
+        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+        QMessageBox wAlert(lw);
+        wAlert.setWindowTitle("Error");
+        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+        wAlert.setIcon(QMessageBox::Warning);
+        wAlert.setStandardButtons(QMessageBox::Ok);
+        wAlert.setText("An error has occured while importing the data");
+        wAlert.setInformativeText("The application will terminate.");
+        wAlert.exec();
+        abort();
+    }
 }
 
 void Controller::exportBtnClick()
 {
-    QString path=QFileDialog::getSaveFileName(gw, "Choose file data to import","","Text (*.txt)");
-    model->exportList(path.toStdString());
-
+    try {
+        QString path=QFileDialog::getSaveFileName(gw, "Choose file data to import","","Text (*.txt)");
+        model->exportList(path.toStdString());
+    } catch (exception e) {
+        // notifica il fallimento dell'export
+        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+        QMessageBox wAlert(lw);
+        wAlert.setWindowTitle("Error");
+        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+        wAlert.setIcon(QMessageBox::Warning);
+        wAlert.setStandardButtons(QMessageBox::Ok);
+        wAlert.setText("An error has occured while exporting the data");
+        wAlert.exec();
+    }
 }
 
 void Controller::infoBtnClick()
