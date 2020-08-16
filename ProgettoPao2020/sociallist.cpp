@@ -65,3 +65,25 @@ void SocialList::print(ostream &_os) const
     _os<<"]\n";
 }
 
+void SocialList::read(const QJsonObject &_json)
+{
+    QJsonArray socialArray = _json["social_list"].toArray();
+    for(int i=0; i<socialArray.size(); ++i){
+        QJsonObject socialObj = socialArray[i].toObject();
+        Account a;
+        a.read(socialObj);
+        addAccount(a);
+    }
+}
+
+void SocialList::write(QJsonObject &_json) const
+{
+    QJsonArray jsl;
+    for(const Account &a : list){
+        QJsonObject acc;
+        a.write(acc);
+        jsl.append(acc);
+    }
+    _json["social_list"] = jsl;
+}
+

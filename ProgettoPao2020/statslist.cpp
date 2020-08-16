@@ -113,6 +113,26 @@ Stats &StatsList::operator[](int i) const
     throw "Out of range.";
 }
 
+void StatsList::read(const QJsonObject &_json)
+{
+    /*while(_json.contains("stats")){
+        QJsonObject statObj = _json["stats"].toObject();
+        Stats s;
+        s.read(statObj);
+    }*/
+}
+
+void StatsList::write(QJsonObject &_json) const
+{
+    constiterator c;
+    if(first!=nullptr)
+        for(c=begin(); c!=end(); c++){
+            QJsonObject statObj;
+            c.ptr->info->write(statObj);
+            _json["stats"] = statObj;
+        }
+}
+
 StatsList::constiterator StatsList::begin() const
 {
     return constiterator(first, false);

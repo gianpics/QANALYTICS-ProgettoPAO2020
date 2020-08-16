@@ -13,6 +13,10 @@ Content::Content(const Content &_content)
         stats.push_back(new Stats_content(*a));
     }*/
 }
+Content::Content()
+{
+
+}
 
 Content::~Content()
 {
@@ -55,7 +59,27 @@ void Content::setTimeStamp(QDateTime _timestamp)
     timestamp=_timestamp;
 }
 
-content_type Content::getType() const{return type;}
+string Content::getType() const{
+    switch(type){
+        case 0:
+            return "image";
+            break;
+        case 1:
+            return "video";
+            break;
+        case 2:
+        return "livestream";
+            break;
+        case 3:
+            return "story";
+            break;
+        case 4:
+            return "text";
+            break;
+    }
+}
+
+
 
 void Content::setType(content_type _type)
 {
@@ -79,6 +103,37 @@ void Content::print(ostream &_os) const
     for(auto s : stats)
         _os << *s;
     _os << "]"<<endl;*/
+}
+
+void Content::read(const QJsonObject &_json)
+{
+
+    if(_json.contains("title"))
+        title = _json["title"].toString().toStdString();
+
+    if(_json.contains("description"))
+        description = _json["description"].toString().toStdString();
+
+    if(_json.contains("timestamp"))
+        timestamp = QDateTime::fromString(_json["timestamp"].toString());
+
+    if(_json.contains("content_type"))
+        type = content_type(_json["content_type"].toInt());
+
+    Stats_content sc;
+    sc.read(_json["stats"].toObject());
+    stats.PushBack(sc);
+
+}
+
+void Content::write(QJsonObject &_json) const
+{
+    _json["title"] = QString::fromStdString(title);
+    _json["description"] = QString::fromStdString(description);
+    _json["timestamp"] = timestamp.toString();
+    _json["content_type"] = type;//QString::fromStdString(getType());
+    stats.write(_json);
+
 }
 
 ostream &operator<<(ostream &_os, const Content &_c)

@@ -12,6 +12,7 @@ private:
     u_int avg_watchtime;
 
 public:
+    Stats_youtube();
     Stats_youtube(QDate _date, u_int _impression = 0,  u_int _coverage = 0, u_int _like = 0, u_int _followers = 0, u_int _following = 0, u_int _donators = 0, u_int _totalviews = 0, u_int _avgwatchtime = 0);
     virtual ~Stats_youtube() = default;
     u_int getFollowing() const;
@@ -26,6 +27,8 @@ public:
     virtual void print(ostream &_os) const;
     static void getStream(istream &_is, vector<const Stats_account*>& v);
 
+    void read(const QJsonObject &_json);
+    void write(QJsonObject &_json) const;
 };
 ostream& operator<<(ostream& _os, const Stats_youtube& _sy);
 #endif // STATS_YOUTUBE_H

@@ -12,7 +12,8 @@
 
 int main(int argc, char *argv[])
 {
-    /*QCoreApplication::setOrganizationName("QANALYTICS");
+    /*
+    QCoreApplication::setOrganizationName("QANALYTICS");
     QCoreApplication::setApplicationName("QANALYTICS");
     QSettings settings("QANALYTICS", "QANALYTICS");
     QApplication a(argc, argv);
@@ -24,7 +25,7 @@ int main(int argc, char *argv[])
     return a.exec();*/
     std::cout << "hello world" << std::endl;
 
-    StatsList listsc;
+    /*StatsList listsc;
     std::vector<Content> lc;
     StatsList listsa;
     std::vector<Account> la;
@@ -86,7 +87,10 @@ int main(int argc, char *argv[])
 
     la.clear(); la.push_back(acc1a);la.push_back(acc1b);la.push_back(acc1c);
     Creator c1(la, "Giacomo", "SASSARO", "SSSGCM", "Via roma", "000012562", "Panz");
-/*---------------------------------------------------------------------------------------------------------------------
+
+
+
+    /*---------------------------------------------------------------------------------------------------------------------
     //INSERIMENTO DATI CREATOR 2
     //STATS_CONTENT     QDATE, IMPRESSION, COVERAGE, LIKE, DISLIKE, NUMCOMMENTS, VIEWS, WATCHTIME
     Stats_content sc7a(*new QDate(2020, 02, 1), 40, 200, 45, 0, 10, 150, 0);      //IMAGE
@@ -141,10 +145,25 @@ int main(int argc, char *argv[])
     Creator c3(la, "Gianpiero Giuseppe", "TOVO", "GNPTVO", "Via milano", "000098562", "Gianpics");
 //----------------------------------------------------------------------------------------------------------------------------*/
     //CreatorList *cl = new CreatorList(c1);
-    //cl->InsertBack(c2);
-    //cl->InsertBack(c3);
+   // cl->InsertBack(c1);
+   // cl->InsertBack(c1);
     //model->setList(cl);
     //return cl;
+    Creator c1;
+    QFile f("prova_json.txt");
+    if(f.open(QIODevice::ReadOnly)){
+        QByteArray load = f.readAll();
+        QJsonDocument jd = QJsonDocument::fromJson(load);
+        c1.read(jd.object());
+
+    }
+    f.close();
+    fstream fs;
+    fs.open("prova_json1.txt", fstream::out);
+    QJsonObject json;
+    c1.write(json);
+    fs << QJsonDocument(json).toJson().toStdString();
+    fs.close();
 
     return 0;
 }

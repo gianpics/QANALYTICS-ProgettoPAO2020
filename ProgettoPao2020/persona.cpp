@@ -67,3 +67,31 @@ void Persona::print(ostream &_os) const
 
 }
 
+void Persona::read(const QJsonObject & _json)
+{
+    if (_json.contains("first_name"))
+        fname = _json["first_name"].toString().toStdString();
+
+    if (_json.contains("last_name"))
+        lname = _json["last_name"].toString().toStdString();
+
+    if (_json.contains("SSN"))
+        ssn = _json["SSN"].toString().toStdString();
+
+    if (_json.contains("address"))
+        address = _json["address"].toString().toStdString();
+
+    if (_json.contains("VAT"))
+        vat = _json["VAT"].toString().toStdString();
+
+}
+
+void Persona::write(QJsonObject &_json) const
+{
+    _json["first_name"] = QString::fromStdString(fname);
+    _json["last_name"] = QString::fromStdString(lname);
+    _json["SSN"] = QString::fromStdString(ssn);
+    _json["address"] = QString::fromStdString(address);
+    _json["VAT"] = QString::fromStdString(vat);
+}
+

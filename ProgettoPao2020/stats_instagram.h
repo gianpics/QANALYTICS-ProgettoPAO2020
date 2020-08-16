@@ -8,6 +8,7 @@ class Stats_instagram : public Stats_account
 private:
     u_int following;
 public:
+    Stats_instagram();
     Stats_instagram(QDate _date, u_int _impression = 0,  u_int _coverage = 0, u_int _like = 0, u_int _followers = 0, u_int _following = 0);
     virtual ~Stats_instagram() = default;
     u_int getFollowing() const;
@@ -16,6 +17,8 @@ public:
     virtual void print(ostream &_os) const;
     static void getStream(istream &_is, vector<const Stats_account*>& v);
 
+    virtual void read(const QJsonObject &_json);
+    virtual void write(QJsonObject &_json) const;
 };
 ostream& operator<<(ostream& _os, const Stats_instagram &_si);
 

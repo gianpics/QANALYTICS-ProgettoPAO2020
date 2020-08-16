@@ -5,6 +5,9 @@
 #include <stats_youtube.h>
 #include <stats_instagram.h>
 #include <content.h>
+#include <QJsonObject>
+#include <QJsonArray>
+
 typedef unsigned int u_int;
 using namespace std;
 enum account_type{youtube = 0, facebook = 1, instagram = 2};
@@ -19,6 +22,7 @@ private:
     //vector<const Stats_account*> stats;
     StatsList stats;
 public:
+    Account();
     Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& contents, StatsList stats);
     Account(const Account& _account);
     Account& operator=(const Account& _account);
@@ -35,7 +39,10 @@ public:
     const StatsList& getStats() const;
     void setStats(StatsList &_stats);
     string getStringType() const;
+    account_type getTypefromString(string t)const;
     void print(ostream& _os)const;
+    void read(const QJsonObject &_json);
+    void write(QJsonObject &_json) const;
 };
 ostream& operator<<(ostream& _os, const Account& _a);
 istream& operator>>(istream& _is, vector<Account>& _a);
