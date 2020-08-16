@@ -3,6 +3,7 @@
 #include "sociallist.h"
 #include "persona.h"
 #include "vector"
+#include "QJsonObject"
 class Creator : public Persona, public SocialList
 {
 private:
@@ -18,6 +19,8 @@ public:
     string getNickname() const;
     void setNickname(string _nickname);
     void print(ostream &_os) const override;
+    void read(const QJsonObject &_json) override;
+    void write(QJsonObject &_json) const override;
 };
 ostream &operator<<(ostream& _os, const Creator& _c);
 istream &operator>>(istream &_is, Creator &_c);

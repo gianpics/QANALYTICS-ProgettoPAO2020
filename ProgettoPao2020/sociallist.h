@@ -1,6 +1,8 @@
 #ifndef SOCIALLIST_H
 #define SOCIALLIST_H
 #include "account.h"
+#include "QJsonObject"
+#include "QJsonArray"
 
 
 class SocialList
@@ -27,6 +29,8 @@ public:
         }
     }
     virtual void print(ostream &_os) const;
+    virtual void read(const QJsonObject &_json);
+    virtual void write(QJsonObject &_json) const;
 
 };
 #endif // SOCIALLIST_H

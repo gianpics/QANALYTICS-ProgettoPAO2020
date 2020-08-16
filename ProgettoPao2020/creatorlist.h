@@ -22,6 +22,8 @@ public:
     const Creator& operator[](unsigned int i) const;
     std::vector<Creator>::const_iterator begin() const;
     std::vector<Creator>::const_iterator end() const;
+    void read(const QJsonObject &_json);
+    void write(QJsonObject &_json) const;
 
 };
 ostream& operator<<(ostream& _os, const CreatorList& _cl);

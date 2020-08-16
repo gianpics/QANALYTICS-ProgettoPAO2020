@@ -2,6 +2,7 @@
 #define PERSONA_H
 #include<string>
 #include <iostream>
+#include <QJsonObject>
 using namespace std;
 class Persona
 {
@@ -28,6 +29,8 @@ class Persona
         virtual void setAddress(std::string _vat);
         virtual void setVat(std::string _address);
         virtual void print(ostream& _os) const;
+        virtual void read(const QJsonObject &json);
+        virtual void write(QJsonObject &json) const;
 
 };
 

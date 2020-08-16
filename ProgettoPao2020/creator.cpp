@@ -33,6 +33,21 @@ void Creator::print(ostream &_os) const
     _os<<getNickname()<<"\n";*/
 }
 
+void Creator::read(const QJsonObject &_json)
+{
+    Persona::read(_json);
+    if(_json.contains("nickname") )
+        nickname = _json["nickname"].toString().toStdString();
+    SocialList::read(_json);
+}
+
+void Creator::write(QJsonObject &_json) const
+{
+    Persona::write(_json);
+    _json["nickname"] = QString::fromStdString(nickname);
+    SocialList::write(_json);
+}
+
 ostream &operator<<(ostream &_os, const Creator &_c)
 {
     //_c.print(_os);

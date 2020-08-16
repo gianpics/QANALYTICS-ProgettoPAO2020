@@ -1,5 +1,10 @@
 #include "stats_youtube.h"
 
+Stats_youtube::Stats_youtube()
+{
+
+}
+
 Stats_youtube::Stats_youtube(QDate _date, u_int _impression,  u_int _coverage, u_int _like, u_int _followers, u_int _following, u_int _donators, u_int _totalviews, u_int _avgwatchtime) : Stats_account(_date, _impression, _coverage, _like, _followers), following(_following), donators(_donators), total_views(_totalviews), avg_watchtime(_avgwatchtime){}
 
 u_int Stats_youtube::getFollowing() const{ return following;}
@@ -63,6 +68,27 @@ void Stats_youtube::getStream(istream &_is, vector<const Stats_account*> &v)
             v.push_back(new Stats_youtube(QDate::fromString(QString::fromStdString(_date)), stoi(_impression), stoi(_coverage), stoi(_like), stoi(_followers), stoi(_following), stoi(_donators), stoi(_totalviews), stoi(_avgtime)));
             getline(_is, tmp);
         }
+}
+void Stats_youtube::read(const QJsonObject &_json)
+{
+    Stats_account::read(_json);
+    if(_json.contains("followers"))
+        following = _json["followers"].toInt();
+    if(_json.contains("donators"))
+        donators = _json["donators"].toInt();
+    if(_json.contains("total_views"))
+        total_views = _json["total_views"].toInt();
+    if(_json.contains("avg_watchtime"))
+        avg_watchtime = _json["avg_watchtime"].toInt();
+}
+
+void Stats_youtube::write(QJsonObject &_json) const
+{
+    Stats_account::write(_json);
+    _json["followers"] = qint64(following);
+    _json["donators"] = qint64(donators);
+    _json["total_views"] = qint64(total_views);
+    _json["avg_watchtime"] = qint64(avg_watchtime);
 }
 ostream &operator<<(ostream &_os, const Stats_youtube &_sy)
 {
