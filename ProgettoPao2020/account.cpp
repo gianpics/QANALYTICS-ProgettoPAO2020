@@ -15,16 +15,6 @@ Account::Account(const Account& _account)
     type=_account.type;
     contents=_account.contents;
     stats=_account.stats;
-    /*for(int i=0; i<_account.stats.size(); i++){
-        Stats *a = &_account.stats[i];
-        if (auto *b = dynamic_cast<const Stats_youtube*>(a)){
-            stats.PushBack(*new Stats_youtube(*b));
-        }else if(auto *b = dynamic_cast<const Stats_facebook*>(a)){
-            stats.PushBack(*new Stats_facebook(*b));
-        }else if(auto *b = dynamic_cast<const Stats_instagram*>(a)){
-            stats.PushBack(*new Stats_instagram(*b));
-        }
-    }*/
 }
 
 Account& Account::operator=(const Account& _account)
@@ -36,18 +26,6 @@ Account& Account::operator=(const Account& _account)
         type=_account.type;
         contents=_account.contents;
         stats=_account.stats;
-        /*for(auto a : _account.contents){
-            contents.push_back(new Content(*a));
-        }*/
-        /*for(auto a : _account.stats){
-            if (auto *b = dynamic_cast<const Stats_youtube*>(a)) {
-                stats.push_back(new Stats_youtube(*b));
-            }else if(auto *b = dynamic_cast<const Stats_facebook*>(a)){
-                stats.push_back(new Stats_facebook(*b));
-            }else if(auto *b = dynamic_cast<const Stats_instagram*>(a)){
-                stats.push_back(new Stats_instagram(*b));
-            }
-        }*/
     }
     return *this;
 }
@@ -58,8 +36,6 @@ void Account::setId(u_int _id)
 {
     id=_id;
 }
-
-//void Account::setId(u_int _id){id=_id;}
 
 string Account::getUsername() const {return username;}
 
@@ -97,15 +73,6 @@ const StatsList& Account::getStats() const {return stats;}
 void Account::setStats(StatsList &_stats)
 {
     stats=_stats;
-    /*for(auto a : _stats){
-        if (auto *b = dynamic_cast<const Stats_youtube* const>(a)) {
-            stats.push_back(new Stats_youtube(*b));
-        }else if(auto *b = dynamic_cast<const Stats_facebook* const>(a)){
-            stats.push_back(new Stats_facebook(*b));
-        }else if(auto *b = dynamic_cast<const Stats_instagram* const>(a)){
-            stats.push_back(new Stats_instagram(*b));
-        }
-    }*/
 }
 
 string Account::getStringType() const
@@ -184,58 +151,4 @@ void Account::write(QJsonObject &_json) const
     _json["contents"]=jc;
     stats.write(_json);
 }
-/*void Account::print(ostream &_os) const
-{
-    _os<<getId()<<endl<<getUsername()<<endl<<getEmail()<<endl<<getType()<<endl;
-    _os<<"["<<endl;
-    for(auto a: contents){
-        _os << a;
-    }
-    _os<<"]"<<endl;
-    _os<<"["<<endl;
-    for(auto a: stats)
-        _os << *a;
-    _os<<"]"<<endl;
-}*/
-
-/*ostream &operator<<(ostream &_os, const Account &_a)
-{
-    _a.print(_os);
-    return _os;
-}*/
-/*istream &operator>>(istream &_is, vector<Account> &_v)
-{
-    string tmp;
-    getline(_is, tmp);
-    while(tmp!="]"){
-        string _id,_username, _email,_type;
-        if(tmp=="[")
-            getline(_is, _id);
-        else
-            _id=tmp;
-        getline(_is, _username);
-        getline(_is, _email);
-        getline(_is, _type);
-        vector<Content> _contents;
-        vector<const Stats_account*> _stats;
-        _is >> _contents;
-        switch (stoi(_type)) {
-            case 0:         //yt
-                Stats_youtube::getStream(_is, _stats);
-            break;
-            case 1:         //fb
-
-                Stats_facebook::getStream(_is, _stats);
-            break;
-            case 2:         //ig
-
-                Stats_instagram::getStream(_is, _stats);
-            break;
-        }
-        Account *_a = new Account(stoi(_id), _username, _email, account_type(stoi(_type)), _contents, _stats);
-        _v.push_back(*_a);
-        getline(_is, tmp);
-    }
-    return _is;
-}*/
 

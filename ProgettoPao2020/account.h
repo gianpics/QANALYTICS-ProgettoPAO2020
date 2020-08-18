@@ -19,7 +19,6 @@ private:
     string email;
     account_type type;
     vector<Content> contents;
-    //vector<const Stats_account*> stats;
     StatsList stats;
 public:
     Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& contents, StatsList& stats);
@@ -40,12 +39,9 @@ public:
     void setStats(StatsList &_stats);
     string getStringType() const;
     account_type getTypefromString(string t)const;
-    void print(ostream& _os)const;
     void read(const QJsonObject &_json);
     void write(QJsonObject &_json) const;
 };
-ostream& operator<<(ostream& _os, const Account& _a);
-istream& operator>>(istream& _is, vector<Account>& _a);
 
 
 #endif // ACCOUNT_H
