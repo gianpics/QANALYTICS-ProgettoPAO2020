@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
     LandingWindow lw(&c);
     c.setView(&lw);
     lw.show();
-    return a.exec();*/
-    std::cout << "hello world" << std::endl;
+    return a.exec();
 
+/*---------------------------------------------------------------------------------------------------------------------
     /*StatsList listsc;
     std::vector<Content> lc;
     StatsList listsa;

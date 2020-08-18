@@ -1,13 +1,12 @@
 #include "account.h"
 
 
+Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, StatsList& _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
+
 Account::Account()
 {
 
 }
-
-Account::Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& _contents, StatsList _stats) : id(_id), username(_username), email(_email), type(_type), contents(_contents), stats(_stats){}
-
 Account::Account(const Account& _account)
 {
     id=_account.id;

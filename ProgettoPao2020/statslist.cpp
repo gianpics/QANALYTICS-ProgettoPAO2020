@@ -10,7 +10,8 @@ StatsList::StatsList(const StatsList &s)
         for(int i = 0; i<s.size(); i++){
             if(i==0)
                 first=last=new node(&s[0], nullptr, nullptr);
-            PushBack(s[i]);
+            else
+                PushBack(s[i]);
         }
     }
 }
@@ -23,7 +24,8 @@ StatsList &StatsList::operator=(const StatsList &s)
             for(int i = 0; i<s.size(); i++){
                 if(i==0)
                     first=last=new node(&s[0], nullptr, nullptr);
-                PushBack(s[i]);
+                else
+                    PushBack(s[i]);
             }
         }
     }

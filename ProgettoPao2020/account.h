@@ -22,8 +22,8 @@ private:
     //vector<const Stats_account*> stats;
     StatsList stats;
 public:
+    Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& contents, StatsList& stats);
     Account();
-    Account(u_int _id, string _username, string _email, account_type _type, const vector<Content>& contents, StatsList stats);
     Account(const Account& _account);
     Account& operator=(const Account& _account);
     u_int getId() const;
