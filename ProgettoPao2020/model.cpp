@@ -392,22 +392,26 @@ void Model::reset()
 
 void Model::exportList(string path)
 {
-    ofstream write;
-    write.open(path);
-    if(write.is_open()){
-        //write << *list;
-        write.close();
-    }
+
+    ofstream fs;
+    fs.open(path);
+    QJsonObject json;
+    list->write(json);
+    fs << QJsonDocument(json).toJson().toStdString();
+    fs.close();
 }
 
 void Model::importList(string path)
 {
     reset();
 
-    ifstream read;
-    read.open(path);
-    if(read.is_open()){
-       //read >> *list;
-       read.close();
+    QFile f(QString::fromStdString(path));
+    if(f.open(QIODevice::ReadOnly)){
+        QByteArray load = f.readAll();
+        QJsonDocument jd = QJsonDocument::fromJson(load);
+        list->read(jd.object());
     }
+    f.close();
+
+
 }
