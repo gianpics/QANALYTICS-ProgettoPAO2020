@@ -39,12 +39,6 @@ Stats_youtube *Stats_youtube::clone() const
 {
     return new Stats_youtube(*this);
 }
-void Stats_youtube::print(ostream &_os) const
-{
-    Stats_account::print(_os);
-    _os<<getFollowing()<<endl<<getDonators()<<endl<<getTotalViews()<<endl<<getAvgWatchtime()<<endl;
-
-}
 
 void Stats_youtube::getStream(istream &_is, vector<const Stats_account*> &v)
 {
@@ -89,9 +83,4 @@ void Stats_youtube::write(QJsonObject &_json) const
     _json["donators"] = qint64(donators);
     _json["total_views"] = qint64(total_views);
     _json["avg_watchtime"] = qint64(avg_watchtime);
-}
-ostream &operator<<(ostream &_os, const Stats_youtube &_sy)
-{
-    _sy.print(_os);
-    return _os;
 }

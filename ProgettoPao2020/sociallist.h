@@ -23,12 +23,7 @@ public:
     u_int size() const ;
     const Account &operator[](u_int i) const;
     const Account& getAccountById(u_int id) const;
-    virtual void setSocialList(const vector<Account> &v){
-        for(auto a : v){
-            list.push_back(a);
-        }
-    }
-    virtual void print(ostream &_os) const;
+    virtual void setSocialList(const vector<Account> &v);
     virtual void read(const QJsonObject &_json);
     virtual void write(QJsonObject &_json) const;
 

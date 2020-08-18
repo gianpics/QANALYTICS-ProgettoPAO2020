@@ -36,8 +36,3 @@ void Stats_account::write(QJsonObject &_json) const
     _json["followers"] = qint64(followers);
 }
 
-ostream &operator<<(ostream &_os, const Stats_account &_sa)
-{
-    _sa.print(_os);
-    return _os;
-}

@@ -41,6 +41,4 @@ class Content
         void read(const QJsonObject &_json);
         void write(QJsonObject &_json) const;
 };
-ostream &operator<<(ostream& _os, const Content& _c);
-istream &operator>>(istream &_is, vector<Content> &_c);
 #endif

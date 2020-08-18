@@ -27,7 +27,5 @@ public:
     virtual void write(QJsonObject &_json) const;
 
 };
-ostream &operator<<(ostream &_os, const Stats_content &_sa);
-istream &operator>>(istream &_is, vector<const Stats_content *> &_v);
 
 #endif // STATS_CONTENT_H

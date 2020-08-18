@@ -1,4 +1,4 @@
-#ifndef STATS_ACCOUNT_H
+ #ifndef STATS_ACCOUNT_H
 #define STATS_ACCOUNT_H
 #include <stats.h>
 
@@ -17,6 +17,5 @@ public:
     virtual void read(const QJsonObject &_json);
     virtual void write(QJsonObject &_json) const;
 };
-ostream& operator<<(ostream& _os, const Stats_account &_sa);
 
 #endif // STATS_ACCOUNT_H
