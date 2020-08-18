@@ -45,21 +45,21 @@ void Stats::print(ostream &_os) const
 void Stats::read(const QJsonObject &_json)
 {
     if(_json.contains("date") && _json.value("date").isString())
-        date = QDate::fromString(_json.value("date").toString());
+        date = QDate::fromString(_json.value("date").toString(), Qt::ISODate);
 
     if(_json.contains("impression"))
-        impression = _json.value("impression").toInt();
+        impression = (u_int)_json.value("impression").toInt();
 
     if(_json.contains("coverage"))
-        coverage = _json.value("coverage").toInt();
+        coverage = (u_int) _json.value("coverage").toInt();
 
     if(_json.contains("like"))
-        like = _json.value("like").toInt();
+        like = (u_int) _json.value("like").toInt();
 }
 
 void Stats::write(QJsonObject &_json) const
 {
-    _json["date"] = date.toString();
+    _json["date"] = date.toString(Qt::ISODate);
     _json["coverage"] = qint64(coverage);
     _json["impression"] = qint64(impression);
     _json["like"] = qint64(like);

@@ -112,7 +112,11 @@ void Account::read(const QJsonObject &_json)
             contents.push_back(c);
         }
     }
-    QJsonObject statsobj = _json["stats"].toObject();
+    StatsList s;
+    s.read(_json);
+    stats = s;
+
+    /*QJsonObject statsobj = _json["stats"].toObject();
     switch (type) {
         case instagram: {
             Stats_instagram si;
@@ -132,7 +136,7 @@ void Account::read(const QJsonObject &_json)
             stats.PushBack(sy);
             break;
         }
-    }
+    }*/
 
 }
 

@@ -1,6 +1,10 @@
 #ifndef STATSLIST_H
 #define STATSLIST_H
-#include <stats.h>
+#include <stats_content.h>
+#include <stats_facebook.h>
+#include <stats_instagram.h>
+#include <stats_youtube.h>
+#include "QJsonArray"
 
 class StatsList
 {
