@@ -22,7 +22,6 @@ SOURCES += account.cpp \
     creatorlist.cpp \
     graphswindow.cpp \
     main.cpp \
-    mainwindow.cpp \
     landingwindow.cpp\
     model.cpp \
     persona.cpp \
@@ -44,7 +43,6 @@ HEADERS += account.h \
     creatorlist.h \
     graphswindow.h \
     landingwindow.h \
-    mainwindow.h \
     model.h \
     persona.h \
     qinfodialog.h \
