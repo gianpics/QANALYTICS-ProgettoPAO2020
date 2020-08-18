@@ -6,6 +6,7 @@
 #include <stats_content.h>
 #include <vector>
 #include <statslist.h>
+#include <QJsonObject>
 
 using namespace std;
 typedef unsigned int u_int;
@@ -21,6 +22,7 @@ class Content
         StatsList stats;
 
     public:
+        Content();
         Content(QDateTime _timestamp, content_type _type, StatsList &_stats, string _title = "", string _description = "");
         Content(const Content& _content);
         virtual ~Content();
@@ -31,11 +33,13 @@ class Content
         void setDescription(string _description);
         QDateTime getTimestamp() const;
         void setTimeStamp(QDateTime _timestamp);
-        content_type getType() const;
+        string getType() const;
         void setType(content_type _type);
         const StatsList& getStats() const;
         void setStats(StatsList &_stats);
         virtual void print(ostream &_os) const;
+        void read(const QJsonObject &_json);
+        void write(QJsonObject &_json) const;
 };
 ostream &operator<<(ostream& _os, const Content& _c);
 istream &operator>>(istream &_is, vector<Content> &_c);

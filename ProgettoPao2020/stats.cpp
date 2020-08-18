@@ -1,5 +1,10 @@
 #include "stats.h"
 
+Stats::Stats()
+{
+
+}
+
 Stats::Stats(QDate _date, u_int _impression, u_int _coverage, u_int _like) : date(_date), impression(_impression), coverage(_coverage), like(_like){}
 
 QDate Stats::getDate() const{ return date;}
@@ -35,5 +40,28 @@ void Stats::setLike(u_int _like)
 void Stats::print(ostream &_os) const
 {
     _os<<date.toString().toStdString()<<endl<<impression<<endl<<coverage<<endl<<like<<endl;
+}
+
+void Stats::read(const QJsonObject &_json)
+{
+    if(_json.contains("date") && _json.value("date").isString())
+        date = QDate::fromString(_json.value("date").toString());
+
+    if(_json.contains("impression"))
+        impression = _json.value("impression").toInt();
+
+    if(_json.contains("coverage"))
+        coverage = _json.value("coverage").toInt();
+
+    if(_json.contains("like"))
+        like = _json.value("like").toInt();
+}
+
+void Stats::write(QJsonObject &_json) const
+{
+    _json["date"] = date.toString();
+    _json["coverage"] = qint64(coverage);
+    _json["impression"] = qint64(impression);
+    _json["like"] = qint64(like);
 }
 

@@ -11,6 +11,7 @@ private:
     u_int views;
     u_int watchtime;
 public:
+    Stats_content();
     Stats_content(QDate _date, u_int _impression = 0, u_int _coverage = 0, u_int _like = 0, u_int _dislike = 0, u_int _numcomments = 0, u_int _views = 0, u_int _watchtime = 0);
     virtual ~Stats_content() = default;
     u_int getDislike() const{ return dislike;}
@@ -22,6 +23,8 @@ public:
     void setViews(u_int _views);
     void setWatchtime(u_int _watchtime);
     Stats_content* clone() const;
+    virtual void read(const QJsonObject &_json);
+    virtual void write(QJsonObject &_json) const;
 
 };
 ostream &operator<<(ostream &_os, const Stats_content &_sa);

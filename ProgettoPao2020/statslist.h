@@ -39,6 +39,8 @@ class StatsList
         void clear();
         void RemoveAt(int i);
         Stats& operator[](int i) const;
+        void read(const QJsonObject &_json);
+        void write(QJsonObject &_json) const;
 
     class constiterator{
         friend class StatsList;

@@ -12,6 +12,7 @@
 
 int main(int argc, char *argv[])
 {
+    /*
     QCoreApplication::setOrganizationName("QANALYTICS");
     QCoreApplication::setApplicationName("QANALYTICS");
     QSettings settings("QANALYTICS", "QANALYTICS");
@@ -23,8 +24,73 @@ int main(int argc, char *argv[])
     lw.show();
     return a.exec();
 
-
 /*---------------------------------------------------------------------------------------------------------------------
+    /*StatsList listsc;
+    std::vector<Content> lc;
+    StatsList listsa;
+    std::vector<Account> la;
+
+    //INSERIMENTO DATI  CREATOR 1
+    //STATS_CONTENT     QDATE, IMPRESSION, COVERAGE, LIKE, DISLIKE, NUMCOMMENTS, VIEWS, WATCHTIME
+    Stats_content sc1a(*new QDate(2020, 02, 1), 215, 500, 1000, 200, 600, 20000, 400);      //VIDEO
+    Stats_content sc1b(*new QDate(2010, 03, 1), 240, 900, 1100, 300, 850, 30000, 421);      //VIDEO
+
+    Stats_content sc2a(*new QDate(2020, 02, 1), 300, 600, 2000, 220, 600, 20000, 400);      //VIDEO
+    Stats_content sc2b(*new QDate(2020, 03, 1), 310, 650, 3000, 250, 900, 40000, 380);      //VIDEO
+
+    Stats_content sc3a(*new QDate(2020, 02, 1), 400, 1200, 1000, 0, 600, 20000, 0);      //IMAGE
+    Stats_content sc3b(*new QDate(2020, 03, 1), 300, 1000, 1100, 0, 700, 25000, 0);      //IMAGE
+
+    Stats_content sc4a(*new QDate(2020, 01, 24), 1000, 1200, 0, 0, 0, 20000, 0);      //STORY
+
+    Stats_content sc5a(*new QDate(2020, 02, 1), 300, 1000, 0, 0, 500, 3000, 12200);      //LIVESTREAM
+
+    Stats_content sc6a(*new QDate(2020, 02, 1), 300, 500, 1000, 200, 120, 20000, 0);      //TEXT
+    Stats_content sc6b(*new QDate(2020, 03, 1), 100, 400, 1300, 250, 150, 30000, 0);      //TEXT
+
+    listsc.PushBack(sc1a); listsc.PushBack(sc1b);
+    Content c1a(*(new QDateTime(*new QDate(2020, 01, 3))), video, listsc, "SCHERZO EPIKO FINITO MALE", "desc1");
+
+    listsc.clear(); listsc.PushBack(sc2a); listsc.PushBack(sc2b);
+    Content c1b(*(new QDateTime(*new QDate(2020, 01, 12))), video, listsc, "COME FOSSERO I GIOCATORI SENZA DENTI", "desc2");
+
+    listsc.clear(); listsc.PushBack(sc3a); listsc.PushBack(sc3b);
+    Content c2a(*(new QDateTime(*new QDate(2020, 01, 15))), image, listsc, "", "finalmente estate xoxo");
+
+    listsc.clear(); listsc.PushBack(sc4a);
+    Content c2b(*(new QDateTime(*new QDate(2020, 01, 24))), story, listsc);
+
+    listsc.clear(); listsc.PushBack(sc5a);
+    Content c3a(*(new QDateTime(*new QDate(2020, 01, 16))), livestream, listsc, "SPAKKETTAMENTO EPIKO FIFA20", "desc3");
+
+    listsc.clear(); listsc.PushBack(sc6a); listsc.PushBack(sc6b);
+    Content c3b(*(new QDateTime(*new QDate(2020, 01, 18))), text, listsc, "", "Ci vediamo oggi pomeriggio in live qui su fb");
+
+    //STATS_YT      QDATE, IMPRESSION, COVERAGE, LIKE, FOLLOWERS, FOLLOWING, DONATORS, TOTAL_VIEWS, AVG_WATCHTIME
+    Stats_youtube sy1a(*new QDate(2020, 02, 1), 500, 200, 1100, 20000, 125, 10, 40000, 400);
+    Stats_youtube sy1b(*new QDate(2020, 03, 1), 800, 500, 1550, 20100, 122, 25, 70000, 400);
+    lc.clear(); lc.push_back(c1a);lc.push_back(c1b);
+    listsa.clear(); listsa.PushBack(sy1a); listsa.PushBack(sy1b);
+    Account acc1a(00, "panzYT", "panz@gmail.com", youtube, lc, listsa);
+    //STATS_INSTA   QDATE, IMPRESSION, COVERAGE, LIKE, FOLLOWERS, FOLLOWING
+    Stats_instagram si1a(*new QDate(2020, 04, 1),800,3000,1000,10000, 125);
+    Stats_instagram si1b(*new QDate(2020, 05, 1),1000,4000,1100,10100, 130);
+    lc.clear(); lc.push_back(c2a);lc.push_back(c2b);
+    listsa.clear(); listsa.PushBack(si1a); listsa.PushBack(si1b);
+    Account acc1b(01, "panzINSTA", "panz@gmail.com", instagram, lc, listsa);
+    //STATS_FB      QDATE, IMPRESSION, COVERAGE, LIKE, FOLLOWERS, PAGE_LIKES
+    Stats_facebook sf1a(*new QDate(2020, 02, 1),600,200,1000,18000, 25000);
+    Stats_facebook sf1b(*new QDate(2020, 03, 1),900,700,1300,19000, 26000);
+    lc.clear(); lc.push_back(c3a);lc.push_back(c3b);
+    listsa.clear(); listsa.PushBack(sf1a); listsa.PushBack(sf1b);
+    Account acc1c(02, "panzFB", "panz@gmail.com", facebook, lc, listsa);
+
+    la.clear(); la.push_back(acc1a);la.push_back(acc1b);la.push_back(acc1c);
+    Creator c1(la, "Giacomo", "SASSARO", "SSSGCM", "Via roma", "000012562", "Panz");
+
+
+
+    /*---------------------------------------------------------------------------------------------------------------------
     //INSERIMENTO DATI CREATOR 2
     //STATS_CONTENT     QDATE, IMPRESSION, COVERAGE, LIKE, DISLIKE, NUMCOMMENTS, VIEWS, WATCHTIME
     Stats_content sc7a(*new QDate(2020, 02, 1), 40, 200, 45, 0, 10, 150, 0);      //IMAGE
@@ -79,10 +145,25 @@ int main(int argc, char *argv[])
     Creator c3(la, "Gianpiero Giuseppe", "TOVO", "GNPTVO", "Via milano", "000098562", "Gianpics");
 //----------------------------------------------------------------------------------------------------------------------------*/
     //CreatorList *cl = new CreatorList(c1);
-    //cl->InsertBack(c2);
-    //cl->InsertBack(c3);
+   // cl->InsertBack(c1);
+   // cl->InsertBack(c1);
     //model->setList(cl);
     //return cl;
+    Creator c1;
+    QFile f("prova_json.txt");
+    if(f.open(QIODevice::ReadOnly)){
+        QByteArray load = f.readAll();
+        QJsonDocument jd = QJsonDocument::fromJson(load);
+        c1.read(jd.object());
+
+    }
+    f.close();
+    fstream fs;
+    fs.open("prova_json1.txt", fstream::out);
+    QJsonObject json;
+    c1.write(json);
+    fs << QJsonDocument(json).toJson().toStdString();
+    fs.close();
 
     return 0;
 }
