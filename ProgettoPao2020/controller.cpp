@@ -310,8 +310,8 @@ void Controller::importBtnClick()
 void Controller::importData(QString path)
 {
     try {
-        model->importList(path.toStdString());
         if(path == "") throw exception();
+        model->importList(path.toStdString());
         // notifica termine operazione
         QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
         QMessageBox wAlert(lw);
