@@ -40,29 +40,6 @@ Stats_youtube *Stats_youtube::clone() const
     return new Stats_youtube(*this);
 }
 
-void Stats_youtube::getStream(istream &_is, vector<const Stats_account*> &v)
-{
-    string tmp;
-    getline(_is, tmp);
-    if(tmp=="[")
-        while(tmp!="]"){
-            string _date, _impression, _coverage, _like, _followers, _following, _donators, _totalviews, _avgtime;
-            if(tmp=="[")
-                getline(_is, _date);
-            else
-                _date=tmp;
-            getline(_is, _impression);
-            getline(_is, _coverage);
-            getline(_is, _like);
-            getline(_is, _followers);
-            getline(_is, _following);
-            getline(_is, _donators);
-            getline(_is, _totalviews);
-            getline(_is, _avgtime);
-            v.push_back(new Stats_youtube(QDate::fromString(QString::fromStdString(_date)), stoi(_impression), stoi(_coverage), stoi(_like), stoi(_followers), stoi(_following), stoi(_donators), stoi(_totalviews), stoi(_avgtime)));
-            getline(_is, tmp);
-        }
-}
 void Stats_youtube::read(const QJsonObject &_json)
 {
     Stats_account::read(_json);

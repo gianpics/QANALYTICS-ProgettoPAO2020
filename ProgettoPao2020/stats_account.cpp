@@ -16,13 +16,6 @@ void Stats_account::setFollowers(u_int _followers)
     followers=_followers;
 }
 
-
-void Stats_account::print(ostream &_os) const
-{
-    Stats::print(_os);
-    _os<<followers<<endl;
-}
-
 void Stats_account::read(const QJsonObject &_json)
 {
     Stats::read(_json);

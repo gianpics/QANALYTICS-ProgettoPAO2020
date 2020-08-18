@@ -1,7 +1,6 @@
 #include <QSettings>
 #include <QDebug>
 #include <QCoreApplication>
-#include "mainwindow.h"
 #include "model.h"
 #include "graphswindow.h"
 #include "landingwindow.h"

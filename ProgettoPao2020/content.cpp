@@ -9,9 +9,6 @@ Content::Content(const Content &_content)
     timestamp = _content.timestamp;
     type = _content.type;
     stats=_content.stats;
-    /*for(auto a : _content.stats){
-        stats.push_back(new Stats_content(*a));
-    }*/
 }
 Content::Content()
 {
@@ -31,9 +28,6 @@ Content &Content::operator=(const Content &_content)
         timestamp = _content.timestamp;
         stats=_content.stats;
         type = _content.type;
-        /*for(auto a : _content.stats){
-            stats.push_back(new Stats_content(*a));
-        }*/
     }
     return *this;
 }
@@ -79,8 +73,6 @@ string Content::getType() const{
     }
 }
 
-
-
 void Content::setType(content_type _type)
 {
     type=_type;
@@ -91,18 +83,6 @@ const StatsList& Content::getStats() const { return stats;}
 void Content::setStats(StatsList &_stats)
 {
     stats=_stats;
-    /*for(auto a : _stats){
-        stats.push_back(new Stats_content(*a));
-    }*/
-}
-
-void Content::print(ostream &_os) const
-{
-    /*_os << title << endl << description << endl << timestamp.toString().toStdString() << endl << type << endl;
-    _os << "["<<endl;
-    for(auto s : stats)
-        _os << *s;
-    _os << "]"<<endl;*/
 }
 
 void Content::read(const QJsonObject &_json)
