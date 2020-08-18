@@ -22,8 +22,10 @@ Stats_facebook *Stats_facebook::clone() const
 void Stats_facebook::read(const QJsonObject &_json)
 {
     Stats_account::read(_json);
-    if(_json.contains("page_likes"))
+    if(_json.contains("page_likes") && _json.value("page_likes").isDouble())
         page_likes = _json.value("page_likes").toInt();
+    else
+        throw runtime_error("Page_likes format or value not valid.");
 }
 
 void Stats_facebook::write(QJsonObject &_json) const

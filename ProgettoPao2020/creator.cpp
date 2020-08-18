@@ -29,8 +29,11 @@ void Creator::setNickname(string _nickname)
 void Creator::read(const QJsonObject &_json)
 {
     Persona::read(_json);
-    if(_json.contains("nickname") )
+    if(_json.contains("nickname") && _json["nickname"].isString())
         nickname = _json["nickname"].toString().toStdString();
+    else
+        throw runtime_error("Nickname format or value not valid.");
+
     SocialList::read(_json);
 }
 

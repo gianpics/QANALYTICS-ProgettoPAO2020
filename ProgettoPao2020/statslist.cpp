@@ -118,37 +118,60 @@ Stats &StatsList::operator[](int i) const
 void StatsList::read(const QJsonObject &_json)
 {
     if(_json.contains("stats_content")){
-        QJsonArray statObj = _json["stats_content"].toArray();
-        for(int i = 0; i<statObj.size(); i++){
-            QJsonObject contentObj = statObj[i].toObject();
-            Stats_content s;
-            s.read(contentObj);
-            PushBack(s);
+        if(_json["stats_content"].isArray())
+        {
+            QJsonArray statObj = _json["stats_content"].toArray();
+            for(int i = 0; i<statObj.size(); i++){
+                QJsonObject contentObj = statObj[i].toObject();
+                Stats_content s;
+                s.read(contentObj);
+                PushBack(s);
+            }
         }
+        else
+            throw runtime_error("Stats_content format or value not valid.");
+
     }else if(_json.contains("stats_youtube")){
-        QJsonArray statObj = _json["stats_youtube"].toArray();
-        for(int i = 0; i<statObj.size(); i++){
-           QJsonObject contentObj = statObj[i].toObject();
-            Stats_youtube s;
-            s.read(contentObj);
-            PushBack(s);
+        if(_json["stats_youtube"].isArray())
+        {
+            QJsonArray statObj = _json["stats_youtube"].toArray();
+            for(int i = 0; i<statObj.size(); i++){
+               QJsonObject contentObj = statObj[i].toObject();
+                Stats_youtube s;
+                s.read(contentObj);
+                PushBack(s);
+            }
         }
+        else
+            throw runtime_error("Stats_youtube format or value not valid.");
+
     }else if(_json.contains("stats_facebook")){
-        QJsonArray statObj = _json["stats_facebook"].toArray();
-        for(int i = 0; i<statObj.size(); i++){
-            QJsonObject contentObj = statObj[i].toObject();
-            Stats_facebook s;
-            s.read(contentObj);
-            PushBack(s);
+        if(_json["stats_facebook"].isArray())
+        {
+            QJsonArray statObj = _json["stats_facebook"].toArray();
+            for(int i = 0; i<statObj.size(); i++){
+                QJsonObject contentObj = statObj[i].toObject();
+                Stats_facebook s;
+                s.read(contentObj);
+                PushBack(s);
+            }
         }
+        else
+            throw runtime_error("Stats_facebook format or value not valid.");
+
     }else{
-       QJsonArray statObj = _json["stats_instagram"].toArray();
-       for(int i = 0; i<statObj.size(); i++){
-           QJsonObject contentObj = statObj[i].toObject();
-           Stats_instagram s;
-           s.read(contentObj);
-           PushBack(s);
-       }
+        if(_json["stats_instagram"].isArray())
+        {
+           QJsonArray statObj = _json["stats_instagram"].toArray();
+           for(int i = 0; i<statObj.size(); i++){
+               QJsonObject contentObj = statObj[i].toObject();
+               Stats_instagram s;
+               s.read(contentObj);
+               PushBack(s);
+           }
+        }
+        else
+            throw runtime_error("Stats_instagram format or value not valid.");
     }
 }
 

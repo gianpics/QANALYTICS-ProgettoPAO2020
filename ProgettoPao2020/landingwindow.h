@@ -16,6 +16,7 @@ class Controller;
 class LandingWindow: public QWidget
 {
     Q_OBJECT
+    friend class Controller;
 
 private:
     QVBoxLayout *creatorsLyt;
@@ -27,6 +28,7 @@ private:
 
     void setWidgets();
     void setWinStyle();
+    void initializeData();
     void fillCreatorsLyt();
 
 private slots:

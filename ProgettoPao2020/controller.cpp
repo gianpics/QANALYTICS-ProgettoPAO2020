@@ -310,8 +310,13 @@ void Controller::importBtnClick()
 void Controller::importData(QString path)
 {
     try {
-        if(path == "") throw exception();
+        if(path.isEmpty()) throw runtime_error("Invalid path entered.");
         model->importList(path.toStdString());
+
+        // reset creatorsLyt
+        if(lw)
+            lw->fillCreatorsLyt();
+
         // notifica termine operazione
         QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
         QMessageBox wAlert(lw);
@@ -326,12 +331,12 @@ void Controller::importData(QString path)
         // notifica il fallimento dell'import
         QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
         QMessageBox wAlert(lw);
-        wAlert.setWindowTitle("Error");
+        wAlert.setWindowTitle("Import error");
         wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
         wAlert.setIcon(QMessageBox::Warning);
         wAlert.setStandardButtons(QMessageBox::Ok);
-        wAlert.setText("An error has occured while importing the data");
-        wAlert.setInformativeText("The application will terminate.");
+        wAlert.setText("The program will terminate.");
+        wAlert.setInformativeText(e.what());
         wAlert.exec();
         abort();
     }
@@ -341,6 +346,7 @@ void Controller::exportBtnClick()
 {
     try {
         QString path=QFileDialog::getSaveFileName(gw, "Export Data","","Json (*.json)");
+        if(path.isEmpty()) throw runtime_error("Invalid path entered.");
         model->exportList(path.toStdString());
 
         // notifica termine operazione
@@ -357,11 +363,11 @@ void Controller::exportBtnClick()
         // notifica il fallimento dell'export
         QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
         QMessageBox wAlert(lw);
-        wAlert.setWindowTitle("Error");
+        wAlert.setWindowTitle("Export error");
         wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
         wAlert.setIcon(QMessageBox::Warning);
         wAlert.setStandardButtons(QMessageBox::Ok);
-        wAlert.setText("An error has occured while exporting the data");
+        wAlert.setText(e.what());
         wAlert.exec();
     }
 }

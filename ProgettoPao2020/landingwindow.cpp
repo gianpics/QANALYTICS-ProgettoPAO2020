@@ -56,6 +56,8 @@ void LandingWindow::setWidgets(){
     creatorsLyt->addWidget(searchTxt);
     creatorsLyt->addWidget(hLine);
 
+    initializeData();
+
     fillCreatorsLyt();
 
     mainLyt=new QHBoxLayout(this);
@@ -96,7 +98,7 @@ void LandingWindow::setWinStyle(){
     creatorsLyt->setContentsMargins(90, 5, 0, 0);
 }
 
-void LandingWindow::fillCreatorsLyt()
+void LandingWindow::initializeData()
 {
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     if(settings.value("app/datapath").toString().isEmpty())
@@ -104,6 +106,17 @@ void LandingWindow::fillCreatorsLyt()
             emit importBtn->click();
     else
         controller->importData(settings.value("app/datapath").toString());
+}
+
+void LandingWindow::fillCreatorsLyt()
+{
+    // reset creators buttons
+    QLayoutItem *item;
+    while((item=creatorsLyt->takeAt(2))){
+        creatorsLyt->removeItem(item);
+        delete item;
+    }
+
     QToolButton* btn;
     const Creator* c;
 
@@ -116,6 +129,7 @@ void LandingWindow::fillCreatorsLyt()
         // text format
         btn->setToolTip("Load "+QString::fromStdString(c->getFullName())+" information");
         btn->setIconSize(QSize(40,40));
+        btn->setAccessibleName("creatorBtn");
         btn->setObjectName(QString::fromStdString(c->getSSN()));
         btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         connect(btn, SIGNAL(clicked()), controller, SLOT(creatorBtnClick()));

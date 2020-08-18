@@ -65,13 +65,18 @@ void SocialList::setSocialList(const vector<Account> &v)
 
 void SocialList::read(const QJsonObject &_json)
 {
-    QJsonArray socialArray = _json["social_list"].toArray();
-    for(int i=0; i<socialArray.size(); ++i){
-        QJsonObject socialObj = socialArray[i].toObject();
-        Account a;
-        a.read(socialObj);
-        addAccount(a);
+    if(_json["social_list"].isArray())
+    {
+        QJsonArray socialArray = _json["social_list"].toArray();
+        for(int i=0; i<socialArray.size(); ++i){
+            QJsonObject socialObj = socialArray[i].toObject();
+            Account a;
+            a.read(socialObj);
+            addAccount(a);
+        }
     }
+    else
+        throw runtime_error("Social_list format or value not valid.");
 }
 
 void SocialList::write(QJsonObject &_json) const
