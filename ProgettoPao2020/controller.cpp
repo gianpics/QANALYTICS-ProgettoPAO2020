@@ -299,6 +299,7 @@ void Controller::statsBtnClick()
 
 void Controller::importBtnClick()
 {
+
     QString path=QFileDialog::getOpenFileName(gw, "Choose file data to import","","Json (*.json)");
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
     settings.setValue("app/datapath",path);
@@ -309,8 +310,8 @@ void Controller::importBtnClick()
 void Controller::importData(QString path)
 {
     try {
+        if(path == "") throw exception();
         model->importList(path.toStdString());
-
         // notifica termine operazione
         QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
         QMessageBox wAlert(lw);
