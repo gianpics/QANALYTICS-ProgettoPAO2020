@@ -56,13 +56,11 @@ const Account &SocialList::getAccountById(u_int _id) const
     throw "No matching accountS";
 }
 
-void SocialList::print(ostream &_os) const
+void SocialList::setSocialList(const vector<Account> &v)
 {
-    _os<<"[\n";
-    for(u_int i=0; i<size(); i++){
-        //_os << list.at(i);
+    for(auto a : v){
+        list.push_back(a);
     }
-    _os<<"]\n";
 }
 
 void SocialList::read(const QJsonObject &_json)

@@ -57,8 +57,3 @@ void Stats_instagram::write(QJsonObject &_json) const
     Stats_account::write(_json);
     _json["followers"] = qint64(following);
 }
-ostream &operator<<(ostream &_os, const Stats_instagram &_si)
-{
-    _si.print(_os);
-    return _os;
-}
