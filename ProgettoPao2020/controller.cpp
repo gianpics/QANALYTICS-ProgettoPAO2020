@@ -310,6 +310,17 @@ void Controller::importData(QString path)
 {
     try {
         model->importList(path.toStdString());
+
+        // notifica termine operazione
+        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+        QMessageBox wAlert(lw);
+        wAlert.setWindowTitle("Success");
+        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+        wAlert.setIcon(QMessageBox::NoIcon);
+        wAlert.setStandardButtons(QMessageBox::Ok);
+        wAlert.setText("Data have been imported successfully.");
+        wAlert.exec();
+
     } catch (exception e) {
         // notifica il fallimento dell'import
         QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
@@ -330,6 +341,17 @@ void Controller::exportBtnClick()
     try {
         QString path=QFileDialog::getSaveFileName(gw, "Export Data","","Json (*.json)");
         model->exportList(path.toStdString());
+
+        // notifica termine operazione
+        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+        QMessageBox wAlert(lw);
+        wAlert.setWindowTitle("Success");
+        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+        wAlert.setIcon(QMessageBox::NoIcon);
+        wAlert.setStandardButtons(QMessageBox::Ok);
+        wAlert.setText("Data have been exported successfully.");
+        wAlert.exec();
+
     } catch (exception e) {
         // notifica il fallimento dell'export
         QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
