@@ -24,7 +24,6 @@ public:
     void setTotalViews(u_int _total_views);
     void setAvgWatchtime(u_int _avg_watchtime);
     Stats_youtube* clone() const;
-    virtual void print(ostream &_os) const;
     static void getStream(istream &_is, vector<const Stats_account*>& v);
     void read(const QJsonObject &_json);
     void write(QJsonObject &_json) const;

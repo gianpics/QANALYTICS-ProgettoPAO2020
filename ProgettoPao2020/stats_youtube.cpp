@@ -39,12 +39,6 @@ Stats_youtube *Stats_youtube::clone() const
 {
     return new Stats_youtube(*this);
 }
-void Stats_youtube::print(ostream &_os) const
-{
-    Stats_account::print(_os);
-    _os<<getFollowing()<<endl<<getDonators()<<endl<<getTotalViews()<<endl<<getAvgWatchtime()<<endl;
-
-}
 
 void Stats_youtube::getStream(istream &_is, vector<const Stats_account*> &v)
 {
