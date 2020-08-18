@@ -28,7 +28,6 @@ class Persona
         virtual void setSSN(std::string _ssn);
         virtual void setAddress(std::string _vat);
         virtual void setVat(std::string _address);
-        virtual void print(ostream& _os) const;
         virtual void read(const QJsonObject &json);
         virtual void write(QJsonObject &json) const;
 

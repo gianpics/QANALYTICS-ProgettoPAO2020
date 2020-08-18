@@ -107,24 +107,3 @@ const Creator& CreatorList::operator[](unsigned int i) const
 {
     return info.at(i);
 }
-
-ostream &operator<<(ostream &_os, const CreatorList &_cl)
-{
-    _os<<_cl.size()<<endl;
-    for(std::vector<Creator>::const_iterator i = _cl.begin(); i!= _cl.end(); ++i)
-        _os << *i <<"\n";
-    return _os;
-}
-
-istream &operator>>(istream &_is, CreatorList &_cl)
-{
-    int size;
-    _is >> size;
-    for(int i=0;i<size;i++){
-        Creator c;
-        _is >> c;
-        //cout<<c;
-        _cl.InsertCreator(c);
-    }
-    return _is;
-}

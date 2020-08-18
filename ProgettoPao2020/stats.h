@@ -24,7 +24,6 @@ class Stats
         virtual void setImpression(u_int _impression);
         virtual void setCoverage(u_int _coverage);
         virtual void setLike(u_int _like);
-        virtual void print(ostream& _os)const;
         virtual Stats* clone() const = 0;
         virtual void read(const QJsonObject &_json);
         virtual void write(QJsonObject &_json) const;

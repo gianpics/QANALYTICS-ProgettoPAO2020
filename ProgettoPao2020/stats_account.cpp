@@ -16,13 +16,6 @@ void Stats_account::setFollowers(u_int _followers)
     followers=_followers;
 }
 
-
-void Stats_account::print(ostream &_os) const
-{
-    Stats::print(_os);
-    _os<<followers<<endl;
-}
-
 void Stats_account::read(const QJsonObject &_json)
 {
     Stats::read(_json);
@@ -36,8 +29,3 @@ void Stats_account::write(QJsonObject &_json) const
     _json["followers"] = qint64(followers);
 }
 
-ostream &operator<<(ostream &_os, const Stats_account &_sa)
-{
-    _sa.print(_os);
-    return _os;
-}
