@@ -120,9 +120,9 @@ void Content::read(const QJsonObject &_json)
     if(_json.contains("content_type"))
         type = content_type(_json["content_type"].toInt());
 
-    Stats_content sc;
-    sc.read(_json["stats"].toObject());
-    stats.PushBack(sc);
+    StatsList s;
+    s.read(_json);
+    stats=s;
 
 }
 

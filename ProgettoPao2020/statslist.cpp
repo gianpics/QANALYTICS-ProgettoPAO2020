@@ -117,22 +117,61 @@ Stats &StatsList::operator[](int i) const
 
 void StatsList::read(const QJsonObject &_json)
 {
-    /*while(_json.contains("stats")){
-        QJsonObject statObj = _json["stats"].toObject();
-        Stats s;
-        s.read(statObj);
-    }*/
+    if(_json.contains("stats_content")){
+        QJsonArray statObj = _json["stats_content"].toArray();
+        for(int i = 0; i<statObj.size(); i++){
+            QJsonObject contentObj = statObj[i].toObject();
+            Stats_content s;
+            s.read(contentObj);
+            PushBack(s);
+        }
+    }else if(_json.contains("stats_youtube")){
+        QJsonArray statObj = _json["stats_youtube"].toArray();
+        for(int i = 0; i<statObj.size(); i++){
+           QJsonObject contentObj = statObj[i].toObject();
+            Stats_youtube s;
+            s.read(contentObj);
+            PushBack(s);
+        }
+    }else if(_json.contains("stats_facebook")){
+        QJsonArray statObj = _json["stats_facebook"].toArray();
+        for(int i = 0; i<statObj.size(); i++){
+            QJsonObject contentObj = statObj[i].toObject();
+            Stats_facebook s;
+            s.read(contentObj);
+            PushBack(s);
+        }
+    }else{
+       QJsonArray statObj = _json["stats_instagram"].toArray();
+       for(int i = 0; i<statObj.size(); i++){
+           QJsonObject contentObj = statObj[i].toObject();
+           Stats_instagram s;
+           s.read(contentObj);
+           PushBack(s);
+       }
+    }
 }
 
 void StatsList::write(QJsonObject &_json) const
 {
+    QJsonArray jsl;
     constiterator c;
-    if(first!=nullptr)
+    if(first!=nullptr){
         for(c=begin(); c!=end(); c++){
             QJsonObject statObj;
             c.ptr->info->write(statObj);
-            _json["stats"] = statObj;
+            jsl.append(statObj);
         }
+        if(dynamic_cast<Stats_content*>(first->info))
+            _json["stats_content"] = jsl;
+        else if (dynamic_cast<Stats_youtube*>(first->info))
+            _json["stats_youtube"] = jsl;
+        else if (dynamic_cast<Stats_facebook*>(first->info))
+            _json["stats_facebook"] = jsl;
+        else
+            _json["stats_instagram"] = jsl;
+    }
+
 }
 
 StatsList::constiterator StatsList::begin() const

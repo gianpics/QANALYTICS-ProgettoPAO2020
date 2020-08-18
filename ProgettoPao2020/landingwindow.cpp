@@ -99,7 +99,11 @@ void LandingWindow::setWinStyle(){
 void LandingWindow::fillCreatorsLyt()
 {
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-    controller->retrieveCreators();
+    if(settings.value("app/datapath").toString().isEmpty())
+        while(settings.value("app/datapath").toString().isEmpty())
+            emit importBtn->click();
+    else
+        controller->importData(settings.value("app/datapath").toString());
     QToolButton* btn;
     const Creator* c;
 

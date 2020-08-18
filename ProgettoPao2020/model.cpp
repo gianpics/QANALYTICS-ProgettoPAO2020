@@ -404,7 +404,6 @@ void Model::exportList(string path)
 void Model::importList(string path)
 {
     reset();
-
     QFile f(QString::fromStdString(path));
     if(f.open(QIODevice::ReadOnly)){
         QByteArray load = f.readAll();

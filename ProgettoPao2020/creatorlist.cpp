@@ -83,11 +83,12 @@ std::vector<Creator>::const_iterator CreatorList::end() const
 void CreatorList::read(const QJsonObject &_json)
 {
     int i =0;
-    while(_json.contains(QString::fromStdString("Creator " + std::to_string(++i))))
+    while(_json.contains(QString::fromStdString("Creator " + std::to_string(i))))
     {
         Creator c;
-        c.read(_json[QString::fromStdString("Creator " + std::to_string(++i))].toObject());
-        InsertCreator(c);
+        c.read(_json[QString::fromStdString("Creator " + std::to_string(i))].toObject());
+        info.push_back(c);
+        i++;
     }
 }
 
