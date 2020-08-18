@@ -19,8 +19,10 @@ void Stats_account::setFollowers(u_int _followers)
 void Stats_account::read(const QJsonObject &_json)
 {
     Stats::read(_json);
-    if(_json.contains("followers"))
+    if(_json.contains("followers") && _json["followers"].isDouble())
         followers = _json["followers"].toInt();
+    else
+        throw runtime_error("Followers format or value not valid.");
 }
 
 void Stats_account::write(QJsonObject &_json) const

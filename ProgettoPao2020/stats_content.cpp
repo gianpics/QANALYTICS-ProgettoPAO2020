@@ -35,14 +35,25 @@ Stats_content *Stats_content::clone() const
 void Stats_content::read(const QJsonObject &_json)
 {
     Stats::read(_json);
-    if(_json.contains("dislike"))
+    if(_json.contains("dislike") && _json.value("dislike").isDouble())
         dislike = _json.value("dislike").toInt();
-    if(_json.contains("n_comments"))
+    else
+        throw runtime_error("Dislike format or value not valid.");
+
+    if(_json.contains("n_comments") && _json.value("n_comments").isDouble())
         num_comments = _json.value("n_comments").toInt();
-    if(_json.contains("views"))
+    else
+        throw runtime_error("N_comments format or value not valid.");
+
+    if(_json.contains("views") && _json.value("views").isDouble())
         views = _json.value("views").toInt();
-    if(_json.contains("watchtime"))
+    else
+        throw runtime_error("Views format or value not valid.");
+
+    if(_json.contains("watchtime") && _json.value("watchtime").isDouble())
         watchtime = _json.value("watchtime").toInt();
+    else
+        throw runtime_error("Watchtime format or value not valid.");
 }
 
 void Stats_content::write(QJsonObject &_json) const

@@ -43,14 +43,25 @@ Stats_youtube *Stats_youtube::clone() const
 void Stats_youtube::read(const QJsonObject &_json)
 {
     Stats_account::read(_json);
-    if(_json.contains("followers"))
+    if(_json.contains("followers") && _json["followers"].isDouble())
         following = _json["followers"].toInt();
-    if(_json.contains("donators"))
+    else
+        throw runtime_error("Followers format or value not valid.");
+
+    if(_json.contains("donators") && _json["donators"].isDouble())
         donators = _json["donators"].toInt();
-    if(_json.contains("total_views"))
+    else
+        throw runtime_error("Donators format or value not valid.");
+
+    if(_json.contains("total_views") && _json["total_views"].isDouble())
         total_views = _json["total_views"].toInt();
-    if(_json.contains("avg_watchtime"))
+    else
+        throw runtime_error("Total_views format or value not valid.");
+
+    if(_json.contains("avg_watchtime") && _json["avg_watchtime"].isDouble())
         avg_watchtime = _json["avg_watchtime"].toInt();
+    else
+        throw runtime_error("Avg_watchtime format or value not valid.");
 }
 
 void Stats_youtube::write(QJsonObject &_json) const

@@ -88,17 +88,25 @@ void Content::setStats(StatsList &_stats)
 void Content::read(const QJsonObject &_json)
 {
 
-    if(_json.contains("title"))
+    if(_json.contains("title") && _json["title"].isString())
         title = _json["title"].toString().toStdString();
+    else
+        throw runtime_error("Title format or value not valid.");
 
-    if(_json.contains("description"))
+    if(_json.contains("description") && _json["description"].isString())
         description = _json["description"].toString().toStdString();
+    else
+        throw runtime_error("Description format or value not valid.");
 
-    if(_json.contains("timestamp"))
+    if(_json.contains("timestamp") && _json["timestamp"].isString())
         timestamp = QDateTime::fromString(_json["timestamp"].toString());
+    else
+        throw runtime_error("Timestamp format or value not valid.");
 
-    if(_json.contains("content_type"))
+    if(_json.contains("content_type") && _json["content_type"].isDouble())
         type = content_type(_json["content_type"].toInt());
+    else
+        throw runtime_error("Content_type format or value not valid.");
 
     StatsList s;
     s.read(_json);

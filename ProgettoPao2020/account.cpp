@@ -95,23 +95,38 @@ account_type Account::getTypefromString(string t) const{
 
 void Account::read(const QJsonObject &_json)
 {
-    if(_json.contains("id"))
+    if(_json.contains("id") && _json["id"].isDouble())
         id = _json["id"].toInt();
-    if(_json.contains("username"))
+    else
+        throw runtime_error("Id format or value not valid.");
+
+    if(_json.contains("username") && _json["username"].isString())
         username = _json["username"].toString().toStdString();
-    if(_json.contains("email"))
+    else
+        throw runtime_error("Username format or value not valid.");
+
+    if(_json.contains("email") && _json["email"].isString())
         email = _json["email"].toString().toStdString();
-    if(_json.contains("account_type"))
+    else
+        throw runtime_error("Email format or value not valid.");
+
+    if(_json.contains("account_type") && _json["account_type"].isString())
         type = getTypefromString(_json["account_type"].toString().toStdString());
-    if(_json.contains("contents")){
-        QJsonArray contentArray = _json["contents"].toArray();
-        for(int i = 0; i<contentArray.size(); ++i){
-            QJsonObject contentObj = contentArray[i].toObject();
-            Content c;
-            c.read(contentObj);
-            contents.push_back(c);
-        }
+    else
+        throw runtime_error("Account_type format or value not valid.");
+
+    if(_json.contains("contents") && _json["contents"].isArray()){
+            QJsonArray contentArray = _json["contents"].toArray();
+            for(int i = 0; i<contentArray.size(); ++i){
+                QJsonObject contentObj = contentArray[i].toObject();
+                Content c;
+                c.read(contentObj);
+                contents.push_back(c);
+            }
     }
+    else
+        throw runtime_error("Contents format or value not valid.");
+
     StatsList s;
     s.read(_json);
     stats = s;

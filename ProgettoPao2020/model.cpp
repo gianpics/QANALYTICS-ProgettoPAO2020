@@ -411,6 +411,4 @@ void Model::importList(string path)
         list->read(jd.object());
     }
     f.close();
-
-
 }

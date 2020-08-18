@@ -63,20 +63,30 @@ void Persona::setVat(std::string _vat)
 
 void Persona::read(const QJsonObject & _json)
 {
-    if (_json.contains("first_name"))
+    if (_json.contains("first_name") && _json["first_name"].isString())
         fname = _json["first_name"].toString().toStdString();
+    else
+        throw runtime_error("First_name format or value not valid.");
 
-    if (_json.contains("last_name"))
+    if (_json.contains("last_name") && _json["last_name"].isString())
         lname = _json["last_name"].toString().toStdString();
+    else
+        throw runtime_error("Last_name format or value not valid.");
 
-    if (_json.contains("SSN"))
+    if (_json.contains("SSN") && _json["SSN"].isString())
         ssn = _json["SSN"].toString().toStdString();
+    else
+        throw runtime_error("SSN format or value not valid.");
 
-    if (_json.contains("address"))
+    if (_json.contains("address") && _json["address"].isString())
         address = _json["address"].toString().toStdString();
+    else
+        throw runtime_error("Address format or value not valid.");
 
-    if (_json.contains("VAT"))
+    if (_json.contains("VAT") && _json["VAT"].isString())
         vat = _json["VAT"].toString().toStdString();
+    else
+        throw runtime_error("VAT format or value not valid.");
 
 }
 
