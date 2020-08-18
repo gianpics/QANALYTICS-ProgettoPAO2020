@@ -26,13 +26,6 @@ void Creator::setNickname(string _nickname)
     nickname=_nickname;
 }
 
-void Creator::print(ostream &_os) const
-{
-    /*Persona::print(_os);
-    SocialList::print(_os);
-    _os<<getNickname()<<"\n";*/
-}
-
 void Creator::read(const QJsonObject &_json)
 {
     Persona::read(_json);
@@ -46,33 +39,4 @@ void Creator::write(QJsonObject &_json) const
     Persona::write(_json);
     _json["nickname"] = QString::fromStdString(nickname);
     SocialList::write(_json);
-}
-
-ostream &operator<<(ostream &_os, const Creator &_c)
-{
-    //_c.print(_os);
-    return _os;
-}
-
-istream &operator>>(istream &_is, Creator &_c)
-{
-    /*string _fname, _lname, _ssn, _address, _vat, _nick;
-    _is.ignore();
-    getline(_is, _fname);
-
-    getline(_is, _lname);
-    getline(_is, _ssn);
-    getline(_is, _address);
-    getline(_is, _vat);
-    vector<Account> v;
-    _is >> v;
-    getline(_is, _nick);
-    _c.setName(_fname);
-    _c.setLastName(_lname);
-    _c.setAddress(_address);
-    _c.setSSN(_ssn);
-    _c.setVat(_vat);
-    _c.setSocialList(v);
-    _c.setNickname(_nick);*/
-    return _is;
 }

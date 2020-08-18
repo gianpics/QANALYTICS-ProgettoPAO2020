@@ -61,12 +61,6 @@ void Persona::setVat(std::string _vat)
     vat=_vat;
 }
 
-void Persona::print(ostream &_os) const
-{
-    _os<<getName()<<"\n"<<getLastName()<<"\n"<<getSSN()<<"\n"<<getAddress()<<"\n"<<getVAT()<<"\n";
-
-}
-
 void Persona::read(const QJsonObject & _json)
 {
     if (_json.contains("first_name"))

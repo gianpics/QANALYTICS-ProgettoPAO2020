@@ -90,8 +90,3 @@ void Stats_youtube::write(QJsonObject &_json) const
     _json["total_views"] = qint64(total_views);
     _json["avg_watchtime"] = qint64(avg_watchtime);
 }
-ostream &operator<<(ostream &_os, const Stats_youtube &_sy)
-{
-    _sy.print(_os);
-    return _os;
-}

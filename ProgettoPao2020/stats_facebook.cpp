@@ -58,8 +58,3 @@ void Stats_facebook::write(QJsonObject &_json) const
     Stats_account::write(_json);
     _json["page_likes"] = qint64(page_likes);
 }
-ostream &operator<<(ostream &_os, const Stats_facebook _sf)
-{
-    _sf.print(_os);
-    return _os;
-}

@@ -37,11 +37,6 @@ void Stats::setLike(u_int _like)
     like = _like;
 }
 
-void Stats::print(ostream &_os) const
-{
-    _os<<date.toString().toStdString()<<endl<<impression<<endl<<coverage<<endl<<like<<endl;
-}
-
 void Stats::read(const QJsonObject &_json)
 {
     if(_json.contains("date") && _json.value("date").isString())
