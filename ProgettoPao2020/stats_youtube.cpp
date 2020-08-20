@@ -15,26 +15,6 @@ u_int Stats_youtube::getTotalViews() const {return total_views;}
 
 u_int Stats_youtube::getAvgWatchtime() const {return avg_watchtime;}
 
-void Stats_youtube::setFollowing(u_int _following)
-{
-    following = _following;
-}
-
-void Stats_youtube::setDonators(u_int _donators)
-{
-    donators = _donators;
-}
-
-void Stats_youtube::setTotalViews(u_int _total_watchtime)
-{
-    total_views = _total_watchtime;
-}
-
-void Stats_youtube::setAvgWatchtime(u_int _avg_watchtime)
-{
-    avg_watchtime = _avg_watchtime;
-}
-
 Stats_youtube *Stats_youtube::clone() const
 {
     return new Stats_youtube(*this);

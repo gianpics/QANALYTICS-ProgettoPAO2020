@@ -368,6 +368,7 @@ void Controller::exportBtnClick()try {
     wAlert.setStandardButtons(QMessageBox::Ok);
     wAlert.setText(e.what());
     wAlert.exec();
+
 }
 
 void Controller::infoBtnClick()

@@ -56,13 +56,6 @@ const Account &SocialList::getAccountById(u_int _id) const
     throw "No matching accountS";
 }
 
-void SocialList::setSocialList(const vector<Account> &v)
-{
-    for(auto a : v){
-        list.push_back(a);
-    }
-}
-
 void SocialList::read(const QJsonObject &_json)
 {
     if(_json["social_list"].isArray())
