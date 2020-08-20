@@ -102,29 +102,6 @@ void Account::read(const QJsonObject &_json)
     StatsList s;
     s.read(_json);
     stats = s;
-
-    /*QJsonObject statsobj = _json["stats"].toObject();
-    switch (type) {
-        case instagram: {
-            Stats_instagram si;
-            si.read(statsobj);
-            stats.PushBack(si);
-            break;
-        }
-        case facebook: {
-            Stats_facebook sf;
-            sf.read(statsobj);
-            stats.PushBack(sf);
-            break;
-        }
-        case youtube: {
-            Stats_youtube sy;
-            sy.read(statsobj);
-            stats.PushBack(sy);
-            break;
-        }
-    }*/
-
 }
 
 void Account::write(QJsonObject &_json) const

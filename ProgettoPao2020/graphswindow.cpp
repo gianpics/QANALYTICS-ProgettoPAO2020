@@ -20,7 +20,7 @@ GraphsWindow::GraphsWindow(Controller* c): controller(c)
     move(QApplication::desktop()->screen()->rect().center() - rect().center());
 }
 
-// chiede di visualizzare la landingwindow e termina la finestra
+// visualizza la landingwindow e termina la graphswindow
 void GraphsWindow::closeEvent(QCloseEvent *event)
 {
     controller->restoreLandingWindow();
@@ -187,7 +187,7 @@ void GraphsWindow::setWinStyle()
     QFile file(":/resources/stylesheet.css");
     file.open(QFile::ReadOnly);
     setStyleSheet(QLatin1String(file.readAll()));
-    // titolo finestra da nome creator
+    // ottiene titolo finestra da nome creator
     setWindowTitle(controller->getCreatorName()+"'s stats");
 
     infoLbl->setText("Creator");
@@ -231,7 +231,7 @@ void GraphsWindow::insertAccountBtn()
 
     btn=new QToolButton;
   
-    // aggiunge allaccount se esiste il creator ne ha più di uno
+    // aggiunge allaccount se il creator ne ha più di uno
     if(nAccounts>1)
     {
         setAccountBtnType(btn, -1, "", "", -1);
@@ -255,7 +255,7 @@ void GraphsWindow::insertAccountBtn()
     }
 }
 
-// cambia stylesheet dopo avere selezionato un account
+// aggiorna stile dopo avere selezionato un account
 void GraphsWindow::updateAccountBtnStyle(QString objname){
 
     QToolButton *btn;
@@ -271,7 +271,8 @@ void GraphsWindow::updateAccountBtnStyle(QString objname){
         }
     }
 }
-// cambia stylesheet dopo avere selezionato una stats
+
+// cambia stile dopo avere selezionato una stats
 void GraphsWindow::updateStatsBtnStyle(QString objname)
 {
     QPushButton *btn;
@@ -293,7 +294,8 @@ void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accoun
     exportBtn->setEnabled(false);
     eraseLayout(statsLyt);   
     eraseLayout(graphsLyt);
-    //mi salvo l'id dell'account selezionato
+
+    // memorizza id dell'account selezionato
     selectedAccountId = accountId;
     QPushButton* btn;
     for(auto stat : *stats){
@@ -374,7 +376,9 @@ void GraphsWindow::exportBtnClick()
     }
 
     QString path = QFileDialog::getSaveFileName(this, "Save file","","Images (*.png)");
-    p.save(path, "PNG");
+
+    if(!path.isEmpty())
+        p.save(path, "PNG");
 }
 
 
