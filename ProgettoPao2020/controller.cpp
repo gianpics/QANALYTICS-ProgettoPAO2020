@@ -310,22 +310,24 @@ void Controller::importBtnClick()
 void Controller::importData(QString path)
 {
     try {
-        if(path.isEmpty()) throw runtime_error("Invalid path entered.");
-        model->importList(path.toStdString());
+        if(path.isEmpty() && model->emptylist()) throw runtime_error("Invalid path entered.");
+        if(!path.isEmpty()){
+            model->importList(path.toStdString());
 
-        // reset creatorsLyt
-        if(lw)
-            lw->fillCreatorsLyt();
+            // reset creatorsLyt
+            if(lw)
+                lw->fillCreatorsLyt();
 
-        // notifica termine operazione
-        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-        QMessageBox wAlert(lw);
-        wAlert.setWindowTitle("Success");
-        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::NoIcon);
-        wAlert.setStandardButtons(QMessageBox::Ok);
-        wAlert.setText("Data have been imported successfully.");
-        wAlert.exec();
+            // notifica termine operazione
+            QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+            QMessageBox wAlert(lw);
+            wAlert.setWindowTitle("Success");
+            wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+            wAlert.setIcon(QMessageBox::Icon::Information);
+            wAlert.setStandardButtons(QMessageBox::Ok);
+            wAlert.setText("Data have been imported successfully.");
+            wAlert.exec();
+        }
 
     } catch (exception e) {
         // notifica il fallimento dell'import
@@ -333,7 +335,7 @@ void Controller::importData(QString path)
         QMessageBox wAlert(lw);
         wAlert.setWindowTitle("Import error");
         wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::Warning);
+        wAlert.setIcon(QMessageBox::Icon::Warning);
         wAlert.setStandardButtons(QMessageBox::Ok);
         wAlert.setText("The program will terminate.");
         wAlert.setInformativeText(e.what());
@@ -354,7 +356,7 @@ void Controller::exportBtnClick()
         QMessageBox wAlert(lw);
         wAlert.setWindowTitle("Success");
         wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::NoIcon);
+        wAlert.setIcon(QMessageBox::Icon::Information);
         wAlert.setStandardButtons(QMessageBox::Ok);
         wAlert.setText("Data have been exported successfully.");
         wAlert.exec();
@@ -365,7 +367,7 @@ void Controller::exportBtnClick()
         QMessageBox wAlert(lw);
         wAlert.setWindowTitle("Export error");
         wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::Warning);
+        wAlert.setIcon(QMessageBox::Icon::Warning);
         wAlert.setStandardButtons(QMessageBox::Ok);
         wAlert.setText(e.what());
         wAlert.exec();

@@ -9,11 +9,6 @@ Stats_facebook::Stats_facebook(QDate _date, u_int _impression, u_int _coverage, 
 
 u_int Stats_facebook::getPageLikes() const {return page_likes;}
 
-void Stats_facebook::setPageLikes(u_int _page_likes)
-{
-    page_likes = _page_likes;
-}
-
 Stats_facebook *Stats_facebook::clone() const
 {
     return new Stats_facebook(*this);

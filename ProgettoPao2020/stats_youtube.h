@@ -19,10 +19,6 @@ public:
     u_int getDonators() const;
     u_int getTotalViews() const;
     u_int getAvgWatchtime() const;
-    void setFollowing(u_int _following);
-    void setDonators(u_int _donators);
-    void setTotalViews(u_int _total_views);
-    void setAvgWatchtime(u_int _avg_watchtime);
     Stats_youtube* clone() const;
     void read(const QJsonObject &_json);
     void write(QJsonObject &_json) const;
