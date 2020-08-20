@@ -20,10 +20,6 @@ class Stats
         virtual u_int getImpression() const;
         virtual u_int getCoverage() const;
         virtual u_int getLike() const;
-        virtual void setDate(QDate _date);
-        virtual void setImpression(u_int _impression);
-        virtual void setCoverage(u_int _coverage);
-        virtual void setLike(u_int _like);
         virtual Stats* clone() const = 0;
         virtual void read(const QJsonObject &_json);
         virtual void write(QJsonObject &_json) const;

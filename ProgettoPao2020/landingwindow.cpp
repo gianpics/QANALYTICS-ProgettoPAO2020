@@ -149,10 +149,12 @@ void LandingWindow::searchTxtChanged(const QString &text){
         // controllo tipo (creatorsLyt contiene anche QLineEdit e QFrame)
         if((btn=qobject_cast<QToolButton*>(creatorsLyt->itemAt(i)->widget())))
         {
-            if(pattern.match(btn->text()).hasMatch())
+            if(pattern.match(btn->text()).hasMatch()){
                 btn->show();
-            else
+            }
+            else{
                 btn->hide();
+            }
         }
     }
 }

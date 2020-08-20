@@ -17,26 +17,6 @@ u_int Stats::getCoverage() const{return coverage;}
 
 u_int Stats::getLike() const{return like;}
 
-void Stats::setDate(QDate _date)
-{
-    date = _date;
-}
-
-void Stats::setImpression(u_int _impression)
-{
-    impression = _impression;
-}
-
-void Stats::setCoverage(u_int _coverage)
-{
-    coverage = _coverage;
-}
-
-void Stats::setLike(u_int _like)
-{
-    like = _like;
-}
-
 void Stats::read(const QJsonObject &_json)
 {
     if(_json.contains("date") && _json.value("date").isString())

@@ -8,11 +8,6 @@ Stats_instagram::Stats_instagram(QDate _date, u_int _impression,  u_int _coverag
 
 u_int Stats_instagram::getFollowing() const{return following;}
 
-void Stats_instagram::setFollowing(u_int _following)
-{
-    following=_following;
-}
-
 Stats_instagram *Stats_instagram::clone() const
 {
     return new Stats_instagram(*this);

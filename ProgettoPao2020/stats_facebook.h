@@ -12,7 +12,6 @@ public:
     Stats_facebook(QDate _date, u_int _impression = 0, u_int _coverage = 0, u_int _like = 0, u_int _followers = 0, u_int _pagelikes = 0);
     virtual ~Stats_facebook() = default;
     u_int getPageLikes() const;
-    void setPageLikes(u_int _page_likes);
     Stats_facebook* clone() const;
     virtual void read(const QJsonObject &_json);
     virtual void write(QJsonObject &_json) const;

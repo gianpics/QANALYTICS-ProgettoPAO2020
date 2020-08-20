@@ -18,10 +18,6 @@ public:
     u_int getNum_comments() const{return num_comments;}
     u_int getViews() const{return views;}
     u_int getWatchtime() const{return watchtime;}
-    void setDislike(u_int _dislike);
-    void setNum_comments(u_int _numcomments);
-    void setViews(u_int _views);
-    void setWatchtime(u_int _watchtime);
     Stats_content* clone() const;
     virtual void read(const QJsonObject &_json);
     virtual void write(QJsonObject &_json) const;
