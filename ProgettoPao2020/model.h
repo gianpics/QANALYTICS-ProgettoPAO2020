@@ -26,6 +26,7 @@ public:
     QString getSelectedAccountEmail(int i) const;
     QString getSelectedAccountUsername(int i) const;
     int getSelectedAccountId(int i) const;
+    bool emptylist() const;
     account_type getSelectedTypeById(int i) const;
     QString getSelectedInfo() const;
     QString getSelectedFullName() const;

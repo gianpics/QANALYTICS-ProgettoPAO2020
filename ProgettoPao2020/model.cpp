@@ -105,6 +105,11 @@ int Model::getSelectedAccountId(int i) const
     return selected->operator[](i).getId();
 }
 
+bool Model::emptylist() const
+{
+    return list->empty();
+}
+
 account_type Model::getSelectedTypeById(int i) const
 {
     return selected->getAccountById(i).getType();
