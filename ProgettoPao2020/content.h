@@ -28,15 +28,10 @@ class Content
         virtual ~Content();
         Content &operator=(const Content& _content);
         string getTitle() const;
-        void setTitle(string _title);
         string getDescription() const;
-        void setDescription(string _description);
         QDateTime getTimestamp() const;
-        void setTimeStamp(QDateTime _timestamp);
         string getType() const;
-        void setType(content_type _type);
         const StatsList& getStats() const;
-        void setStats(StatsList &_stats);
         void read(const QJsonObject &_json);
         void write(QJsonObject &_json) const;
 };
