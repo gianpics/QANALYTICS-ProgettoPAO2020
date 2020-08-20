@@ -160,6 +160,7 @@ void Controller::retrieveCreators()
     cl->InsertCreator(c2);
     cl->InsertCreator(c3);
     model->setList(cl);
+
 }
 
 int Controller::getCreatorsNumber() const
@@ -307,69 +308,66 @@ void Controller::importBtnClick()
     importData(path);
 }
 
-void Controller::importData(QString path)
-{
-    try {
-        if(path.isEmpty()) throw runtime_error("Invalid path entered.");
-        model->importList(path.toStdString());
+void Controller::importData(QString path) try {
 
-        // reset creatorsLyt
-        if(lw)
-            lw->fillCreatorsLyt();
+    if(path.isEmpty()) throw runtime_error("Invalid path entered.");
+    model->importList(path.toStdString());
 
-        // notifica termine operazione
-        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-        QMessageBox wAlert(lw);
-        wAlert.setWindowTitle("Success");
-        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::NoIcon);
-        wAlert.setStandardButtons(QMessageBox::Ok);
-        wAlert.setText("Data have been imported successfully.");
-        wAlert.exec();
+    // reset creatorsLyt
+    if(lw)
+        lw->fillCreatorsLyt();
 
-    } catch (exception e) {
-        // notifica il fallimento dell'import
-        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-        QMessageBox wAlert(lw);
-        wAlert.setWindowTitle("Import error");
-        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::Warning);
-        wAlert.setStandardButtons(QMessageBox::Ok);
-        wAlert.setText("The program will terminate.");
-        wAlert.setInformativeText(e.what());
-        wAlert.exec();
-        abort();
-    }
+    // notifica termine operazione
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    QMessageBox wAlert(lw);
+    wAlert.setWindowTitle("Success");
+    wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+    wAlert.setIcon(QMessageBox::NoIcon);
+    wAlert.setStandardButtons(QMessageBox::Ok);
+    wAlert.setText("Data have been imported successfully.");
+    wAlert.exec();
+
+} catch (runtime_error e) {
+    // notifica il fallimento dell'import
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    QMessageBox wAlert(lw);
+    wAlert.setWindowTitle("Import error");
+    wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+    wAlert.setIcon(QMessageBox::Warning);
+    wAlert.setStandardButtons(QMessageBox::Ok);
+    wAlert.setText("The program will terminate.");
+    wAlert.setInformativeText(e.what());
+    wAlert.exec();
+    abort();
 }
 
-void Controller::exportBtnClick()
-{
-    try {
-        QString path=QFileDialog::getSaveFileName(gw, "Export Data","","Json (*.json)");
-        if(path.isEmpty()) throw runtime_error("Invalid path entered.");
-        model->exportList(path.toStdString());
+void Controller::exportBtnClick()try {
 
-        // notifica termine operazione
-        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-        QMessageBox wAlert(lw);
-        wAlert.setWindowTitle("Success");
-        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::NoIcon);
-        wAlert.setStandardButtons(QMessageBox::Ok);
-        wAlert.setText("Data have been exported successfully.");
-        wAlert.exec();
+    QString path=QFileDialog::getSaveFileName(gw, "Export Data","","Json (*.json)");
+    if(path.isEmpty()) throw runtime_error("Invalid path entered.");
+    model->exportList(path.toStdString());
 
-    } catch (exception e) {
-        // notifica il fallimento dell'export
-        QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-        QMessageBox wAlert(lw);
-        wAlert.setWindowTitle("Export error");
-        wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
-        wAlert.setIcon(QMessageBox::Warning);
-        wAlert.setStandardButtons(QMessageBox::Ok);
-        wAlert.setText(e.what());
-        wAlert.exec();
-    }
+    // notifica termine operazione
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    QMessageBox wAlert(lw);
+    wAlert.setWindowTitle("Success");
+    wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+    wAlert.setIcon(QMessageBox::NoIcon);
+    wAlert.setStandardButtons(QMessageBox::Ok);
+    wAlert.setText("Data have been exported successfully.");
+    wAlert.exec();
+
+} catch (runtime_error e) {
+    // notifica il fallimento dell'export
+    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
+    QMessageBox wAlert(lw);
+    wAlert.setWindowTitle("Export error");
+    wAlert.setInformativeText(e.what());
+    wAlert.setWindowIcon(QIcon(settings.value("app/logo").toString()));
+    wAlert.setIcon(QMessageBox::Warning);
+    wAlert.setStandardButtons(QMessageBox::Ok);
+    wAlert.setText(e.what());
+    wAlert.exec();
 }
 
 void Controller::infoBtnClick()

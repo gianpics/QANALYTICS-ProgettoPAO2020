@@ -34,24 +34,9 @@ Content &Content::operator=(const Content &_content)
 
 string Content::getTitle() const {return title;}
 
-void Content::setTitle(string _title)
-{
-    title=_title;
-}
-
 string Content::getDescription() const {return description;}
 
-void Content::setDescription(string _description)
-{
-    description=_description;
-}
-
 QDateTime Content::getTimestamp() const {return timestamp;}
-
-void Content::setTimeStamp(QDateTime _timestamp)
-{
-    timestamp=_timestamp;
-}
 
 string Content::getType() const{
     switch(type){
@@ -73,17 +58,7 @@ string Content::getType() const{
     }
 }
 
-void Content::setType(content_type _type)
-{
-    type=_type;
-}
-
 const StatsList& Content::getStats() const { return stats;}
-
-void Content::setStats(StatsList &_stats)
-{
-    stats=_stats;
-}
 
 void Content::read(const QJsonObject &_json)
 {

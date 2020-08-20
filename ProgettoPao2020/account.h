@@ -26,17 +26,11 @@ public:
     Account(const Account& _account);
     Account& operator=(const Account& _account);
     u_int getId() const;
-    void setId(u_int _id);
     string getUsername() const;
-    void setUsername(string _username);
     string getEmail() const;
-    void setEmail(string _email);
     account_type getType() const;
-    void setType(account_type _type);
     const vector<Content>& getContents() const;
-    void setContents(vector<Content>& _contents);
     const StatsList& getStats() const;
-    void setStats(StatsList &_stats);
     string getStringType() const;
     account_type getTypefromString(string t)const;
     void read(const QJsonObject &_json);
