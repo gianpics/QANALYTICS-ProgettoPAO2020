@@ -42,20 +42,16 @@ string Content::getType() const{
     switch(type){
         case 0:
             return "image";
-            break;
         case 1:
             return "video";
-            break;
         case 2:
-        return "livestream";
-            break;
+            return "livestream";
         case 3:
             return "story";
-            break;
         case 4:
             return "text";
-            break;
     }
+    return "";
 }
 
 const StatsList& Content::getStats() const { return stats;}

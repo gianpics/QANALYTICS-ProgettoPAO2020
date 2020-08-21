@@ -53,6 +53,7 @@ string Account::getStringType() const
         case instagram: return "Instagram";
         case facebook: return "Facebook";
         case youtube: return "Youtube";
+        default: return "";
     }
 }
 
