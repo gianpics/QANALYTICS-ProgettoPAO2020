@@ -114,8 +114,7 @@ void LandingWindow::fillCreatorsLyt()
     QLayoutItem *item;
     // index 0 e 1 sono searchTxt e hLine
     while((item=creatorsLyt->takeAt(2))){
-        creatorsLyt->removeItem(item);
-        delete item;
+        delete item->widget();
     }
 
     QToolButton* btn;

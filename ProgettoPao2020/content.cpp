@@ -42,20 +42,16 @@ string Content::getType() const{
     switch(type){
         case 0:
             return "image";
-            break;
         case 1:
             return "video";
-            break;
         case 2:
-        return "livestream";
-            break;
+            return "livestream";
         case 3:
             return "story";
-            break;
         case 4:
             return "text";
-            break;
     }
+    return "";
 }
 
 const StatsList& Content::getStats() const { return stats;}
@@ -94,7 +90,7 @@ void Content::write(QJsonObject &_json) const
     _json["title"] = QString::fromStdString(title);
     _json["description"] = QString::fromStdString(description);
     _json["timestamp"] = timestamp.toString();
-    _json["content_type"] = type;//QString::fromStdString(getType());
+    _json["content_type"] = type;
     stats.write(_json);
 
 }
