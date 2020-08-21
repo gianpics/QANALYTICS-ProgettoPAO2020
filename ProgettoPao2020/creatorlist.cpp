@@ -16,7 +16,7 @@ int CreatorList::getCreatorIndex(const Creator& c) const
     return -1;
 }
 
-void CreatorList::InsertCreator(Creator &c)
+void CreatorList::InsertCreator(const Creator &c)
 {
     if(getCreatorIndex(c)>-1)
         throw "Could not insert already present element.";

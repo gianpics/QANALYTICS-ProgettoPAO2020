@@ -7,6 +7,14 @@ Stats_content::Stats_content()
 
 Stats_content::Stats_content(QDate _date, u_int _impression, u_int _coverage, u_int _like, u_int _dislike, u_int _numcomments, u_int _views, u_int _watchtime) : Stats(_date, _impression, _coverage, _like), dislike(_dislike), num_comments(_numcomments), views(_views), watchtime(_watchtime){}
 
+u_int Stats_content::getDislike() const{ return dislike;}
+
+u_int Stats_content::getNum_comments() const{return num_comments;}
+
+u_int Stats_content::getViews() const{return views;}
+
+u_int Stats_content::getWatchtime() const{return watchtime;}
+
 Stats_content *Stats_content::clone() const
 {
     return new Stats_content(*this);

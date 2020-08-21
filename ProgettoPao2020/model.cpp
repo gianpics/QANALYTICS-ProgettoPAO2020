@@ -413,6 +413,7 @@ void Model::importList(string path)
     if(f.open(QIODevice::ReadOnly)){
         QByteArray load = f.readAll();
         QJsonDocument jd = QJsonDocument::fromJson(load);
+        if(jd.isNull()) throw runtime_error("Invalid file schema.");
         list->read(jd.object());
     }
     f.close();

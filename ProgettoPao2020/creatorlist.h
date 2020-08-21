@@ -12,7 +12,7 @@ public:
     CreatorList(Creator& c);
 
     int getCreatorIndex(const Creator &c) const;
-    void InsertCreator(Creator &c);
+    void InsertCreator(const Creator &c);
     int size() const;
     bool empty() const;
     Creator RemoveAt(int i);
