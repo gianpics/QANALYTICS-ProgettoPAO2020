@@ -17,7 +17,6 @@ public:
     bool operator==(const Creator&);
     bool operator!=(const Creator&);
     string getNickname() const;
-    void setNickname(string _nickname);
     void read(const QJsonObject &_json) override;
     void write(QJsonObject &_json) const override;
 };

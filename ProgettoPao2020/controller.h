@@ -22,10 +22,9 @@ public:
     explicit Controller(Model* model, QObject *parent = nullptr);
     void setView(LandingWindow* _lw);
     void setView(GraphsWindow* _gw);
-    void fillStatsLyt(GraphsWindow*,QVBoxLayout*,QString);
     int getCreatorsNumber() const;
     const Creator* getCreatorAt(int i) const;
-    void restoreLandingWindow();
+    void restoreLandingWindow() const;
     QString getCreatorName() const;
     int getAccountsNumber() const;
     QString getCreatorInfo() const;

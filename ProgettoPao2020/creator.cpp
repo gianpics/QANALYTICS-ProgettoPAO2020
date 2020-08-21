@@ -21,11 +21,6 @@ string Creator::getNickname() const
     return nickname;
 }
 
-void Creator::setNickname(string _nickname)
-{
-    nickname=_nickname;
-}
-
 void Creator::read(const QJsonObject &_json)
 {
     Persona::read(_json);
