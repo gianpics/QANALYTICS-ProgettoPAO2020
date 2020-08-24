@@ -344,7 +344,6 @@ void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accoun
         }
         statsLyt->addWidget(btn);
     }
-    delete stats;
 }
 
 void GraphsWindow::displayChart(QChart *chart)
