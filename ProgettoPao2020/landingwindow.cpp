@@ -1,5 +1,3 @@
-#include <QObject>
-#include <QDebug>
 #include <QSettings>
 #include <QApplication>
 #include <QDesktopWidget>
@@ -100,12 +98,7 @@ void LandingWindow::setWinStyle(){
 
 void LandingWindow::initializeData()
 {
-    QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-    if(settings.value("app/datapath").toString().isEmpty())
-        while(settings.value("app/datapath").toString().isEmpty())
-            emit importBtn->click();
-    else
-        controller->importData(settings.value("app/datapath").toString());
+    emit importBtn->click();
 }
 
 void LandingWindow::fillCreatorsLyt()
@@ -125,7 +118,7 @@ void LandingWindow::fillCreatorsLyt()
         c=controller->getCreatorAt(i);
         btn=new QToolButton;
         btn->setIcon(QIcon(":/resources/user.png"));
-        btn->setText(" "+QString::fromStdString(" "+c->getFullName())+"\n  "+QString::fromStdString(c->getSSN()));
+        btn->setText(QString::fromStdString("  "+c->getFullName()+"\n  "+ c->getSSN()));
         // text format
         btn->setToolTip("Load "+QString::fromStdString(c->getFullName())+" information");
         btn->setIconSize(QSize(40,40));

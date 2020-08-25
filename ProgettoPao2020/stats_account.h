@@ -9,7 +9,7 @@ private:
 public:
     Stats_account();
     Stats_account(QDate _date, u_int _impression, u_int _coverage, u_int _like, u_int _followers);
-    virtual u_int getFollowers() const;
+    u_int getFollowers() const;
     virtual ~Stats_account() = 0;
     virtual Stats_account* clone() const = 0;
     virtual void read(const QJsonObject &_json);

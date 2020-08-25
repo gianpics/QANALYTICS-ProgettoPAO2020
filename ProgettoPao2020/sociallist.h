@@ -16,9 +16,9 @@ public:
     SocialList(const SocialList& _socialist);
     SocialList(const std::vector<Account>& _list);
     SocialList(const Account& _account);
-    virtual void addAccount(const Account& _account);
-    virtual void removeAt(u_int _i);
-    virtual void removeById(u_int _id);
+    void addAccount(const Account& _account);
+    void removeAt(u_int _i);
+    void removeById(u_int _id);
     bool isEmpty() const;
     u_int size() const ;
     const Account &operator[](u_int i) const;

@@ -17,12 +17,12 @@ class Persona
         Persona(std::string ="", std::string ="" , std::string ="", std::string ="", std::string ="");
         Persona(const Persona& p);
         virtual ~Persona() = 0;
-        virtual std::string getName() const;
-        virtual std::string getLastName() const;
-        virtual std::string getFullName() const;
-        virtual std::string getSSN() const;
-        virtual std::string getAddress() const;
-        virtual std::string getVAT() const;
+        std::string getName() const;
+        std::string getLastName() const;
+        std::string getFullName() const;
+        std::string getSSN() const;
+        std::string getAddress() const;
+        std::string getVAT() const;
         virtual void read(const QJsonObject &json);
         virtual void write(QJsonObject &json) const;
 

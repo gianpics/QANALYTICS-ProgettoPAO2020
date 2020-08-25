@@ -1,8 +1,6 @@
 ﻿#include "graphswindow.h"
 #include <QFile>
-#include <QDebug>
 #include <QCloseEvent>
-#include <QPushButton>
 #include <QStyle>
 #include <QDesktopWidget>
 #include "controller.h"
@@ -221,6 +219,7 @@ void GraphsWindow::setWinStyle()
     vLine->setFrameShadow(QFrame::Sunken);
 }
 
+
 void GraphsWindow::insertAccountBtn()
 {
     int nAccounts=controller->getAccountsNumber();
@@ -230,7 +229,7 @@ void GraphsWindow::insertAccountBtn()
     QToolButton* btn;
 
     btn=new QToolButton;
-  
+
     // aggiunge allaccount se il creator ne ha più di uno
     if(nAccounts>1)
     {
@@ -292,7 +291,7 @@ void GraphsWindow::updateStatsBtnStyle(QString objname)
 void GraphsWindow::insertStatsBtn(std::vector<stats_type>* stats, QString accountId)
 {
     exportBtn->setEnabled(false);
-    eraseLayout(statsLyt);   
+    eraseLayout(statsLyt);
     eraseLayout(graphsLyt);
 
     // memorizza id dell'account selezionato
