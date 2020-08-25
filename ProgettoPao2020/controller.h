@@ -33,7 +33,6 @@ public:
     QString getAccountEmail(int i) const;
     QString getAccountUsername(int i) const;
     int getAccountId(int i) const;
-    void exportData(QString path) const;
     void importData(QString path);
 
 public slots:

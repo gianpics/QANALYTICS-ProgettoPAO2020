@@ -180,7 +180,7 @@ void Controller::importBtnClick()
 {
 
     QSettings settings(QString(":resources/config.ini"), QSettings::IniFormat);
-    QString path=QFileDialog::getOpenFileName(gw, "Choose file data to import","","Json (*.json)");
+    QString path=QFileDialog::getOpenFileName(gw, "Choose file data to import","","JSON (*.json)");
     settings.setValue("app/datapath",path);
     importData(path);
 }

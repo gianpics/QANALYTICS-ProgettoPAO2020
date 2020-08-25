@@ -1,4 +1,4 @@
-#ifndef LANDINGWINDOW_H
+﻿#ifndef LANDINGWINDOW_H
 #define LANDINGWINDOW_H
 
 #include <QObject>
