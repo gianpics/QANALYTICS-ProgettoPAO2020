@@ -1,0 +1,493 @@
+{
+    "Creator 0": {
+        "SSN": "SSSGCM",
+        "VAT": "000012562",
+        "address": "Via roma",
+        "first_name": "Giacomo",
+        "last_name": "SASSARO",
+        "nickname": "Panz",
+        "social_list": [
+            {
+                "account_type": "Youtube",
+                "contents": [
+                    {
+                        "content_type": 1,
+                        "description": "desc1",
+                        "stats_content": [
+                            {
+                                "coverage": 500,
+                                "date": "2020-02-01",
+                                "dislike": 200,
+                                "impression": 215,
+                                "like": 1000,
+                                "n_comments": 600,
+                                "views": 20000,
+                                "watchtime": 400
+                            },
+                            {
+                                "coverage": 900,
+                                "date": "2010-03-01",
+                                "dislike": 300,
+                                "impression": 240,
+                                "like": 1100,
+                                "n_comments": 850,
+                                "views": 30000,
+                                "watchtime": 421
+                            }
+                        ],
+                        "timestamp": "ven gen 3 00:00:00 2020",
+                        "title": " Il Megalodonte Si È Estinto Per Colpa Dei Grandi Squali Bianchi"
+                    },
+                    {
+                        "content_type": 1,
+                        "description": "desc2",
+                        "stats_content": [
+                            {
+                                "coverage": 600,
+                                "date": "2020-02-01",
+                                "dislike": 220,
+                                "impression": 300,
+                                "like": 2000,
+                                "n_comments": 600,
+                                "views": 20000,
+                                "watchtime": 400
+                            },
+                            {
+                                "coverage": 650,
+                                "date": "2020-03-01",
+                                "dislike": 250,
+                                "impression": 310,
+                                "like": 3000,
+                                "n_comments": 900,
+                                "views": 40000,
+                                "watchtime": 380
+                            }
+                        ],
+                        "timestamp": "dom gen 12 00:00:00 2020",
+                        "title": " Nexus War Launch Trailer for Fortnite Chapter 2 - Season 4"
+                    }
+                ],
+                "email": "panz@gmail.com",
+                "id": 0,
+                "stats_youtube": [
+                    {
+                        "avg_watchtime": 400,
+                        "coverage": 200,
+                        "date": "2020-02-01",
+                        "donators": 10,
+                        "followers": 125,
+                        "following": 10,
+                        "impression": 500,
+                        "like": 1100,
+                        "total_views": 40000
+                    },
+                    {
+                        "avg_watchtime": 400,
+                        "coverage": 500,
+                        "date": "2020-03-01",
+                        "donators": 25,
+                        "followers": 122,
+                        "following": 15,
+                        "impression": 800,
+                        "like": 1550,
+                        "total_views": 70000
+                    }
+                ],
+                "username": "panzYT"
+            },
+            {
+                "account_type": "Instagram",
+                "contents": [
+                    {
+                        "content_type": 0,
+                        "description": "lorem ipsum",
+                        "stats_content": [
+                            {
+                                "coverage": 1200,
+                                "date": "2020-02-01",
+                                "dislike": 0,
+                                "impression": 400,
+                                "like": 1000,
+                                "n_comments": 600,
+                                "views": 20000,
+                                "watchtime": 0
+                            },
+                            {
+                                "coverage": 1000,
+                                "date": "",
+                                "dislike": 0,
+                                "impression": 300,
+                                "like": 1100,
+                                "n_comments": 700,
+                                "views": 25000,
+                                "watchtime": 0
+                            }
+                        ],
+                        "timestamp": "mer gen 15 00:00:00 2020",
+                        "title": ""
+                    },
+                    {
+                        "content_type": 3,
+                        "description": "",
+                        "stats_content": [
+                            {
+                                "coverage": 1200,
+                                "date": "2020-01-24",
+                                "dislike": 0,
+                                "impression": 1000,
+                                "like": 0,
+                                "n_comments": 0,
+                                "views": 20000,
+                                "watchtime": 0
+                            }
+                        ],
+                        "timestamp": "ven gen 24 00:00:00 2020",
+                        "title": ""
+                    }
+                ],
+                "email": "panz@gmail.com",
+                "id": 1,
+                "stats_instagram": [
+                    {
+                        "coverage": 3000,
+                        "date": "2020-04-01",
+                        "followers": 125,
+                        "following": 500,
+                        "impression": 800,
+                        "like": 1000
+                    },
+                    {
+                        "coverage": 4000,
+                        "date": "2020-05-01",
+                        "followers": 130,
+                        "following": 600,
+                        "impression": 1000,
+                        "like": 1100
+                    }
+                ],
+                "username": "panzINSTAGRAM"
+            },
+            {
+                "account_type": "Facebook",
+                "contents": [
+                    {
+                        "content_type": 2,
+                        "description": "desc3",
+                        "stats_content": [
+                            {
+                                "coverage": 1000,
+                                "date": "2020-02-01",
+                                "dislike": 0,
+                                "impression": 300,
+                                "like": 0,
+                                "n_comments": 500,
+                                "views": 3000,
+                                "watchtime": 12200
+                            }
+                        ],
+                        "timestamp": "gio gen 16 00:00:00 2020",
+                        "title": "LE VACANZE INTELLIGENTI"
+                    },
+                    {
+                        "content_type": 4,
+                        "description": "Oggi pomeriggio in live qui su facebook",
+                        "stats_content": [
+                            {
+                                "coverage": 500,
+                                "date": "2020-02-01",
+                                "dislike": 200,
+                                "impression": 300,
+                                "like": 1000,
+                                "n_comments": 120,
+                                "views": 20000,
+                                "watchtime": 0
+                            },
+                            {
+                                "coverage": 400,
+                                "date": "2020-03-01",
+                                "dislike": 250,
+                                "impression": 100,
+                                "like": 1300,
+                                "n_comments": 150,
+                                "views": 30000,
+                                "watchtime": 0
+                            }
+                        ],
+                        "timestamp": "sab gen 18 00:00:00 2020",
+                        "title": ""
+                    }
+                ],
+                "email": "panz@gmail.com",
+                "id": 2,
+                "stats_facebook": [
+                    {
+                        "coverage": 200,
+                        "date": "2020-02-01",
+                        "followers": 18000,
+                        "impression": 600,
+                        "like": 1000,
+                        "page_likes": 25000
+                    },
+                    {
+                        "coverage": 700,
+                        "date": "2020-03-01",
+                        "followers": 19000,
+                        "impression": 900,
+                        "like": 1300,
+                        "page_likes": 26000
+                    }
+                ],
+                "username": "panzFB"
+            }
+        ]
+    },
+    "Creator 1": {
+        "SSN": "AYBMHR",
+        "VAT": "000026598",
+        "address": "Via napoli",
+        "first_name": "Ayoub",
+        "last_name": "MAHER",
+        "nickname": "Yubi",
+        "social_list": [
+            {
+                "account_type": "Instagram",
+                "contents": [
+                    {
+                        "content_type": 0,
+                        "description": "Nuovi acquisti",
+                        "stats_content": [
+                            {
+                                "coverage": 200,
+                                "date": "2020-02-01",
+                                "dislike": 0,
+                                "impression": 40,
+                                "like": 45,
+                                "n_comments": 10,
+                                "views": 150,
+                                "watchtime": 0
+                            },
+                            {
+                                "coverage": 190,
+                                "date": "2020-03-01",
+                                "dislike": 0,
+                                "impression": 30,
+                                "like": 65,
+                                "n_comments": 12,
+                                "views": 180,
+                                "watchtime": 0
+                            }
+                        ],
+                        "timestamp": "dom gen 26 00:00:00 2020",
+                        "title": ""
+                    },
+                    {
+                        "content_type": 0,
+                        "description": "Si sta come d'autunno",
+                        "stats_content": [
+                            {
+                                "coverage": 250,
+                                "date": "2020-02-01",
+                                "dislike": 0,
+                                "impression": 30,
+                                "like": 80,
+                                "n_comments": 25,
+                                "views": 200,
+                                "watchtime": 0
+                            },
+                            {
+                                "coverage": 220,
+                                "date": "2020-03-01",
+                                "dislike": 0,
+                                "impression": 25,
+                                "like": 90,
+                                "n_comments": 29,
+                                "views": 220,
+                                "watchtime": 0
+                            }
+                        ],
+                        "timestamp": "ven gen 10 00:00:00 2020",
+                        "title": ""
+                    }
+                ],
+                "email": "yubi@gmail.com",
+                "id": 10,
+                "stats_instagram": [
+                    {
+                        "coverage": 600,
+                        "date": "2020-02-01",
+                        "followers": 1250,
+                        "following": 1000,
+                        "impression": 400,
+                        "like": 125
+                    },
+                    {
+                        "coverage": 800,
+                        "date": "2020-03-01",
+                        "followers": 1300,
+                        "following": 1100,
+                        "impression": 500,
+                        "like": 155
+                    }
+                ],
+                "username": "yubiINSTA"
+            },
+            {
+                "account_type": "Facebook",
+                "contents": [
+                    {
+                        "content_type": 4,
+                        "description": "looking for something new",
+                        "stats_content": [
+                            {
+                                "coverage": 800,
+                                "date": "2020-02-01",
+                                "dislike": 150,
+                                "impression": 20,
+                                "like": 25,
+                                "n_comments": 200,
+                                "views": 500,
+                                "watchtime": 0
+                            },
+                            {
+                                "coverage": 900,
+                                "date": "2020-03-01",
+                                "dislike": 190,
+                                "impression": 10,
+                                "like": 28,
+                                "n_comments": 220,
+                                "views": 800,
+                                "watchtime": 0
+                            }
+                        ],
+                        "timestamp": "sab gen 11 00:00:00 2020",
+                        "title": ""
+                    }
+                ],
+                "email": "yubi@gmail.com",
+                "id": 11,
+                "stats_facebook": [
+                    {
+                        "coverage": 1000,
+                        "date": "2020-02-01",
+                        "followers": 200,
+                        "impression": 50,
+                        "like": 25,
+                        "page_likes": 150
+                    },
+                    {
+                        "coverage": 1100,
+                        "date": "2020-03-01",
+                        "followers": 202,
+                        "impression": 60,
+                        "like": 28,
+                        "page_likes": 160
+                    }
+                ],
+                "username": "yubiFB"
+            }
+        ]
+    },
+    "Creator 2": {
+        "SSN": "GNPTVO",
+        "VAT": "000098562",
+        "address": "Via milano",
+        "first_name": "Gianpiero Giuseppe",
+        "last_name": "TOVO",
+        "nickname": "Gianpics",
+        "social_list": [
+            {
+                "account_type": "Youtube",
+                "contents": [
+                    {
+                        "content_type": 1,
+                        "description": "cat",
+                        "stats_content": [
+                            {
+                                "coverage": 600000,
+                                "date": "2020-02-01",
+                                "dislike": 1000,
+                                "impression": 30000,
+                                "like": 150000,
+                                "n_comments": 10000,
+                                "views": 800000,
+                                "watchtime": 800
+                            },
+                            {
+                                "coverage": 800000,
+                                "date": "2020-03-01",
+                                "dislike": 1500,
+                                "impression": 40000,
+                                "like": 200000,
+                                "n_comments": 12000,
+                                "views": 1000000,
+                                "watchtime": 787
+                            }
+                        ],
+                        "timestamp": "mer gen 1 00:00:00 2020",
+                        "title": "FREE CATS"
+                    }
+                ],
+                "email": "gianpics@gmail.com",
+                "id": 20,
+                "stats_youtube": [
+                    {
+                        "avg_watchtime": 800,
+                        "coverage": 650000,
+                        "date": "2020-02-01",
+                        "donators": 500,
+                        "followers": 1,
+                        "following": 100,
+                        "impression": 70000,
+                        "like": 150000,
+                        "total_views": 800000
+                    },
+                    {
+                        "avg_watchtime": 787,
+                        "coverage": 730000,
+                        "date": "2020-03-01",
+                        "donators": 550,
+                        "followers": 1,
+                        "following": 150,
+                        "impression": 80000,
+                        "like": 200000,
+                        "total_views": 1000000
+                    },
+                    {
+                        "avg_watchtime": 790,
+                        "coverage": 750000,
+                        "date": "2020-04-01",
+                        "donators": 553,
+                        "followers": 5,
+                        "following": 152,
+                        "impression": 80000,
+                        "like": 220000,
+                        "total_views": 1000000
+                    },
+                    {
+                        "avg_watchtime": 690,
+                        "coverage": 800000,
+                        "date": "2020-05-01",
+                        "donators": 560,
+                        "followers": 9,
+                        "following": 125,
+                        "impression": 80000,
+                        "like": 240000,
+                        "total_views": 1000000
+                    },
+                    {
+                        "avg_watchtime": 800,
+                        "coverage": 1000000,
+                        "date": "2020-06-01",
+                        "donators": 500,
+                        "followers": 10,
+                        "following": 160,
+                        "impression": 90000,
+                        "like": 250000,
+                        "total_views": 1000000
+                    }
+                ],
+                "username": "gianpicsYT"
+            }
+        ]
+    }
+}
