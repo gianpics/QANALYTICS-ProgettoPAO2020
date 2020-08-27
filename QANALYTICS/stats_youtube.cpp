@@ -23,8 +23,8 @@ Stats_youtube *Stats_youtube::clone() const
 void Stats_youtube::read(const QJsonObject &_json)
 {
     Stats_account::read(_json);
-    if(_json.contains("followers") && _json["followers"].isDouble())
-        following = _json["followers"].toInt();
+    if(_json.contains("following") && _json["following"].isDouble())
+        following = _json["following"].toInt();
     else
         throw runtime_error("Followers format or value not valid.");
 
@@ -47,7 +47,7 @@ void Stats_youtube::read(const QJsonObject &_json)
 void Stats_youtube::write(QJsonObject &_json) const
 {
     Stats_account::write(_json);
-    _json["followers"] = qint64(following);
+    _json["following"] = qint64(following);
     _json["donators"] = qint64(donators);
     _json["total_views"] = qint64(total_views);
     _json["avg_watchtime"] = qint64(avg_watchtime);

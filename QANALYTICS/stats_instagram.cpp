@@ -16,8 +16,8 @@ Stats_instagram *Stats_instagram::clone() const
 void Stats_instagram::read(const QJsonObject &_json)
 {
     Stats_account::read(_json);
-    if(_json.contains("followers") && _json.value("followers").isDouble())
-        following = _json.value("followers").toInt();
+    if(_json.contains("following") && _json.value("following").isDouble())
+        following = _json.value("following").toInt();
     else
         throw runtime_error("Followers format or value is not valid.");
 }
@@ -25,5 +25,5 @@ void Stats_instagram::read(const QJsonObject &_json)
 void Stats_instagram::write(QJsonObject &_json) const
 {
     Stats_account::write(_json);
-    _json["followers"] = qint64(following);
+    _json["following"] = qint64(following);
 }
