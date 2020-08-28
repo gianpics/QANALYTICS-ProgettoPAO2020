@@ -1,6 +1,8 @@
 # QANALYTICS - Progetto di Programmazione ad Oggetti 2020 - UniPD
 
-![QANALYTICS logo](Screen+file/qanalyticslogo.png?raw=true)
+<p align="center">
+  <img src="Screen+file/qanalyticslogo.png?raw=true" width="170">
+</p>
 
 
 ## Informazioni
